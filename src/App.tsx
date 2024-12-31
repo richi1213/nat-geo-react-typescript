@@ -1,9 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { appRouter } from '@/routes';
+import { RouterProvider } from 'react-router';
 
-export const App: React.FC = () => {
-  return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  );
-};
+export const App: React.FC = () => <RouterProvider router={appRouter} />;
