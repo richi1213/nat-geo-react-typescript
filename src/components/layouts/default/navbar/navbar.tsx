@@ -1,4 +1,4 @@
-import { NatGeoButton } from '@/components/ui/nat-geo/buttons/nat-geo-button';
+import { LinkButton } from '@/components/ui/nat-geo/buttons/link-button';
 import { ChevronsDown, Search } from 'lucide-react';
 import { Link } from 'react-router';
 
@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
               </div>
             </li>
             <li>
-              <NatGeoButton>subscribe</NatGeoButton>
+              <LinkButton to='/'>subscribe</LinkButton>
             </li>
 
             <li className='flex h-12 items-center'>

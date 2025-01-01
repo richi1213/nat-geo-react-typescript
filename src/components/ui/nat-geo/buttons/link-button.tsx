@@ -1,8 +1,9 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router';
 
-const natGeoButtonVariants = cva(
+const linkButtonVariants = cva(
   'rounded-none uppercase text-xs font-bold tracking-[0.2rem] relative overflow-hidden transition-all duration-200 ease-in-out',
   {
     variants: {
@@ -25,19 +26,23 @@ const natGeoButtonVariants = cva(
   },
 );
 
-type NatGeoButtonVariants = VariantProps<typeof natGeoButtonVariants>;
-type NatGeoButtonProps = Omit<ButtonProps, 'variant'> & NatGeoButtonVariants;
+type LinkButtonVariants = VariantProps<typeof linkButtonVariants>;
+type LinkButtonProps = Omit<ButtonProps, 'variant'> &
+  LinkButtonVariants & {
+    to?: string;
+  };
 
-export const NatGeoButton: React.FC<NatGeoButtonProps> = ({
+export const LinkButton: React.FC<LinkButtonProps> = ({
   className,
   size,
   variant = 'default',
+  to,
   ...props
 }) => {
-  return (
+  const buttonContent = (
     <Button
       className={cn(
-        natGeoButtonVariants({ size, variant }),
+        linkButtonVariants({ size, variant }),
         className,
         'relative overflow-hidden bg-[length:0%_100%] bg-left bg-no-repeat transition-all duration-300 ease-in-out',
         'hover:bg-[length:100%_100%] hover:text-background',
@@ -45,4 +50,10 @@ export const NatGeoButton: React.FC<NatGeoButtonProps> = ({
       {...props}
     />
   );
+
+  if (to) {
+    return <Link to={to}>{buttonContent}</Link>;
+  }
+
+  return buttonContent;
 };

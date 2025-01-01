@@ -1,1 +1,1 @@
-export * from './nat-geo-button';
+export * from './link-button';
