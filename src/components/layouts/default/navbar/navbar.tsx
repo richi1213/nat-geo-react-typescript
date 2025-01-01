@@ -1,3 +1,4 @@
+import { NatGeoButton } from '@/components/ui/nat-geo/buttons/nat-geo-button';
 import { ChevronsDown, Search } from 'lucide-react';
 import { Link } from 'react-router';
 
@@ -48,14 +49,8 @@ export const Navbar: React.FC = () => {
                 </Link>
               </div>
             </li>
-            <li className='group mr-4 flex h-12 items-center bg-black bg-gradient-to-r from-yellow-400 to-yellow-400 bg-[length:0%_100%] bg-left bg-no-repeat text-xs transition-[background-size] duration-200 ease-in hover:bg-[length:100%_100%]'>
-              <div className='px-4'>
-                <Link to='/' className=''>
-                  <span className='font-bold uppercase tracking-[3px] text-white group-hover:text-black'>
-                    Subscribe
-                  </span>
-                </Link>
-              </div>
+            <li>
+              <NatGeoButton>subscribe</NatGeoButton>
             </li>
 
             <li className='flex h-12 items-center'>
