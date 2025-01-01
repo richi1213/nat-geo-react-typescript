@@ -1,10 +1,9 @@
-import { LinkButton } from '@/components';
+import { LinkButton, UnderlinedButton } from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
-import { Link } from 'react-router';
 
 export const Navbar: React.FC = () => {
   return (
-    <nav className='sticky z-[100] h-[49px] w-full items-center border-b border-gray-100 bg-white px-4 py-0 text-sm backdrop-blur-lg transition-all'>
+    <nav className='sticky z-[100] h-[49px] w-full items-center border-b border-gray-100 bg-foreground px-4 py-0 text-sm backdrop-blur-lg transition-all'>
       <div className='h-full w-full max-w-screen-xl'>
         <div className='flex h-full items-center justify-between p-2'>
           <img
@@ -22,7 +21,7 @@ export const Navbar: React.FC = () => {
             className='cursor-pointer md:hidden'
           />
 
-          <ul className='flex h-full items-center gap-5 tracking-widest'>
+          <ul className='flex h-full items-center gap-5'>
             <li className='mr-4 flex h-12 items-center'>
               <div className=''>
                 <button className='whitespace-nowrap px-2 py-0 font-bold uppercase tracking-[3px] hover:text-gray-700'>
@@ -39,26 +38,19 @@ export const Navbar: React.FC = () => {
                 />
               </div>
             </li>
-            <li className='mr-4 hidden h-12 items-center md:flex'>
-              <div className=''>
-                <Link
-                  to='/'
-                  className='border-b-2 border-yellow-400 bg-gradient-to-t from-yellow-400 to-yellow-400 bg-[length:100%_0] bg-bottom bg-no-repeat text-sm font-semibold tracking-wide transition-[background-size] duration-150 ease-in hover:bg-[length:100%_100%]'
-                >
-                  Newsletters
-                </Link>
-              </div>
+            <li>
+              <UnderlinedButton to='/' size='sm'>
+                Newsletters
+              </UnderlinedButton>
             </li>
             <li>
-              <LinkButton variant='default' to='/'>
-                subscribe
-              </LinkButton>
+              <LinkButton to='/'>subscribe</LinkButton>
             </li>
 
             <li className='flex h-12 items-center'>
               <div className=''>
                 <button className='flex items-center gap-1 hover:text-gray-700'>
-                  <span className='hidden font-bold uppercase md:block'>
+                  <span className='hidden font-bold uppercase tracking-widest md:block'>
                     Menu
                   </span>
                   <ChevronsDown size={18} />

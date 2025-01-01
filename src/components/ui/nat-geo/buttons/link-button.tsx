@@ -1,7 +1,8 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Button, ButtonProps } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router';
+import type { LinkButtonProps } from './types';
 
 const linkButtonVariants = cva(
   'rounded-none uppercase text-xs font-bold tracking-[0.2rem] relative overflow-hidden transition-all duration-200 ease-in-out',
@@ -28,11 +29,7 @@ const linkButtonVariants = cva(
   },
 );
 
-type LinkButtonVariants = VariantProps<typeof linkButtonVariants>;
-type LinkButtonProps = Omit<ButtonProps, 'variant'> &
-  LinkButtonVariants & {
-    to?: string;
-  };
+export type LinkButtonVariants = VariantProps<typeof linkButtonVariants>;
 
 export const LinkButton: React.FC<LinkButtonProps> = ({
   className,
