@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
               </div>
             </li>
             <li>
-              <LinkButton variant='penguin' to='/'>
+              <LinkButton variant='default' to='/'>
                 subscribe
               </LinkButton>
             </li>

@@ -47,7 +47,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
         linkButtonVariants({ size, variant }),
         className,
         'relative overflow-hidden bg-[length:0%_100%] bg-left bg-no-repeat transition-all duration-300 ease-in-out',
-        'hover:bg-[length:100%_100%] hover:text-background',
+        'hover:bg-[length:100%_100%]',
       )}
       {...props}
     />
