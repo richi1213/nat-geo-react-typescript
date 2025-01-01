@@ -17,6 +17,8 @@ const linkButtonVariants = cva(
           'bg-background hover:bg-primary hover:text-primary-foreground bg-gradient-to-r from-primary to-primary text-foreground',
         alternate:
           'bg-primary hover:bg-foreground hover:text-background bg-gradient-to-r from-foreground to-foreground text-primary-foreground',
+        penguin:
+          'bg-foreground text-primary-foreground hover:text-foreground hover:bg-background bg-gradient-to-r from-background to-background',
       },
     },
     defaultVariants: {
@@ -51,9 +53,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
     />
   );
 
-  if (to) {
-    return <Link to={to}>{buttonContent}</Link>;
-  }
+  if (to) <Link to={to}>{buttonContent}</Link>;
 
   return buttonContent;
 };
