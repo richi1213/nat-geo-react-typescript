@@ -5,8 +5,11 @@ import {
   UnderlinedButton,
 } from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Navbar: React.FC = () => {
+  const { t } = useTranslation('header');
+
   return (
     <nav className='sticky z-[100] h-[49px] w-full items-center border-b border-gray-100 bg-foreground px-2 py-0 text-sm backdrop-blur-lg transition-all md:px-4'>
       <div className='h-full w-full max-w-screen-xl'>
@@ -33,7 +36,7 @@ export const Navbar: React.FC = () => {
 
           <ul className='flex h-full items-center gap-5'>
             <li>
-              <MenuButton>login</MenuButton>
+              <MenuButton>{t('login')}</MenuButton>
             </li>
             <li className='hidden md:block'>
               <MenuButton className='font-thin'>
@@ -42,18 +45,18 @@ export const Navbar: React.FC = () => {
             </li>
             <li className='hidden md:block'>
               <UnderlinedButton to='/' size='sm'>
-                Newsletters
+                {t('newsletters')}
               </UnderlinedButton>
             </li>
             <li>
-              <LinkButton to='/'>subscribe</LinkButton>
+              <LinkButton to='/'>{t('subscribe')}</LinkButton>
             </li>
             <li>
               <LanguagePicker />
             </li>
             <li>
               <MenuButton className='min-w-8 gap-1'>
-                <span className='hidden md:block'>menu</span>
+                <span className='hidden md:block'>{t('menu')}</span>
                 <ChevronsDown className='font-medium' />
               </MenuButton>
             </li>

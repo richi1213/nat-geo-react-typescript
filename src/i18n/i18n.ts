@@ -1,21 +1,23 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+import headerEn from './en/layout/header.json';
+
+import headerKa from './ka/layout/header.json';
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      //   navbar: navbarEn,
-      //   footer: footerEn,
+      header: headerEn,
     },
     ka: {
-      //   navbar: navbarKa,
-      //   footer: footerKa,
+      header: headerKa,
     },
   },
   lng: 'en',
   fallbackLng: 'ka',
-  defaultNS: 'navbar',
-  ns: ['navbar', 'footer'],
+  defaultNS: 'header',
+  ns: ['header'],
 });
 
 export { i18n };

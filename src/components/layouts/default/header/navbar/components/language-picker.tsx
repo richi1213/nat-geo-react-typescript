@@ -6,9 +6,11 @@ import {
   DropdownMenuItem,
 } from '@/components';
 import { Globe } from 'lucide-react';
-import { useState } from 'react';
 import type { Language } from './types';
-import { i18n, Languages } from '@/i18n';
+import { i18n } from '@/i18n';
+import { useAtom } from 'jotai';
+import { languageAtom } from '@/atoms';
+import { useEffect } from 'react';
 
 const languages = {
   en: { name: 'English', flag: '🇬🇧' },
@@ -16,7 +18,11 @@ const languages = {
 };
 
 export const LanguagePicker: React.FC = () => {
-  const [language, setLanguage] = useState<Language>(Languages.EN);
+  const [language, setLanguage] = useAtom(languageAtom);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
 
   const changeLanguage = (lang: Language) => () => {
     i18n.changeLanguage(lang);
@@ -39,9 +45,7 @@ export const LanguagePicker: React.FC = () => {
           <DropdownMenuItem
             key={lang}
             onClick={changeLanguage(lang)}
-            className={`flex items-center space-x-2 rounded-none text-foreground hover:bg-accent hover:bg-amber-500 hover:text-primary-foreground ${
-              language === lang ? 'bg-accent' : ''
-            }`}
+            className='flex items-center space-x-2 rounded-none text-foreground transition-all duration-300 hover:bg-accent hover:text-primary-foreground'
           >
             <span className='text-2xl'>{languages[lang].flag}</span>
             <span className='font-semibold'>{languages[lang].name}</span>
