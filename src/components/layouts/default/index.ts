@@ -1,2 +1,2 @@
 export * from './default-layout';
-export * from './navbar';
+export * from './header';
