@@ -1,4 +1,9 @@
-import { LinkButton, MenuButton, UnderlinedButton } from '@/components';
+import {
+  LanguagePicker,
+  LinkButton,
+  MenuButton,
+  UnderlinedButton,
+} from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -42,6 +47,9 @@ export const Navbar: React.FC = () => {
             </li>
             <li>
               <LinkButton to='/'>subscribe</LinkButton>
+            </li>
+            <li>
+              <LanguagePicker />
             </li>
             <li>
               <MenuButton className='min-w-8 gap-1'>
