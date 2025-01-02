@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const { t } = useTranslation('header');
 
   return (
-    <nav className='sticky z-[100] h-[49px] w-full items-center border-b border-gray-100 bg-foreground px-2 py-0 text-sm backdrop-blur-lg transition-all md:px-4'>
+    <nav className='sticky z-[100] h-[49px] w-full border-b border-gray-100 bg-foreground py-0 pl-2 pr-0 text-sm backdrop-blur-lg transition-all md:pl-4 md:pr-0'>
       <div className='h-full w-full max-w-screen-xl'>
         <div className='flex h-full items-center justify-between p-2'>
           <picture className='hidden cursor-pointer md:block'>
