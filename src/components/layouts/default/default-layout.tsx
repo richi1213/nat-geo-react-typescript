@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 export const DefaultLayout: React.FC = () => {
   return (
-    <div className='flex min-h-screen flex-col bg-background font-natGeo text-accent-foreground'>
+    <div className='flex min-h-screen flex-col bg-foreground font-natGeo text-accent-foreground'>
       <Header>
         <Navbar />
       </Header>

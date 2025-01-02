@@ -1,4 +1,5 @@
 import { DefaultLayout } from '@/components';
+import { NotFound } from '@/pages';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -9,10 +10,8 @@ export const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<DefaultLayout />}>
-        {/* <Route element={<IsAuthorizedGuard />}>{AUTH_LAYOUT}</Route>
-        <Route element={<IsUnauthorizedGuard />}>{DASHBOARD_LAYOUT}</Route> */}
+        <Route path='*' element={<NotFound />} />
       </Route>
-      {/* <Route path='*' element={<NotFound />} /> */}
     </>,
   ),
 );
