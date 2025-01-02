@@ -10,7 +10,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({
   ...props
 }) => {
   const buttonClasses = cn(
-    'rounded-none bg-foreground font-extrabold uppercase tracking-[0.15rem] shadow-none hover:bg-foreground hover:text-chart-5',
+    'rounded-none bg-foreground font-extrabold uppercase tracking-[0.15rem] shadow-none hover:bg-foreground hover:text-chart-5 px-0',
     className,
   );
 

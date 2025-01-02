@@ -26,11 +26,9 @@ export const Navbar: React.FC = () => {
               <MenuButton>login</MenuButton>
             </li>
             <li>
-              <Search
-                size={20}
-                strokeWidth={1.3}
-                className='cursor-pointer font-thin hover:text-gray-700'
-              />
+              <MenuButton className='font-thin'>
+                <Search />
+              </MenuButton>
             </li>
             <li>
               <UnderlinedButton to='/' size='sm'>
@@ -41,8 +39,8 @@ export const Navbar: React.FC = () => {
               <LinkButton to='/'>subscribe</LinkButton>
             </li>
             <li>
-              <MenuButton className='font-custom'>
-                menu <ChevronsDown size={18} />
+              <MenuButton className='gap-1'>
+                menu <ChevronsDown className='font-medium' />
               </MenuButton>
             </li>
           </ul>
