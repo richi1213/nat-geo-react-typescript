@@ -1,18 +1,17 @@
-import { Header, Navbar } from '@/components';
+import { Header, Main, Navbar, PageContainer } from '@/components';
+import { Outlet } from 'react-router';
 
-export const DefaultLayout = () => {
+export const DefaultLayout: React.FC = () => {
   return (
     <div className='flex min-h-screen flex-col bg-background font-natGeo text-accent-foreground'>
       <Header>
         <Navbar />
       </Header>
-      {/* <ColorPalette /> */}
-      {/* <Main>
+      <Main>
         <PageContainer>
           <Outlet />
         </PageContainer>
       </Main>
-      <Footer /> */}
     </div>
   );
 };
