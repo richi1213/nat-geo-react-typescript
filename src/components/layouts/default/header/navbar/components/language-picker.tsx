@@ -8,6 +8,7 @@ import {
 import { Globe } from 'lucide-react';
 import { useState } from 'react';
 import type { Language } from './types';
+import { i18n, Languages } from '@/i18n';
 
 const languages = {
   en: { name: 'English', flag: '🇬🇧' },
@@ -15,7 +16,12 @@ const languages = {
 };
 
 export const LanguagePicker: React.FC = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(Languages.EN);
+
+  const changeLanguage = (lang: Language) => () => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
+  };
 
   return (
     <DropdownMenu>
@@ -32,8 +38,8 @@ export const LanguagePicker: React.FC = () => {
         {(Object.keys(languages) as Language[]).map((lang) => (
           <DropdownMenuItem
             key={lang}
-            onClick={() => setLanguage(lang)}
-            className={`text- flex items-center space-x-2 rounded-none text-foreground hover:bg-accent hover:bg-amber-500 hover:text-primary-foreground ${
+            onClick={changeLanguage(lang)}
+            className={`flex items-center space-x-2 rounded-none text-foreground hover:bg-accent hover:bg-amber-500 hover:text-primary-foreground ${
               language === lang ? 'bg-accent' : ''
             }`}
           >
