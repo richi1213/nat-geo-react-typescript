@@ -5,6 +5,10 @@ import type { UnderlinedButtonVariants } from './underlined-button';
 type ButtonWithVariantProps<T> = Omit<ButtonProps, 'variant'> &
   T & { to?: string };
 
+export type MenuButtonProps = ButtonProps & {
+  to?: string;
+};
+
 export type LinkButtonProps = ButtonWithVariantProps<LinkButtonVariants>;
 export type UnderlinedButtonProps =
   ButtonWithVariantProps<UnderlinedButtonVariants>;

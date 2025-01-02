@@ -3,14 +3,41 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'NatGeoFont';
-  src:
-    url('/fonts/geographeditweb-regular.woff2') format('woff2'),
-    url('/fonts/geographeditweb-medium.woff2') format('woff2'),
-    url('/fonts/geographeditweb-regularitalic.woff2') format('woff2'),
-    url('/fonts/geographweb-bold.woff2') format('woff2'),
-    url('/fonts/geographweb-regular.woff2') format('woff2');
-  font-weight: normal;
+  font-family: 'nat-geo';
+  src: url('/fonts/geographeditweb-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'nat-geo';
+  src: url('/fonts/geographeditweb-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'nat-geo';
+  src: url('/fonts/geographeditweb-regularitalic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'nat-geo';
+  src: url('/fonts/geographweb-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'nat-geo-regular-2';
+  src: url('/fonts/geographweb-regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }

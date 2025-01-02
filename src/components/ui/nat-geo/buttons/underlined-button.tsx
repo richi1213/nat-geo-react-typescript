@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import type { UnderlinedButtonProps } from './types';
 
 const underlinedButtonVariants = cva(
-  'rounded-none capitalize text-xs relative overflow-hidden bg-foreground shadow-none',
+  'rounded-none capitalize text-xs relative overflow-hidden bg-foreground shadow-none font-normal',
   {
     variants: {
       size: {

@@ -1,4 +1,4 @@
-import { LinkButton, UnderlinedButton } from '@/components';
+import { LinkButton, MenuButton, UnderlinedButton } from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -22,21 +22,15 @@ export const Navbar: React.FC = () => {
           />
 
           <ul className='flex h-full items-center gap-5'>
-            <li className='mr-4 flex h-12 items-center'>
-              <div className=''>
-                <button className='whitespace-nowrap px-2 py-0 font-bold uppercase tracking-[3px] hover:text-gray-700'>
-                  Login
-                </button>
-              </div>
+            <li>
+              <MenuButton>login</MenuButton>
             </li>
-            <li className='mr-4 hidden h-12 items-center md:flex'>
-              <div>
-                <Search
-                  size={20}
-                  strokeWidth={1.3}
-                  className='cursor-pointer font-thin hover:text-gray-700'
-                />
-              </div>
+            <li>
+              <Search
+                size={20}
+                strokeWidth={1.3}
+                className='cursor-pointer font-thin hover:text-gray-700'
+              />
             </li>
             <li>
               <UnderlinedButton to='/' size='sm'>
@@ -46,16 +40,10 @@ export const Navbar: React.FC = () => {
             <li>
               <LinkButton to='/'>subscribe</LinkButton>
             </li>
-
-            <li className='flex h-12 items-center'>
-              <div className=''>
-                <button className='flex items-center gap-1 hover:text-gray-700'>
-                  <span className='hidden font-bold uppercase tracking-widest md:block'>
-                    Menu
-                  </span>
-                  <ChevronsDown size={18} />
-                </button>
-              </div>
+            <li>
+              <MenuButton className='font-custom'>
+                menu <ChevronsDown size={18} />
+              </MenuButton>
             </li>
           </ul>
         </div>

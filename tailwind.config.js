@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['NatGeoFont', 'sans-serif'],
+        natGeo: ['nat-geo', 'sans-serif'],
+        natGeo2: ['nat-geo-regular-2', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
