@@ -25,17 +25,19 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
         <Card
           ref={ref}
           className={cn(
-            'group relative h-24 overflow-hidden border-none',
+            'group relative overflow-hidden rounded-none border-none',
             className,
           )}
           {...props}
         >
           <Link to={href} className='block h-full'>
-            <img
-              src={imageUrl}
-              alt={title}
-              className='object-cover brightness-75 transition-all group-hover:scale-105 group-hover:brightness-50'
-            />
+            <div className='relative aspect-[16/10] overflow-hidden'>
+              <img
+                src={imageUrl}
+                alt={title}
+                className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
+              />
+            </div>
             <CardContent className='relative z-10 flex h-full flex-col justify-end p-6 text-foreground'>
               <div className='mb-4 flex items-center gap-2'>
                 {isPremium && <Lock className='h-4 w-4 text-primary' />}
@@ -62,17 +64,17 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
       <Card
         ref={ref}
         className={cn(
-          'group overflow-hidden border-none bg-foreground transition-colors hover:bg-gray-50',
+          'group overflow-hidden rounded-none border border-chart-4 bg-foreground transition-colors hover:bg-gray-50',
           className,
         )}
         {...props}
       >
         <Link to={href}>
-          <div className='relative aspect-square'>
+          <div className='relative aspect-[3/2] overflow-hidden'>
             <img
               src={imageUrl}
               alt={title}
-              className='object-cover transition-all group-hover:scale-105'
+              className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
             />
           </div>
           <CardContent className='p-6'>

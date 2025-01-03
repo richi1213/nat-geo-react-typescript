@@ -17,7 +17,7 @@ export const MiniArticleCard = React.forwardRef<
       <Card
         ref={ref}
         className={cn(
-          'group relative overflow-hidden border-none bg-transparent transition-colors hover:bg-zinc-900',
+          'group relative overflow-hidden rounded-none border-none bg-transparent transition-colors',
           className,
         )}
         {...props}
@@ -38,7 +38,7 @@ export const MiniArticleCard = React.forwardRef<
                   {category}
                 </span>
               </div>
-              <h3 className='font-bold text-white group-hover:text-primary'>
+              <h3 className='text-sm font-bold text-white group-hover:underline'>
                 {title}
               </h3>
             </div>
