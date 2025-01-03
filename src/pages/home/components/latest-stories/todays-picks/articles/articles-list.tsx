@@ -53,7 +53,7 @@ export const ArticlesList: React.FC = () => {
           <MiniArticleCard key={index} {...article} />
         ))}
       </div>
-      <div className='text-center xl:text-left'>
+      <div className='text-center lg:text-left xl:text-left'>
         <UnderlinedButton
           size='sm'
           className='bg-inherit font-semibold uppercase tracking-widest text-foreground hover:text-background'
