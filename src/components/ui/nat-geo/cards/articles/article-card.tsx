@@ -1,4 +1,4 @@
-import { Lock } from 'lucide-react';
+import { Lock, ScanText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardFooter } from '@/components';
 import { forwardRef } from 'react';
@@ -22,39 +22,41 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
   ) => {
     if (variant === 'hero') {
       return (
-        <Card
-          ref={ref}
-          className={cn(
-            'group relative overflow-hidden rounded-none border-none',
-            className,
-          )}
-          {...props}
-        >
-          <Link to={href} className='block h-full'>
-            <div className='relative aspect-[16/10] overflow-hidden'>
-              <img
-                src={imageUrl}
-                alt={title}
-                className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
-              />
-            </div>
-            <CardContent className='relative z-10 flex h-full flex-col justify-end p-6 text-foreground'>
-              <div className='mb-4 flex items-center gap-2'>
-                {isPremium && <Lock className='h-4 w-4 text-primary' />}
-                <div className='space-x-2 text-sm font-bold uppercase tracking-wider'>
-                  <span className='text-primary'>{category}</span>
-                  {subcategory && (
-                    <span className='text-foreground/90'>{subcategory}</span>
-                  )}
-                </div>
+        <Card className='group relative h-[400px] w-full overflow-hidden rounded-none border-none'>
+          <div
+            className='absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105'
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          >
+            <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-black/40' />
+          </div>
+
+          <Link
+            to={href}
+            className='relative flex h-full flex-col justify-end p-6'
+          >
+            <div className='space-y-4'>
+              <div className='flex items-center gap-2'>
+                {isPremium && <Lock className='size-4' />}
+                <span className='text-sm font-medium uppercase tracking-wider'>
+                  {category}
+                </span>
               </div>
-              <h2 className='mb-4 text-3xl font-bold leading-tight'>{title}</h2>
-              <CardFooter className='p-0'>
-                <span className='text-xs font-bold uppercase tracking-wider'>
+
+              <div className='text-xs uppercase tracking-wider'>
+                {subcategory}
+              </div>
+
+              <h3 className='max-w-xl text-2xl font-bold text-foreground sm:text-3xl md:text-4xl'>
+                {title}
+              </h3>
+
+              <div className='flex items-center gap-2'>
+                <ScanText />
+                <span className='text-sm uppercase tracking-wider text-foreground'>
                   Read
                 </span>
-              </CardFooter>
-            </CardContent>
+              </div>
+            </div>
           </Link>
         </Card>
       );
@@ -79,14 +81,17 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
           <CardContent className='p-6'>
             <div className='mb-3 flex items-center gap-2'>
-              {isPremium && <Lock className='h-4 w-4 text-primary' />}
-              <span className='text-sm font-bold uppercase tracking-wider text-primary'>
+              {isPremium && <Lock className='size-4 text-primary-foreground' />}
+              <span className='text-sm font-bold uppercase tracking-wider text-primary-foreground'>
                 {category}
               </span>
             </div>
-            <h3 className='mb-4 text-xl font-bold text-gray-900'>{title}</h3>
-            <CardFooter className='p-0'>
-              <span className='text-xs font-bold uppercase tracking-wider text-gray-600'>
+            <h3 className='mb-4 text-xl font-bold text-primary-foreground'>
+              {title}
+            </h3>
+            <CardFooter className='text-primary-foreground-foreground flex items-center gap-1 p-0'>
+              <ScanText className='text-primary-foreground' />
+              <span className='text-xs font-bold uppercase tracking-wider text-primary-foreground'>
                 Read
               </span>
             </CardFooter>
