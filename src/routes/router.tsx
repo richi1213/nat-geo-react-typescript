@@ -1,5 +1,5 @@
 import { DefaultLayout } from '@/components';
-import { NotFound } from '@/pages';
+import { HomeView, NotFound } from '@/pages';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -10,6 +10,7 @@ export const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<DefaultLayout />}>
+        <Route index element={<HomeView />} />
         <Route path='*' element={<NotFound />} />
       </Route>
     </>,

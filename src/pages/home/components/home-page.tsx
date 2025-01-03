@@ -1,5 +1,11 @@
+import { LastestStories } from '@/pages';
+
 const HomePage: React.FC = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <LastestStories />
+    </div>
+  );
 };
 
 export default HomePage;
