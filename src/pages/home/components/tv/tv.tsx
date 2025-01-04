@@ -1,4 +1,4 @@
-import { VideoPromo, DiscoverMore } from '.';
+import { VideoPromo, DiscoverMore, NatGeoTvHeading } from '.';
 
 export const Tv: React.FC = () => {
   return (
@@ -9,6 +9,7 @@ export const Tv: React.FC = () => {
         videoUrl='/videos/ocean-x-plorers.mp4'
       />
       <DiscoverMore />
+      <NatGeoTvHeading />
     </section>
   );
 };
