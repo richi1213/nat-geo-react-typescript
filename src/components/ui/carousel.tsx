@@ -208,6 +208,7 @@ const CarouselPrevious = React.forwardRef<
         orientation === 'horizontal'
           ? '-left-12 top-1/2 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+        !canScrollPrev && 'hidden',
         className,
       )}
       disabled={!canScrollPrev}
@@ -237,6 +238,7 @@ const CarouselNext = React.forwardRef<
         orientation === 'horizontal'
           ? '-right-12 top-1/2 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+        !canScrollNext && 'hidden',
         className,
       )}
       disabled={!canScrollNext}

@@ -28,11 +28,11 @@ export const TwoDimensionalCarousel: React.FC<PropsWithChildren> = ({
       </CarouselContent>
       <CarouselPrevious
         variant='ghost'
-        className='hover hidden hover:bg-transparent hover:text-gray-500 sm:block'
+        className='hover:bg-transparent hover:text-gray-500'
       />
       <CarouselNext
         variant='ghost'
-        className='hidden hover:bg-transparent hover:text-gray-500 sm:block'
+        className='hover:bg-transparent hover:text-gray-500'
       />
     </Carousel>
   );
