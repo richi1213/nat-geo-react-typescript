@@ -1,4 +1,4 @@
-import { VideoPromo, DiscoverMore, NatGeoTvHeading } from '.';
+import { VideoPromo, DiscoverMore, NatGeoTvHeading, Shows } from '.';
 
 export const Tv: React.FC = () => {
   return (
@@ -10,6 +10,7 @@ export const Tv: React.FC = () => {
       />
       <DiscoverMore />
       <NatGeoTvHeading />
+      <Shows />
     </section>
   );
 };

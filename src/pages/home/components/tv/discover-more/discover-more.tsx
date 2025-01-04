@@ -51,7 +51,7 @@ export const movies = [
 
 export const DiscoverMore: React.FC = () => {
   return (
-    <section className='mx-auto w-full max-w-5xl px-6'>
+    <section className='mx-auto w-full max-w-5xl px-8'>
       <div className='mb-6 flex flex-col items-center justify-between gap-3 sm:mb-5 sm:flex-row'>
         <div className='font-bold uppercase tracking-[0.2rem]'>
           discover more on disney+
