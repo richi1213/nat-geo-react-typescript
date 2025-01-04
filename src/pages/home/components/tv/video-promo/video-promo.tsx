@@ -8,7 +8,7 @@ export const VideoPromo: React.FC<VideoPromoProps> = ({
   description,
   videoUrl,
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const togglePlay = () => {
@@ -39,7 +39,8 @@ export const VideoPromo: React.FC<VideoPromoProps> = ({
       </video>
 
       {/* Gradient Overlay */}
-      <div className='absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80' />
+      {/* Gradient Overlay */}
+      <div className='absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black' />
 
       {/* Play/Pause Button */}
       <Button
@@ -54,15 +55,15 @@ export const VideoPromo: React.FC<VideoPromoProps> = ({
 
       {/* Content */}
       <div className='relative z-10 mx-auto flex h-full max-w-4xl flex-col items-center justify-center px-4 text-center md:px-8'>
-        <h2 className='mb-8 text-3xl font-bold tracking-widest text-foreground md:text-4xl'>
+        <h2 className='mb-8 text-2xl font-bold tracking-widest text-foreground md:text-3xl'>
           {title}
         </h2>
-        <p className='mb-8 text-lg leading-relaxed text-foreground md:text-xl'>
+        <p className='mb-8 leading-relaxed text-foreground md:text-xl'>
           {description}
         </p>
         <UnderlinedButton
           size='sm'
-          className='bg-transparent font-bold uppercase tracking-widest text-foreground hover:text-primary-foreground'
+          className='bg-transparent bg-[0_120%] font-semibold uppercase tracking-[0.2rem] text-foreground hover:text-primary-foreground'
         >
           stream now
         </UnderlinedButton>

@@ -9,7 +9,7 @@ const underlinedButtonVariants = cva(
   {
     variants: {
       size: {
-        default: 'h-12 px-4 py-2',
+        default: 'h-7 px-0.5 ',
         sm: 'h-6 px-0.5 py-0',
       },
       variant: {
