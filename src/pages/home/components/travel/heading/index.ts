@@ -1,2 +1,1 @@
-export * from './travel';
 export * from './heading';
