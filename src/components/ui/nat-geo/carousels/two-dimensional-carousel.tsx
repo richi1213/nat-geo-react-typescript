@@ -28,14 +28,16 @@ export const TwoDimensionalCarousel: React.FC<PropsWithChildren> = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious
-          variant='ghost'
-          className='hover:bg-transparent hover:text-gray-500'
-        />
-        <CarouselNext
-          variant='ghost'
-          className='hover:bg-transparent hover:text-gray-500'
-        />
+        <div className='hidden sm:block'>
+          <CarouselPrevious
+            variant='ghost'
+            className='hover:bg-transparent hover:text-gray-500'
+          />
+          <CarouselNext
+            variant='ghost'
+            className='hover:bg-transparent hover:text-gray-500'
+          />
+        </div>
       </Carousel>
     </div>
   );
