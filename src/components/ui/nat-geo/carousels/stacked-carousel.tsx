@@ -8,7 +8,7 @@ import React from 'react';
 export const StackedCarousel: React.FC<StackedCarouselProps> = ({
   children,
   slidesPerView = 3,
-  spaceBetween = -90,
+  spaceBetween = -120,
   loop = true,
   className = '',
 }) => {

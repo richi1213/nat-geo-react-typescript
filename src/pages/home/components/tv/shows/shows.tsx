@@ -1,4 +1,4 @@
-import { MovieCard } from '@/components';
+import { ShowCard } from '@/components';
 import { StackedCarousel } from '@/components/ui/nat-geo/carousels/stacked-carousel';
 
 const placeholderShows = [
@@ -63,7 +63,7 @@ export const Shows: React.FC = () => {
     <div>
       <StackedCarousel>
         {placeholderShows.map((show) => (
-          <MovieCard
+          <ShowCard
             key={show.id}
             href={show.href}
             title={show.title}

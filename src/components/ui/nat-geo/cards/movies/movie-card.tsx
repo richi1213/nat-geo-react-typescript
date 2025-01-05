@@ -1,8 +1,12 @@
 import { Card, CardContent } from '@/components';
 import { Link } from 'react-router';
-import type { MovieProps } from './types';
+import type { ShowCardProps } from './types';
 
-export const MovieCard: React.FC<MovieProps> = ({ href, title, imageUrl }) => {
+export const MovieCard: React.FC<ShowCardProps> = ({
+  href,
+  title,
+  imageUrl,
+}) => {
   return (
     <Card className='overflow-hidden border-none'>
       <Link to={href}>
