@@ -1,10 +1,10 @@
 import { ArticlesList } from '@/pages/home/components/latest-stories/todays-picks/articles';
-import { StoryHeading } from './story-heading';
+import { IssueHeading } from './issue-heading';
 
-export const LatestStories: React.FC = () => {
+export const InThisIssue: React.FC = () => {
   return (
     <div className='lg:col-span-4'>
-      <StoryHeading />
+      <IssueHeading />
       <ArticlesList />
     </div>
   );

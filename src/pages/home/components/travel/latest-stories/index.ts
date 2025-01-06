@@ -1,2 +1,2 @@
 export * from './latest-stories';
-export * from './heading';
+export * from './story-heading';

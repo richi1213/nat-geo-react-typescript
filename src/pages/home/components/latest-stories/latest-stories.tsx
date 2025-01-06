@@ -5,7 +5,7 @@ export const LastestStories: React.FC = () => {
     <section className='flex justify-center bg-background px-4 py-8 text-foreground'>
       <div className='w-full max-w-5xl'>
         <GeneralHeading />
-        <div className='space mt-6 grid gap-4 lg:grid-cols-12'>
+        <div className='mt-6 grid gap-4 lg:grid-cols-12'>
           <TodaysPicks />
           <ArticlesGrid />
         </div>

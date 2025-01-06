@@ -1,4 +1,4 @@
-import { LastestStories, Travel, Tv } from '@/pages';
+import { LastestStories, Travel, Tv, Issue } from '@/pages';
 
 const HomePage: React.FC = () => {
   return (
@@ -6,6 +6,7 @@ const HomePage: React.FC = () => {
       <LastestStories />
       <Tv />
       <Travel />
+      <Issue />
     </div>
   );
 };
