@@ -17,7 +17,7 @@ export const MiniArticleCard = React.forwardRef<
       <Card
         ref={ref}
         className={cn(
-          'group relative overflow-hidden rounded-none border-none bg-transparent transition-colors',
+          'group relative overflow-hidden rounded-none border-none bg-transparent shadow-none transition-colors',
           className,
         )}
         {...props}

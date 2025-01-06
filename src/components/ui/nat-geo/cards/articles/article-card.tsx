@@ -66,7 +66,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
       <Card
         ref={ref}
         className={cn(
-          'group overflow-hidden rounded-none border border-chart-4 bg-foreground transition-colors hover:bg-gray-50',
+          'group overflow-hidden rounded-none border bg-foreground transition-colors hover:bg-gray-50',
           className,
         )}
         {...props}
