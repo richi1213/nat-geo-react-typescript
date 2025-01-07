@@ -1,12 +1,4 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  ImpactCard,
-  TwoDimensionalCarousel,
-} from '@/components';
+import { ImpactCard, TwoDimensionalCarousel } from '@/components';
 
 const demoItems = [
   {
