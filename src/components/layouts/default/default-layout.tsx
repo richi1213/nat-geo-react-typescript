@@ -1,4 +1,4 @@
-import { Header, Main, Navbar, PageContainer } from '@/components';
+import { Header, Main, Navbar, PageContainer, Footer } from '@/components';
 import { Outlet } from 'react-router';
 
 export const DefaultLayout: React.FC = () => {
@@ -12,6 +12,7 @@ export const DefaultLayout: React.FC = () => {
           <Outlet />
         </PageContainer>
       </Main>
+      <Footer />
     </div>
   );
 };
