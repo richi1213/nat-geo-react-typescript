@@ -1,3 +1,3 @@
 export * from './footer-menu';
-export * from './section';
+export * from './sections';
 export * from './utils';

@@ -7,7 +7,7 @@ export const ImpactIntro: React.FC = () => {
       <div className='w-full max-w-5xl'>
         <ImpactIntroGeneralHeading />
         <ImpactPromo />
-        <ImpactCarousel />
+        {/* <ImpactCarousel /> */}
         <div className='mt-16 text-center'>
           <LinkButton variant='alternate' to='/'>
             discover more
