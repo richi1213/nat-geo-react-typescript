@@ -1,13 +1,6 @@
 import { Button } from '@/components';
-import {
-  FaInstagram,
-  FaTwitter,
-  FaTiktok,
-  FaYoutube,
-  FaReddit,
-  FaFacebook,
-  FaLinkedin,
-} from 'react-icons/fa';
+import { Link } from 'react-router';
+import { socialLinks } from '../utils';
 
 export const SocialMenuSection: React.FC = () => {
   return (
@@ -16,61 +9,18 @@ export const SocialMenuSection: React.FC = () => {
         follow us
       </h4>
       <div className='grid grid-cols-2 justify-center gap-1 md:grid-cols-6 md:flex-row md:justify-start'>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaInstagram />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaFacebook />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaTwitter />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaYoutube />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaLinkedin />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaTiktok />
-        </Button>
-
-        <Button
-          variant='ghost'
-          size='icon'
-          className='hover:bg-transparent hover:text-primary'
-        >
-          <FaReddit />
-        </Button>
+        {socialLinks.map((link, index) => (
+          <Button
+            key={index}
+            variant='ghost'
+            size='icon'
+            className='hover:bg-transparent hover:text-primary'
+          >
+            <Link to={link.href} aria-label={link.label}>
+              {link.icon}
+            </Link>
+          </Button>
+        ))}
       </div>
     </div>
   );

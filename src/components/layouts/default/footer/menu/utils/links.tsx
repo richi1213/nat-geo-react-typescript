@@ -1,3 +1,12 @@
+import {
+  FaInstagram,
+  FaTiktok,
+  FaYoutube,
+  FaReddit,
+  FaFacebook,
+  FaLinkedin,
+} from 'react-icons/fa';
+
 export const legalLinks = [
   { label: 'Terms of Use', href: 'https://disneytermsofuse.com/english/' },
   {
@@ -79,5 +88,39 @@ export const joinUsLinks = [
   {
     label: 'Contribute to Protect the Planet',
     href: 'https://give.nationalgeographic.org/page/53299/donate/1?user_id=wb8em7wclp2gec8f8rj9f6lp88q9dftd',
+  },
+];
+
+
+export const socialLinks = [
+  {
+    label: 'National Geographic Instagram',
+    href: 'https://www.instagram.com/natgeo/',
+    icon: <FaInstagram />,
+  },
+  {
+    label: 'National Geographic Facebook',
+    href: 'https://www.facebook.com/natgeo/',
+    icon: <FaFacebook />,
+  },
+  {
+    label: 'National Geographic YouTube',
+    href: 'https://www.youtube.com/nationalgeographic',
+    icon: <FaYoutube />,
+  },
+  {
+    label: 'National Geographic LinkedIn',
+    href: 'https://www.linkedin.com/company/national-geographic/',
+    icon: <FaLinkedin />,
+  },
+  {
+    label: 'National Geographic TikTok',
+    href: 'https://www.tiktok.com/@natgeo',
+    icon: <FaTiktok />,
+  },
+  {
+    label: 'National Geographic Reddit',
+    href: 'https://www.reddit.com/r/natgeo/',
+    icon: <FaReddit />,
   },
 ];
