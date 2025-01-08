@@ -2,7 +2,7 @@ import { Separator } from '@/components';
 
 export const FooterCopyright: React.FC = () => {
   return (
-    <div className='p-4 text-chart-3'>
+    <div className='col-span-full row-start-12 row-end-12 p-4 text-chart-3 md:col-span-12 md:col-start-1 md:col-end-12 md:flex md:gap-5'>
       <div className='flex flex-col gap-5 text-xs lg:flex-row'>
         <p>Copyright © 1996-2015 National Geographic Society</p>
         <Separator
