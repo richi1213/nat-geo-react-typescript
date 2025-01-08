@@ -2,5 +2,24 @@
   "login": "შესვლა",
   "newsletters": "სიახლეები",
   "subscribe": "გამოწერა",
-  "menu": "მენიუ"
+  "menu": "მენიუ",
+
+  "topics": "თემები",
+  "sites": "საიტები",
+
+  "animals": "ცხოველები",
+  "environment": "გარემო",
+  "history_and_culture": "ისტორია და კულტურა",
+  "science": "მეცნიერება",
+  "travel": "მოგზაურობა",
+  "watch_tv": "უყურე ტელევიზორს",
+  "read_the_magazine": "წაიკითხე ჟურნალი",
+  "visit_nat_geo_family": "ეწვიეთ ნატ ჯეოს ოჯახს",
+  "book_a_trip": "დაჯავშნეთ მოგზაურობა",
+  "inspire_your_kids": "შთაგონეთ თქვენი შვილები",
+  "listen_to_podcasts": "მოისმინეთ პოდკასტები",
+  "shop_nat_geo": "შოპინგი ნატ ჯეოში",
+  "attend_a_live_event": "დაესწარით ცოცხალ ღონისძიებას",
+  "learn_about_our_impact": "შეიტყვეთ ჩვენს გავლენაზე",
+  "support_our_mission": "მხარი დაუჭირეთ ჩვენს მისიას"
 }

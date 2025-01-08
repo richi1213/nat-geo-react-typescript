@@ -2,5 +2,24 @@
   "login": "login",
   "newsletters": "newsletters",
   "subscribe": "subscribe",
-  "menu": "menu"
+  "menu": "menu",
+
+  "topics": "topics",
+  "sites": "sites",
+
+  "animals": "animals",
+  "environment": "environment",
+  "history_and_culture": "history & culture",
+  "science": "science",
+  "travel": "travel",
+  "watch_tv": "watch TV!",
+  "read_the_magazine": "read the magazine",
+  "visit_nat_geo_family": "visit nat geo family",
+  "book_a_trip": "book a trip",
+  "inspire_your_kids": "inspire your kids",
+  "listen_to_podcasts": "listen to podcasts",
+  "shop_nat_geo": "shop nat geo",
+  "attend_a_live_event": "attend a live event",
+  "learn_about_our_impact": "learn about our impact",
+  "support_our_mission": "support our mission"
 }

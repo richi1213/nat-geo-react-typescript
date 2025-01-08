@@ -3,6 +3,7 @@ import {
   LinkButton,
   MenuButton,
   UnderlinedButton,
+  MenuSheet,
 } from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -55,10 +56,12 @@ export const Navbar: React.FC = () => {
               <LanguagePicker />
             </li>
             <li>
-              <MenuButton className='min-w-8 gap-1'>
-                <span className='hidden md:block'>{t('menu')}</span>
-                <ChevronsDown className='font-medium' />
-              </MenuButton>
+              <MenuSheet>
+                <MenuButton className='min-w-8 gap-1'>
+                  <span className='hidden md:block'>{t('menu')}</span>
+                  <ChevronsDown className='font-medium' />
+                </MenuButton>
+              </MenuSheet>
             </li>
           </ul>
         </div>

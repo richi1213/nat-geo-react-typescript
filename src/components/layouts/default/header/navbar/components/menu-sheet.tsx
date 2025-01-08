@@ -1,0 +1,101 @@
+import { Sheet, SheetTrigger, SheetContent, Separator } from '@/components';
+import { PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
+
+export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
+  const { t } = useTranslation('header');
+
+  return (
+    <Sheet>
+      <SheetTrigger>{children}</SheetTrigger>
+      <SheetContent
+        side='top'
+        className='z-[100] h-[100vh] w-full overflow-y-auto bg-background text-foreground'
+      >
+        <div className='mt-4 flex flex-col gap-16 p-8 font-natGeo text-lg font-bold uppercase leading-loose tracking-widest md:flex-row md:justify-between md:gap-0'>
+          <div>
+            <h2 className='mb-10 flex items-center font-natGeo2 text-base text-chart-4'>
+              {t('topics')}
+              <Separator className='ml-2 h-[0.16rem] w-9 bg-chart-3/70' />
+            </h2>
+            <ul className='space-y-16 text-5xl'>
+              <li>
+                <Link to='/animals'>{t('animals')}</Link>
+              </li>
+              <li>
+                <Link to='/environment'>{t('environment')}</Link>
+              </li>
+              <li>
+                <Link to='/history'>{t('history_and_culture')}</Link>
+              </li>
+              <li>
+                <Link to='/science'>{t('science')}</Link>
+              </li>
+              <li>
+                <Link to='/travel'>{t('travel')}</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className='mb-10 flex items-center font-natGeo2 text-base text-chart-4'>
+              {t('sites')}
+              <Separator className='ml-2 h-[0.16rem] w-9 bg-chart-3/70' />
+            </h2>
+            <ul className='space-y-10 text-xl text-primary'>
+              <li>
+                <Link to='https://www.nationalgeographic.com/tv/'>
+                  {t('watch_tv')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.com/magazine'>
+                  {t('read_the_magazine')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.com/family'>
+                  {t('visit_nat_geo_family')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.com/expeditions/'>
+                  {t('book_a_trip')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://kids.nationalgeographic.com'>
+                  {t('inspire_your_kids')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.com/podcasts/overheard'>
+                  {t('listen_to_podcasts')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.shopdisney.com/franchises/national-geographic/'>
+                  {t('shop_nat_geo')}
+                </Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.com/events/'>
+                  {t('attend_a_live_event')}
+                </Link>
+              </li>
+              <li>
+                <Link to='/impact/'>{t('learn_about_our_impact')}</Link>
+              </li>
+              <li>
+                <Link to='https://www.nationalgeographic.org/society/become-a-member/'>
+                  {t('support_our_mission')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+};
