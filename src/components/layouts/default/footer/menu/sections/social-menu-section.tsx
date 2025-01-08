@@ -1,12 +1,13 @@
-import { Button } from '@/components';
+import { Button, useFooterTranslation } from '@/components';
 import { Link } from 'react-router';
 import { socialLinks } from '../utils';
 
 export const SocialMenuSection: React.FC = () => {
+  const { getTranslatedLabel } = useFooterTranslation();
   return (
     <div className='space-y-3'>
       <h4 className='text-sm font-medium uppercase tracking-widest'>
-        follow us
+        {getTranslatedLabel('follow_us')}
       </h4>
       <div className='grid grid-cols-2 justify-center gap-1 md:grid-cols-6 md:flex-row md:justify-start'>
         {socialLinks.map((link, index) => (

@@ -2,17 +2,23 @@ import { Sheet, SheetTrigger, SheetContent, Separator } from '@/components';
 import { PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { DialogTitle } from '@radix-ui/react-dialog';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
 export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation('header');
 
   return (
     <Sheet>
-      <SheetTrigger>{children}</SheetTrigger>
+      <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent
         side='top'
         className='z-[100] h-[100vh] w-full overflow-y-auto bg-background text-foreground'
       >
+        <DialogTitle>
+          <VisuallyHidden.Root>Navigation menu</VisuallyHidden.Root>
+        </DialogTitle>
+
         <div className='mt-4 flex flex-col gap-16 p-8 font-natGeo text-lg font-bold uppercase leading-loose tracking-widest md:flex-row md:justify-between md:gap-0'>
           <div>
             <h2 className='mb-10 flex items-center font-natGeo2 text-base text-chart-4'>
