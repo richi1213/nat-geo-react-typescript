@@ -1,8 +1,9 @@
-import { FooterMenu, FooterCopyright } from '.';
+import { FooterMenu, FooterCopyright, NatGeoLogo } from '.';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className='bg-background text-foreground'>
+    <footer className='grid grid-cols-12 bg-background text-foreground'>
+      <NatGeoLogo />
       <FooterMenu />
       <FooterCopyright />
     </footer>
