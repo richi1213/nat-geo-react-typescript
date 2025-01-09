@@ -1,4 +1,17 @@
+import React from 'react';
 import { RouterProvider } from 'react-router';
+import { useAuth } from '@/hooks/auth/use-auth';
 import { appRouter } from '@/routes';
 
-export const App: React.FC = () => <RouterProvider router={appRouter} />;
+export const App: React.FC = () => {
+  const { session } = useAuth();
+
+  if (!session) {
+    console.log('please login to coninue');
+  }
+
+  console.log(session);
+
+  // If session exists, render the RouterProvider for routing logic
+  return <RouterProvider router={appRouter} />;
+};
