@@ -1,4 +1,4 @@
-export * from './supabase-cleint';
+export * from './supabase-client';
 export type {
   Json,
   Database,
