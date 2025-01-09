@@ -5,3 +5,6 @@ export * from './separator';
 export * from './card';
 export * from './carousel';
 export * from './sheet';
+export * from './form';
+export * from './label';
+export * from './input';

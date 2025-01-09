@@ -71,3 +71,17 @@ export const login = async ({ email, password }: LoginInput) => {
     throw new Error('Something went wrong during login. Please try again.');
   }
 };
+
+export const checkIfUserExists = async (email: string): Promise<boolean> => {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('email')
+    .eq('email', email)
+    .single();
+
+  if (error && error.code !== 'PGRST116') {
+    throw new Error('Error checking user existence');
+  }
+
+  return !!data;
+};
