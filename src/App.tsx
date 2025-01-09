@@ -12,6 +12,5 @@ export const App: React.FC = () => {
 
   console.log(session);
 
-  // If session exists, render the RouterProvider for routing logic
   return <RouterProvider router={appRouter} />;
 };
