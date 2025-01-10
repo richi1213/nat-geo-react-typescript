@@ -19,7 +19,7 @@ export const NavbarList: React.FC = () => {
       <li>
         {firstName ? (
           <UserMenu>
-            <div className='flex items-center gap-0.5'>
+            <div className='flex items-center gap-1 font-normal'>
               {firstName as string}
             </div>
           </UserMenu>

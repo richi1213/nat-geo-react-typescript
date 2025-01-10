@@ -8,14 +8,12 @@ import {
   FormMessage,
   Button,
   Form,
-  Loading,
   type RegisterFormProps,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
 import { useRegisterUser } from '@/hooks';
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -54,22 +52,16 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
   return (
     <>
-      <div className='mb-8'>
-        <img
-          src='/disney-logo.svg'
-          alt='MyDisney'
-          width={120}
-          height={40}
-          className='mb-6'
-        />
-        <h1 className='mb-2 text-2xl font-semibold'>
+      <div className='mb-8 text-secondary'>
+        <h2 className='mb-2 text-2xl font-semibold'>
           Create an account to continue
-        </h1>
-        <p className='text-muted-foreground'>
+        </h2>
+        <p>
           With a MyDisney account, you can log in to National Geographic and
           other services across The Walt Disney Family of Companies.
           <br />
-          Create your account using {email}
+          Create your account using{' '}
+          <span className='font-semibold'>{email}</span>{' '}
           <button
             onClick={onEditEmail}
             className='text-blue-600 hover:underline'
@@ -183,23 +175,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
           <Button
             type='submit'
-            className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
+            className='h-12 w-full bg-primary text-base font-semibold hover:bg-primary-foreground hover:text-foreground'
             disabled={isPending}
           >
-            {isPending ? <Loading /> : 'Agree & Continue'}
+            Agree & Continue
           </Button>
         </form>
       </Form>
-
-      <div className='mt-6 text-center'>
-        <p className='text-sm'>
-          Need help?{' '}
-          <Link to='/' className='text-blue-600 hover:underline'>
-            Visit our Support Center
-          </Link>
-          .
-        </p>
-      </div>
     </>
   );
 };

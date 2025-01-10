@@ -55,15 +55,18 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
     switch (state) {
       case FormState.Idle:
         return (
-          <>
-            <p className='text-muted-foreground'>
+          <div className='space-y-6 text-secondary'>
+            <h2 className='mb-2 text-3xl font-semibold'>
+              Enter your email to continue
+            </h2>
+            <p className=''>
               Log in to National Geographic with your MyDisney account. If you
               don&apos;t have one, you will be prompted to create one.
             </p>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className='space-y-6'
+                className='space-y-6 py-2'
               >
                 <FormField
                   control={form.control}
@@ -84,13 +87,13 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
                 />
                 <Button
                   type='submit'
-                  className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
+                  className='h-12 w-full bg-primary hover:bg-primary-foreground hover:text-foreground'
                 >
                   Continue
                 </Button>
               </form>
             </Form>
-          </>
+          </div>
         );
 
       case FormState.UserExists:
@@ -136,14 +139,5 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
     }
   };
 
-  return (
-    <div className='mx-auto max-w-[440px] p-6'>
-      <div className='mb-8'>
-        <h2 className='mb-2 text-2xl font-semibold'>
-          Enter your email to continue
-        </h2>
-      </div>
-      {renderContent()}
-    </div>
-  );
+  return <div className='mx-auto max-w-[440px] p-6'>{renderContent()}</div>;
 };

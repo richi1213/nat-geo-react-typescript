@@ -6,7 +6,6 @@ import {
   Input,
   FormMessage,
   Button,
-  Loading,
   loginSchema,
   type LoginFormProps,
   type LoginSchema,
@@ -15,7 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
 import { useLoginUser } from '@/hooks';
 
 export const LoginForm: React.FC<LoginFormProps> = ({
@@ -42,23 +40,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   };
   return (
     <>
-      <div className='mb-8'>
-        <img
-          src='/disney-logo.svg'
-          alt='MyDisney'
-          width={120}
-          height={40}
-          className='mb-6'
-        />
+      <div className='mb-8 text-secondary'>
         <h1 className='mb-2 text-2xl font-semibold'>
           Good news, you already have a MyDisney account
         </h1>
-        <p className='text-muted-foreground'>
+        <p>
           Since you&apos;ve already used your email to sign up for one or more
           services across The Walt Disney Family of Companies, you can now log
           in to National Geographic with MyDisney using:
           <br />
-          {email}{' '}
+          <span className='font-semibold'>{email}</span>{' '}
           <button
             onClick={onEditEmail}
             className='text-blue-600 hover:underline'
@@ -106,23 +97,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
             disabled={isPending}
           >
-            {isPending ? <Loading /> : 'Log In'}
+            Log in
           </Button>
         </form>
       </Form>
-
-      <div className='mt-6 space-y-4 text-center'>
-        <p className='text-sm'>
-          <Link to='/' className='text-blue-600 hover:underline'>
-            Having trouble logging in? Send a one-time code
-          </Link>
-        </p>
-        <p className='text-sm'>
-          <Link to='/' className='text-blue-600 hover:underline'>
-            Learn more about MyDisney
-          </Link>
-        </p>
-      </div>
     </>
   );
 };
