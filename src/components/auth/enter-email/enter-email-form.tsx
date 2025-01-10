@@ -1,4 +1,5 @@
 import {
+  type EmailSchema,
   Input,
   Form,
   FormControl,
@@ -6,16 +7,20 @@ import {
   FormItem,
   FormMessage,
   Button,
+  Loading,
+  emailSchema,
+  FormState,
+  LoginForm,
+  RegisterForm,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type EmailSchema, emailSchema, FormState } from '@/components/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
 import { checkIfUserExists } from '@/supabase';
 import { useState } from 'react';
 
 export const EnterEmailForm: React.FC = () => {
   const [state, setState] = useState<FormState>(FormState.Idle);
+  const [email, setEmail] = useState<string>('');
 
   const form = useForm<EmailSchema>({
     resolver: zodResolver(emailSchema),
@@ -26,6 +31,7 @@ export const EnterEmailForm: React.FC = () => {
 
   const onSubmit = async (values: EmailSchema) => {
     setState(FormState.Loading);
+    setEmail(values.email);
     try {
       const userExists = await checkIfUserExists(values.email);
 
@@ -38,6 +44,10 @@ export const EnterEmailForm: React.FC = () => {
       console.error('Error checking user existence:', error);
       setState(FormState.Error);
     }
+  };
+
+  const handleEditEmail = () => {
+    setState(FormState.Idle);
   };
 
   const renderContent = () => {
@@ -83,38 +93,10 @@ export const EnterEmailForm: React.FC = () => {
         );
 
       case FormState.UserExists:
-        return (
-          <div>
-            <h2 className='text-xl font-semibold'>Welcome Back!</h2>
-            <p className='mt-2'>
-              It seems like you already have an account. Please log in to
-              continue.
-            </p>
-            <Link
-              to='/login'
-              className='mt-4 inline-block rounded bg-blue-600 px-4 py-2 text-white'
-            >
-              Go to Login
-            </Link>
-          </div>
-        );
+        return <LoginForm email={email} onEditEmail={handleEditEmail} />;
 
       case FormState.UserDoesNotExist:
-        return (
-          <div>
-            <h2 className='text-xl font-semibold'>Create Your Account</h2>
-            <p className='mt-2'>
-              We couldn&apos;t find an account with this email. Let&apos;s get
-              you signed up!
-            </p>
-            <Link
-              to='/signup'
-              className='mt-4 inline-block rounded bg-green-600 px-4 py-2 text-white'
-            >
-              Create Account
-            </Link>
-          </div>
-        );
+        return <RegisterForm email={email} onEditEmail={handleEditEmail} />;
 
       case FormState.Error:
         return (
@@ -134,7 +116,7 @@ export const EnterEmailForm: React.FC = () => {
         );
 
       case FormState.Loading:
-        return <p>Checking your email...</p>;
+        return <Loading />;
 
       default:
         return null;

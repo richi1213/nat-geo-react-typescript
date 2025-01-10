@@ -1,17 +1,21 @@
-import { RegistrationSchema, registrationSchema } from '@/components/auth/lib';
 import {
+  type RegistrationSchema,
+  registrationSchema,
   FormField,
   FormItem,
   FormControl,
   Input,
   FormMessage,
   Button,
-} from '@/components/ui';
+  Form,
+  Loading,
+} from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, Link } from 'react-router';
+import { Link } from 'react-router';
+import { useRegisterUser } from '@/hooks';
 
 type RegisterFormProps = {
   email: string;
@@ -30,13 +34,23 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       email,
       firstName: '',
       lastName: '',
+      fbLink: '',
+      username: '',
       password: '',
     },
   });
 
+  const { mutate: registerUser, status } = useRegisterUser();
+
   const onSubmit = async (values: RegistrationSchema) => {
-    // Handle registration
-    console.log(values);
+    registerUser({
+      email: values.email,
+      first_name: values.firstName,
+      last_name: values.lastName,
+      fb_link: values.fbLink,
+      username: values.username,
+      password: values.password,
+    });
   };
 
   return (
@@ -104,6 +118,41 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
           <FormField
             control={form.control}
+            name='username'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder='Username'
+                    className='h-12 bg-gray-100'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='fbLink'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    {...field}
+                    type='url'
+                    placeholder='Facebook Profile Link'
+                    className='h-12 bg-gray-100'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name='password'
             render={({ field }) => (
               <FormItem>
@@ -136,8 +185,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <Button
             type='submit'
             className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
+            disabled={status === 'pending'}
           >
-            Agree & Continue
+            {status === 'pending' ? <Loading /> : 'Agree & Continue'}
           </Button>
         </form>
       </Form>
