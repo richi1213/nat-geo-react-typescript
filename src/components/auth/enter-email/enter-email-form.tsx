@@ -8,23 +8,14 @@ import {
   Button,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type EmailSchema, emailSchema } from '@/components/auth';
+import { type EmailSchema, emailSchema, FormState } from '@/components/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { checkIfUserExists } from '@/supabase';
 import { useState } from 'react';
 
-// Define the possible states
-type FormState =
-  | 'idle'
-  | 'loading'
-  | 'userExists'
-  | 'userDoesNotExist'
-  | 'error';
-
 export const EnterEmailForm: React.FC = () => {
-  // Use the type explicitly for the state variable
-  const [state, setState] = useState<FormState>('idle');
+  const [state, setState] = useState<FormState>(FormState.Idle);
 
   const form = useForm<EmailSchema>({
     resolver: zodResolver(emailSchema),
@@ -34,24 +25,24 @@ export const EnterEmailForm: React.FC = () => {
   });
 
   const onSubmit = async (values: EmailSchema) => {
-    setState('loading');
+    setState(FormState.Loading);
     try {
       const userExists = await checkIfUserExists(values.email);
 
       if (userExists) {
-        setState('userExists');
+        setState(FormState.UserExists);
       } else {
-        setState('userDoesNotExist');
+        setState(FormState.UserDoesNotExist);
       }
     } catch (error) {
       console.error('Error checking user existence:', error);
-      setState('error');
+      setState(FormState.Error);
     }
   };
 
   const renderContent = () => {
     switch (state) {
-      case 'idle':
+      case FormState.Idle:
         return (
           <>
             <p className='text-muted-foreground'>
@@ -91,7 +82,7 @@ export const EnterEmailForm: React.FC = () => {
           </>
         );
 
-      case 'userExists':
+      case FormState.UserExists:
         return (
           <div>
             <h2 className='text-xl font-semibold'>Welcome Back!</h2>
@@ -108,7 +99,7 @@ export const EnterEmailForm: React.FC = () => {
           </div>
         );
 
-      case 'userDoesNotExist':
+      case FormState.UserDoesNotExist:
         return (
           <div>
             <h2 className='text-xl font-semibold'>Create Your Account</h2>
@@ -125,7 +116,7 @@ export const EnterEmailForm: React.FC = () => {
           </div>
         );
 
-      case 'error':
+      case FormState.Error:
         return (
           <div>
             <h2 className='text-xl font-semibold'>Something Went Wrong</h2>
@@ -134,7 +125,7 @@ export const EnterEmailForm: React.FC = () => {
               again later.
             </p>
             <Button
-              onClick={() => setState('idle')}
+              onClick={() => setState(FormState.Idle)}
               className='mt-4 bg-red-600 text-white'
             >
               Try Again
@@ -142,7 +133,7 @@ export const EnterEmailForm: React.FC = () => {
           </div>
         );
 
-      case 'loading':
+      case FormState.Loading:
         return <p>Checking your email...</p>;
 
       default:
@@ -153,29 +144,11 @@ export const EnterEmailForm: React.FC = () => {
   return (
     <div className='mx-auto max-w-[440px] p-6'>
       <div className='mb-8'>
-        <img
-          src='/disney-logo.svg'
-          alt='MyDisney'
-          width={120}
-          height={40}
-          className='mb-6'
-        />
-        <h1 className='mb-2 text-2xl font-semibold'>
+        <h2 className='mb-2 text-2xl font-semibold'>
           Enter your email to continue
-        </h1>
+        </h2>
       </div>
       {renderContent()}
-      {state === 'idle' && (
-        <div className='mt-6 text-center'>
-          <p className='text-sm'>
-            Need help?{' '}
-            <Link to='#' className='text-blue-600 hover:underline'>
-              Visit our Support Center
-            </Link>
-            .
-          </p>
-        </div>
-      )}
     </div>
   );
 };

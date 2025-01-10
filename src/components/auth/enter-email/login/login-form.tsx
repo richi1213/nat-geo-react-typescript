@@ -1,17 +1,18 @@
 import { loginSchema, type LoginSchema } from '@/components/auth/lib';
 import {
+  Form,
   FormField,
   FormItem,
   FormControl,
   Input,
   FormMessage,
   Button,
-} from '@/components/ui';
+} from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, Link } from 'react-router';
+import { Link } from 'react-router';
 
 type LoginFormProps = {
   email: string;

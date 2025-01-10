@@ -1,5 +1,5 @@
 import { Sheet, SheetTrigger, SheetContent, Separator } from '@/components';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { DialogTitle } from '@radix-ui/react-dialog';

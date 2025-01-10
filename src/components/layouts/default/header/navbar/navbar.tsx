@@ -4,6 +4,7 @@ import {
   MenuButton,
   UnderlinedButton,
   MenuSheet,
+  AuthSheet,
 } from '@/components';
 import { ChevronsDown, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +38,9 @@ export const Navbar: React.FC = () => {
 
           <ul className='flex h-full items-center gap-5'>
             <li>
-              <MenuButton>{t('login')}</MenuButton>
+              <AuthSheet>
+                <MenuButton>{t('login')}</MenuButton>
+              </AuthSheet>
             </li>
             <li className='hidden md:block'>
               <MenuButton className='font-thin'>
