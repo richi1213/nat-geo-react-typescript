@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
+          email: string | null
           fb_link: string | null
           first_name: string | null
           id: string
@@ -19,6 +20,7 @@ export type Database = {
           username: string | null
         }
         Insert: {
+          email?: string | null
           fb_link?: string | null
           first_name?: string | null
           id: string
@@ -27,6 +29,7 @@ export type Database = {
           username?: string | null
         }
         Update: {
+          email?: string | null
           fb_link?: string | null
           first_name?: string | null
           id?: string

@@ -40,7 +40,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     },
   });
 
-  const { mutate: registerUser, status } = useRegisterUser();
+  const { mutate: registerUser, isPending } = useRegisterUser();
 
   const onSubmit = async (values: RegistrationSchema) => {
     registerUser({
@@ -185,9 +185,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <Button
             type='submit'
             className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
-            disabled={status === 'pending'}
+            disabled={isPending}
           >
-            {status === 'pending' ? <Loading /> : 'Agree & Continue'}
+            {isPending ? <Loading /> : 'Agree & Continue'}
           </Button>
         </form>
       </Form>

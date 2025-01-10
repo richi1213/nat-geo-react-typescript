@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "update-types": "npx supabase gen types --lang=typescript --project-id lveoymmnfvmcmqsljdmq --schema public > src/supabase/supabase.types.ts"
+    "update-types": "npx supabase gen types --lang=typescript --project-id llygfgzmjrtnslczavce --schema public > src/supabase/supabase.types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

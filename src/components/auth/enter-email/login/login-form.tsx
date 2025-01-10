@@ -7,12 +7,14 @@ import {
   Input,
   FormMessage,
   Button,
+  Loading,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import { useLoginUser } from '@/hooks';
 
 type LoginFormProps = {
   email: string;
@@ -30,9 +32,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ email, onEditEmail }) => {
     },
   });
 
+  const { mutate: loginUser, isPending } = useLoginUser();
+
   const onSubmit = async (values: LoginSchema) => {
-    // Handle login
-    console.log(values);
+    loginUser(values);
   };
   return (
     <>
@@ -98,8 +101,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ email, onEditEmail }) => {
           <Button
             type='submit'
             className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
+            disabled={isPending}
           >
-            Log In
+            {isPending ? <Loading /> : 'Log In'}
           </Button>
         </form>
       </Form>

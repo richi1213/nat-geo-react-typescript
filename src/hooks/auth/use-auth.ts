@@ -1,14 +1,17 @@
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { supabase } from '@/supabase';
-import { useEffect, useState } from 'react';
-import { Session } from '@supabase/supabase-js';
+import { userAtom } from '@/atoms';
 
 export const useAuth = () => {
-  const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useAtom(userAtom);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+    if (!session) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        setSession(session);
+      });
+    }
 
     const {
       data: { subscription },
@@ -17,7 +20,7 @@ export const useAuth = () => {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [session, setSession]);
 
   return { session };
 };

@@ -2,7 +2,7 @@ import { supabase } from '@/supabase';
 import type { Database, LoginInput, RegisterInput } from '@/supabase';
 import {
   AuthApiError,
-  AuthResponse,
+  type AuthResponse,
   isAuthApiError,
   SupabaseClient,
 } from '@supabase/supabase-js';
@@ -49,7 +49,10 @@ export const register = async ({
   };
 };
 
-export const login = async ({ email, password }: LoginInput) => {
+export const login = async ({
+  email,
+  password,
+}: LoginInput): Promise<AuthResponse> => {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -62,12 +65,27 @@ export const login = async ({ email, password }: LoginInput) => {
       }
       throw new Error('An unexpected authentication error occurred.');
     }
-    return data;
+
+    return {
+      data: {
+        user: data?.user || null,
+        session: data?.session || null,
+      },
+      error: null,
+    };
   } catch (err) {
     if (isAuthApiError(err)) {
       throw err;
     }
 
-    throw new Error('Something went wrong during login. Please try again.');
+    return {
+      data: {
+        user: null,
+        session: null,
+      },
+      error: {
+        message: 'Something went wrong during login. Please try again.',
+      } as AuthApiError,
+    };
   }
 };
