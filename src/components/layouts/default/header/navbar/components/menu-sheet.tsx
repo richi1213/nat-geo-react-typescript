@@ -1,9 +1,16 @@
-import { Sheet, SheetTrigger, SheetContent, Separator } from '@/components';
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  Separator,
+  SheetClose,
+} from '@/components';
 import type { PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import { ChevronsUp } from 'lucide-react';
 
 export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation('header');
@@ -14,6 +21,7 @@ export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
       <SheetContent
         side='top'
         className='z-[100] h-[100vh] w-full overflow-y-auto bg-background text-foreground'
+        showClose={false}
       >
         <DialogTitle>
           <VisuallyHidden.Root>Navigation menu</VisuallyHidden.Root>
@@ -101,6 +109,9 @@ export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
             </ul>
           </div>
         </div>
+        <SheetClose className='absolute right-1 top-1 rounded-sm bg-transparent p-1 text-chart-2 transition-colors hover:bg-chart-4 hover:text-foreground'>
+          <ChevronsUp className='size-7' />
+        </SheetClose>
       </SheetContent>
     </Sheet>
   );
