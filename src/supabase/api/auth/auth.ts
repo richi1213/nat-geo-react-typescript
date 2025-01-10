@@ -89,3 +89,28 @@ export const login = async ({
     };
   }
 };
+
+export const logout = async (): Promise<{ error: AuthApiError | null }> => {
+  try {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      if (isAuthApiError(error)) {
+        throw new AuthApiError(error.message, error.status, 'AuthApiError');
+      }
+      throw new Error('An unexpected error occurred during logout.');
+    }
+
+    return { error: null };
+  } catch (err) {
+    if (isAuthApiError(err)) {
+      return { error: err };
+    }
+
+    return {
+      error: {
+        message: 'Something went wrong during logout. Please try again.',
+      } as AuthApiError,
+    };
+  }
+};
