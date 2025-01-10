@@ -7,6 +7,7 @@ import {
   UnderlinedButton,
   MenuSheet,
   AuthSheet,
+  UserMenu,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +18,11 @@ export const NavbarList: React.FC = () => {
     <ul className='flex h-full items-center gap-5'>
       <li>
         {firstName ? (
-          <span>{firstName as string}</span>
+          <UserMenu>
+            <div className='flex items-center gap-0.5'>
+              {firstName as string}
+            </div>
+          </UserMenu>
         ) : (
           <AuthSheet>
             <MenuButton>{t('login')}</MenuButton>

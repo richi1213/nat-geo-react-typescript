@@ -1,10 +1,9 @@
-import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/supabase';
-import { userAtom } from '@/atoms';
+import { Session } from '@supabase/supabase-js';
 
 export const useAuth = () => {
-  const [session, setSession] = useAtom(userAtom);
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
     if (!session) {
@@ -20,7 +19,7 @@ export const useAuth = () => {
     });
 
     return () => subscription.unsubscribe();
-  }, [session, setSession]);
+  }, [session]);
 
   return { session };
 };

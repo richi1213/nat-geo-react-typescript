@@ -17,8 +17,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { checkIfUserExists } from '@/supabase';
 import { useState } from 'react';
+import type { EnterEmailFormProps } from './types';
 
-export const EnterEmailForm: React.FC = () => {
+export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
   const [state, setState] = useState<FormState>(FormState.Idle);
   const [email, setEmail] = useState<string>('');
 
@@ -93,10 +94,22 @@ export const EnterEmailForm: React.FC = () => {
         );
 
       case FormState.UserExists:
-        return <LoginForm email={email} onEditEmail={handleEditEmail} />;
+        return (
+          <LoginForm
+            email={email}
+            onEditEmail={handleEditEmail}
+            sheetRef={sheetRef}
+          />
+        );
 
       case FormState.UserDoesNotExist:
-        return <RegisterForm email={email} onEditEmail={handleEditEmail} />;
+        return (
+          <RegisterForm
+            email={email}
+            onEditEmail={handleEditEmail}
+            sheetRef={sheetRef}
+          />
+        );
 
       case FormState.Error:
         return (

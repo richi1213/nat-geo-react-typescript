@@ -18,7 +18,11 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { useLoginUser } from '@/hooks';
 
-export const LoginForm: React.FC<LoginFormProps> = ({ email, onEditEmail }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({
+  email,
+  onEditEmail,
+  sheetRef,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<LoginSchema>({
@@ -29,7 +33,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ email, onEditEmail }) => {
     },
   });
 
-  const { mutate: loginUser, isPending } = useLoginUser();
+  const { mutate: loginUser, isPending, isSuccess } = useLoginUser();
+
+  if (isSuccess) sheetRef.current?.click();
 
   const onSubmit = async (values: LoginSchema) => {
     loginUser(values);

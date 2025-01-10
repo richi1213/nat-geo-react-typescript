@@ -21,6 +21,7 @@ import { useRegisterUser } from '@/hooks';
 export const RegisterForm: React.FC<RegisterFormProps> = ({
   email,
   onEditEmail,
+  sheetRef,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,7 +37,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     },
   });
 
-  const { mutate: registerUser, isPending } = useRegisterUser();
+  const { mutate: registerUser, isPending, isSuccess } = useRegisterUser();
+
+  if (isSuccess) sheetRef.current?.click();
 
   const onSubmit = async (values: RegistrationSchema) => {
     registerUser({

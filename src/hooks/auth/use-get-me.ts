@@ -1,8 +1,7 @@
-import { useAtomValue } from 'jotai';
-import { userAtom } from '@/atoms';
+import { useAuth } from '@/hooks/auth/use-auth';
 
 export const useGetMe = () => {
-  const session = useAtomValue(userAtom);
+  const { session } = useAuth();
 
   const user = session?.user;
 
