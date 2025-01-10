@@ -1,0 +1,53 @@
+import { useGetMe } from '@/hooks';
+import { ChevronsDown, Search } from 'lucide-react';
+import {
+  LanguagePicker,
+  LinkButton,
+  MenuButton,
+  UnderlinedButton,
+  MenuSheet,
+  AuthSheet,
+} from '@/components';
+import { useTranslation } from 'react-i18next';
+
+export const NavbarList: React.FC = () => {
+  const { firstName } = useGetMe();
+  const { t } = useTranslation('header');
+  return (
+    <ul className='flex h-full items-center gap-5'>
+      <li>
+        {firstName ? (
+          <span>{firstName as string}</span>
+        ) : (
+          <AuthSheet>
+            <MenuButton>{t('login')}</MenuButton>
+          </AuthSheet>
+        )}
+      </li>
+      <li className='hidden md:block'>
+        <MenuButton className='font-thin'>
+          <Search />
+        </MenuButton>
+      </li>
+      <li className='hidden md:block'>
+        <UnderlinedButton to='/' size='sm'>
+          {t('newsletters')}
+        </UnderlinedButton>
+      </li>
+      <li>
+        <LinkButton to='/'>{t('subscribe')}</LinkButton>
+      </li>
+      <li>
+        <LanguagePicker />
+      </li>
+      <li>
+        <MenuSheet>
+          <MenuButton className='min-w-8 gap-1'>
+            <span className='hidden md:block'>{t('menu')}</span>
+            <ChevronsDown className='font-medium' />
+          </MenuButton>
+        </MenuSheet>
+      </li>
+    </ul>
+  );
+};

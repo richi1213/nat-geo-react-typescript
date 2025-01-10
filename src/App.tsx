@@ -1,16 +1,10 @@
-import React from 'react';
 import { RouterProvider } from 'react-router';
-import { useAuth } from '@/hooks/auth/use-auth';
 import { appRouter } from '@/routes';
+import { useAtomValue } from 'jotai';
+import { userAtom } from '@/atoms';
 
 export const App: React.FC = () => {
-  const { session } = useAuth();
-
-  if (!session) {
-    console.log('please login to coninue');
-  }
-
+  const session = useAtomValue(userAtom);
   console.log(session);
-
   return <RouterProvider router={appRouter} />;
 };

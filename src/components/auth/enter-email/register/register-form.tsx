@@ -9,6 +9,7 @@ import {
   Button,
   Form,
   Loading,
+  type RegisterFormProps,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
@@ -16,11 +17,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { useRegisterUser } from '@/hooks';
-
-type RegisterFormProps = {
-  email: string;
-  onEditEmail: () => void;
-};
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({
   email,

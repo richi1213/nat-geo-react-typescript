@@ -1,4 +1,3 @@
-import { loginSchema, type LoginSchema } from '@/components/auth/lib';
 import {
   Form,
   FormField,
@@ -8,6 +7,9 @@ import {
   FormMessage,
   Button,
   Loading,
+  loginSchema,
+  type LoginFormProps,
+  type LoginSchema,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
@@ -15,11 +17,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { useLoginUser } from '@/hooks';
-
-type LoginFormProps = {
-  email: string;
-  onEditEmail: () => void;
-};
 
 export const LoginForm: React.FC<LoginFormProps> = ({ email, onEditEmail }) => {
   const [showPassword, setShowPassword] = useState(false);
