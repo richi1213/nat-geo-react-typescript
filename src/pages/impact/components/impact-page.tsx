@@ -1,9 +1,10 @@
-import { ImpactHero } from '@/pages';
+import { ImpactHero, WhatWeDo } from '@/pages';
 
 const ImpactPage: React.FC = () => {
   return (
     <div>
       <ImpactHero />
+      <WhatWeDo />
     </div>
   );
 };
