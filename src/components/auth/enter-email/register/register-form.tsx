@@ -1,6 +1,5 @@
 import {
   type RegistrationSchema,
-  registrationSchema,
   FormField,
   FormItem,
   FormControl,
@@ -9,12 +8,14 @@ import {
   Button,
   Form,
   type RegisterFormProps,
+  useTranslatedSchemas,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRegisterUser } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({
   email,
@@ -22,6 +23,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   sheetRef,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation('header');
+
+  const { registrationSchema } = useTranslatedSchemas();
 
   const form = useForm<RegistrationSchema>({
     resolver: zodResolver(registrationSchema),
@@ -54,19 +58,17 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     <>
       <div className='mb-8 text-secondary'>
         <h2 className='mb-2 text-2xl font-semibold'>
-          Create an account to continue
+          {t('create_account_title')}
         </h2>
         <p>
-          With a MyDisney account, you can log in to National Geographic and
-          other services across The Walt Disney Family of Companies.
-          <br />
-          Create your account using{' '}
-          <span className='font-semibold'>{email}</span>{' '}
+          {t('create_account_description')} <br />
+          {t('create_account_using')}
+          <span className='font-semibold'>{email}</span>
           <button
             onClick={onEditEmail}
             className='text-blue-600 hover:underline'
           >
-            edit
+            {t('edit')}
           </button>
         </p>
       </div>
@@ -81,7 +83,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder='First Name'
+                    placeholder={t('placeholder_first_name')}
                     className='h-12 bg-gray-100'
                   />
                 </FormControl>
@@ -98,7 +100,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder='Last Name'
+                    placeholder={t('placeholder_last_name')}
                     className='h-12 bg-gray-100'
                   />
                 </FormControl>
@@ -115,7 +117,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder='Username'
+                    placeholder={t('placeholder_username')}
                     className='h-12 bg-gray-100'
                   />
                 </FormControl>
@@ -133,7 +135,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                   <Input
                     {...field}
                     type='url'
-                    placeholder='Facebook Profile Link'
+                    placeholder={t('placeholder_facebook_profile')} //
                     className='h-12 bg-gray-100'
                   />
                 </FormControl>
@@ -152,7 +154,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                     <Input
                       {...field}
                       type={showPassword ? 'text' : 'password'}
-                      placeholder='Choose a password'
+                      placeholder={t('placeholder_password')}
                       className='h-12 bg-gray-100 pr-10'
                     />
                     <button
@@ -178,7 +180,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             className='h-12 w-full bg-primary text-base font-semibold hover:bg-primary-foreground hover:text-foreground'
             disabled={isPending}
           >
-            Agree & Continue
+            {t('agree_and_continue')}
           </Button>
         </form>
       </Form>

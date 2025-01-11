@@ -1,12 +1,12 @@
 import { Link } from 'react-router';
 import type { FooterMenuSectionProps } from './types';
-import { useFooterTranslation } from '@/components';
+import { useTranslationWithNamespace } from '@/hooks';
 
 export const FooterMenuSection: React.FC<FooterMenuSectionProps> = ({
   title,
   links,
 }) => {
-  const { getTranslatedLabel } = useFooterTranslation();
+  const { getTranslatedLabel } = useTranslationWithNamespace('footer');
 
   return (
     <div className='space-y-3'>

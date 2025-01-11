@@ -7,21 +7,24 @@ import {
   FormItem,
   FormMessage,
   Button,
-  Loading,
-  emailSchema,
   FormState,
   LoginForm,
   RegisterForm,
+  useTranslatedSchemas,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { checkIfUserExists } from '@/supabase';
 import { useState } from 'react';
 import type { EnterEmailFormProps } from './types';
+import { useTranslation } from 'react-i18next';
 
 export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
   const [state, setState] = useState<FormState>(FormState.Idle);
   const [email, setEmail] = useState<string>('');
+
+  const { emailSchema } = useTranslatedSchemas();
+  const { t } = useTranslation('header');
 
   const form = useForm<EmailSchema>({
     resolver: zodResolver(emailSchema),
@@ -31,7 +34,6 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
   });
 
   const onSubmit = async (values: EmailSchema) => {
-    setState(FormState.Loading);
     setEmail(values.email);
     try {
       const userExists = await checkIfUserExists(values.email);
@@ -57,12 +59,9 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
         return (
           <div className='space-y-6 text-secondary'>
             <h2 className='mb-2 text-3xl font-semibold'>
-              Enter your email to continue
+              {t('enter_your_email_to_continue')}
             </h2>
-            <p className=''>
-              Log in to National Geographic with your MyDisney account. If you
-              don&apos;t have one, you will be prompted to create one.
-            </p>
+            <p className=''>{t('log_in_to_national_geographic')}</p>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -77,7 +76,7 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
                         <Input
                           {...field}
                           type='email'
-                          placeholder='Email'
+                          placeholder={t('email')}
                           className='h-12 bg-gray-100'
                         />
                       </FormControl>
@@ -89,7 +88,7 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
                   type='submit'
                   className='h-12 w-full bg-primary hover:bg-primary-foreground hover:text-foreground'
                 >
-                  Continue
+                  {t('continue')}
                 </Button>
               </form>
             </Form>
@@ -117,22 +116,18 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
       case FormState.Error:
         return (
           <div>
-            <h2 className='text-xl font-semibold'>Something Went Wrong</h2>
-            <p className='mt-2'>
-              We encountered an error while checking your email. Please try
-              again later.
-            </p>
+            <h2 className='text-xl font-semibold'>
+              {t('something_went_wrong')}
+            </h2>
+            <p className='mt-2'>{t('error_checking_email')}</p>
             <Button
               onClick={() => setState(FormState.Idle)}
               className='mt-4 bg-red-600 text-white'
             >
-              Try Again
+              {t('try_again')}
             </Button>
           </div>
         );
-
-      case FormState.Loading:
-        return <Loading />;
 
       default:
         return null;

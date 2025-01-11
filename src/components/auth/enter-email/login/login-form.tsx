@@ -6,15 +6,16 @@ import {
   Input,
   FormMessage,
   Button,
-  loginSchema,
   type LoginFormProps,
   type LoginSchema,
+  useTranslatedSchemas,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoginUser } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export const LoginForm: React.FC<LoginFormProps> = ({
   email,
@@ -22,6 +23,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   sheetRef,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { loginSchema } = useTranslatedSchemas();
+  const { t } = useTranslation('header');
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -41,20 +45,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <>
       <div className='mb-8 text-secondary'>
-        <h1 className='mb-2 text-2xl font-semibold'>
-          Good news, you already have a MyDisney account
-        </h1>
+        <h2 className='mb-2 text-2xl font-semibold'>
+          {t('good_news_my_disney_account')}
+        </h2>
         <p>
-          Since you&apos;ve already used your email to sign up for one or more
-          services across The Walt Disney Family of Companies, you can now log
-          in to National Geographic with MyDisney using:
-          <br />
+          {t('log_in_with_my_disney')} <br />
           <span className='font-semibold'>{email}</span>{' '}
           <button
             onClick={onEditEmail}
             className='text-blue-600 hover:underline'
           >
-            edit
+            {t('edit')}
           </button>
         </p>
       </div>
@@ -71,7 +72,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                     <Input
                       {...field}
                       type={showPassword ? 'text' : 'password'}
-                      placeholder='Password'
+                      placeholder={t('password')}
                       className='h-12 bg-gray-100 pr-10'
                     />
                     <button
@@ -94,10 +95,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 
           <Button
             type='submit'
-            className='h-12 w-full bg-[#FFD230] text-black hover:bg-[#FFD230]/90'
+            className='h-12 w-full bg-primary text-primary-foreground hover:bg-primary'
             disabled={isPending}
           >
-            Log in
+            {t('login')}
           </Button>
         </form>
       </Form>

@@ -1,9 +1,10 @@
-import { Button, useFooterTranslation } from '@/components';
+import { Button } from '@/components';
 import { Link } from 'react-router';
 import { socialLinks } from '../utils';
+import { useTranslationWithNamespace } from '@/hooks';
 
 export const SocialMenuSection: React.FC = () => {
-  const { getTranslatedLabel } = useFooterTranslation();
+  const { getTranslatedLabel } = useTranslationWithNamespace('footer');
   return (
     <div className='space-y-3'>
       <h4 className='text-sm font-medium uppercase tracking-widest'>
