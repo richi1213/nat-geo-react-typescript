@@ -50,7 +50,12 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
     />
   );
 
-  if (to) <Link to={to}>{buttonContent}</Link>;
+  if (to)
+    return (
+      <Link to={to} className='inline-block'>
+        {buttonContent}
+      </Link>
+    );
 
   return buttonContent;
 };

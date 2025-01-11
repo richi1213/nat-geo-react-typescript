@@ -1,4 +1,4 @@
-export * from './home-page';
+export { default } from './home-page';
 export * from './latest-stories';
 export * from './tv';
 export * from './travel';

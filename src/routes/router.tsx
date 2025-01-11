@@ -1,5 +1,5 @@
 import { DefaultLayout } from '@/components';
-import { HomeView, NotFound } from '@/pages';
+import { HomeView, ImpactView, NotFound } from '@/pages';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,6 +11,7 @@ export const appRouter = createBrowserRouter(
     <>
       <Route path='/' element={<DefaultLayout />}>
         <Route index element={<HomeView />} />
+        <Route path='impact' element={<ImpactView />} />
         <Route path='*' element={<NotFound />} />
       </Route>
     </>,

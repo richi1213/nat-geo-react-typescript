@@ -1,6 +1,8 @@
+import { Link } from 'react-router';
+
 export const Logos: React.FC = () => {
   return (
-    <>
+    <Link to='/'>
       <picture className='hidden cursor-pointer md:block'>
         <source srcSet='/images/natgeo-logo.svg' type='image/svg+xml' />
         <img
@@ -19,6 +21,6 @@ export const Logos: React.FC = () => {
           height={32}
         />
       </picture>
-    </>
+    </Link>
   );
 };

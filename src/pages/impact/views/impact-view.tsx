@@ -1,10 +1,10 @@
 import { Loading } from '@/components';
 import { lazy, Suspense } from 'react';
 
-const LazyHomePage = lazy(() => import('../components'));
+const LazyImpactPage = lazy(() => import('../components'));
 
-export const HomeView: React.FC = () => (
+export const ImpactView: React.FC = () => (
   <Suspense fallback={<Loading />}>
-    <LazyHomePage />
+    <LazyImpactPage />
   </Suspense>
 );
