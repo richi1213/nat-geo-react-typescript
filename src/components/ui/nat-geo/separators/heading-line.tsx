@@ -1,12 +1,9 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Separator } from '@/components';
+import type { HeadingLineProps } from './types';
 
-interface HeadingLineProps extends React.HTMLAttributes<HTMLDivElement> {
-  orientation?: 'horizontal' | 'vertical';
-}
-
-export const HeadingLine = React.forwardRef<HTMLDivElement, HeadingLineProps>(
+export const HeadingLine = forwardRef<HTMLDivElement, HeadingLineProps>(
   ({ className, orientation = 'horizontal', ...props }, ref) => {
     return (
       <Separator
@@ -24,4 +21,3 @@ export const HeadingLine = React.forwardRef<HTMLDivElement, HeadingLineProps>(
     );
   },
 );
-HeadingLine.displayName = 'HeadingLine';

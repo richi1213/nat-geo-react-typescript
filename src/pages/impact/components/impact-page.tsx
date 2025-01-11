@@ -1,5 +1,11 @@
+import { ImpactHero } from '@/pages';
+
 const ImpactPage: React.FC = () => {
-  return <div>Impact page</div>;
+  return (
+    <div>
+      <ImpactHero />
+    </div>
+  );
 };
 
 export default ImpactPage;
