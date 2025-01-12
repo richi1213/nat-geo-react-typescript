@@ -22,7 +22,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
   ) => {
     if (variant === 'hero') {
       return (
-        <Card className='group relative h-[400px] w-full overflow-hidden rounded-none border-none'>
+        <Card className='group relative h-[450px] w-full overflow-hidden rounded-none border-none md:col-span-2'>
           <div
             className='absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105'
             style={{ backgroundImage: `url(${imageUrl})` }}
@@ -79,17 +79,21 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
               className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
             />
           </div>
-          <CardContent className='p-6'>
-            <div className='mb-3 flex items-center gap-2'>
-              {isPremium && <Lock className='size-4 text-primary-foreground' />}
-              <span className='text-sm font-bold uppercase tracking-wider text-primary-foreground'>
-                {category}
-              </span>
+          <CardContent className='flex flex-col justify-between px-6 pt-9'>
+            <div>
+              <div className='mb-3 flex items-center gap-2'>
+                {isPremium && (
+                  <Lock className='size-4 text-primary-foreground' />
+                )}
+                <span className='text-sm font-bold uppercase tracking-wider text-primary-foreground'>
+                  {category}
+                </span>
+              </div>
+              <h3 className='mb-4 text-xl font-bold text-primary-foreground'>
+                {title}
+              </h3>
             </div>
-            <h3 className='mb-4 text-xl font-bold text-primary-foreground'>
-              {title}
-            </h3>
-            <CardFooter className='text-primary-foreground-foreground flex items-center gap-1 p-0'>
+            <CardFooter className='mt-auto flex items-center gap-1 p-0 text-primary-foreground'>
               <ScanText className='text-primary-foreground' />
               <span className='text-xs font-bold uppercase tracking-wider text-primary-foreground'>
                 Read
