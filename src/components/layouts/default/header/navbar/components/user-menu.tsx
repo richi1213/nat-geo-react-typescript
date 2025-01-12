@@ -7,14 +7,17 @@ import {
 } from '@/components';
 import { useLogoutUser } from '@/hooks';
 import { PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
   const { mutate: logout } = useLogoutUser();
+
   const handleLogout = () => {
     logout();
-    console.log('hi');
   };
+
+  const { t } = useTranslation('header');
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -29,13 +32,13 @@ export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
                   to='/'
                   className='cursor-pointer px-2 py-1.5 hover:text-primary'
                 >
-                  account settings
+                  {t('acc_settings')}
                 </Link>
                 <div
                   onClick={handleLogout}
                   className='cursor-pointer px-2 py-1.5 hover:text-primary'
                 >
-                  log out
+                  {t('log_out')}
                 </div>
               </nav>
             </div>
