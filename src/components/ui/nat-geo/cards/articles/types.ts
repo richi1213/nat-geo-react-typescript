@@ -7,3 +7,10 @@ export type ArticleCardProps = React.HTMLAttributes<HTMLDivElement> & {
   href: string;
   isPremium?: boolean;
 };
+
+export type ArticleHorizontalCardProps = {
+  category: string;
+  title: string;
+  imageUrl: string;
+  href: string;
+};

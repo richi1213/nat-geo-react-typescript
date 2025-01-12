@@ -95,7 +95,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
             </div>
             <CardFooter className='mt-auto flex items-center gap-1 p-0 text-primary-foreground'>
               <ScanText className='text-primary-foreground' />
-              <span className='text-xs font-bold uppercase tracking-wider text-primary-foreground'>
+              <span className='text-xs font-bold uppercase tracking-[0.16rem] text-primary-foreground'>
                 Read
               </span>
             </CardFooter>
