@@ -1,57 +1,40 @@
-import { ArticleHorizontalCard } from '@/components';
+import { ArticleHorizontalCard, LinkButton } from '@/components';
 import { useArticlesByCategory } from '@/hooks';
-
-// const articleData = [
-//   {
-//     category: 'Technology',
-//     title: 'The Rise of AI in Everyday Life',
-//     imageUrl: '/images/placeholder.svg',
-//     href: '/impact',
-//   },
-//   {
-//     category: 'Health',
-//     title: 'The Importance of Mental Wellness',
-//     imageUrl: '/images/placeholder.svg',
-//     href: '/impact',
-//   },
-//   {
-//     category: 'Environment',
-//     title: 'How Climate Change Affects Us All',
-//     imageUrl: '/images/placeholder.svg',
-//     href: '/impact',
-//   },
-//   {
-//     category: 'Business',
-//     title: 'The Future of Remote Work',
-//     imageUrl: '/images/placeholder.svg',
-//     href: '/impact',
-//   },
-//   {
-//     category: 'Lifestyle',
-//     title: 'Minimalism: A Guide to Simple Living',
-//     imageUrl: '/images/placeholder.svg',
-//     href: '/impact',
-//   },
-// ];
+import { cn } from '@/lib/utils';
+import { RefreshCcw } from 'lucide-react';
 
 export const ImpactArticlesRow: React.FC = () => {
-  const { data } = useArticlesByCategory('impact');
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useArticlesByCategory('impact');
 
   console.log(data);
 
   const articles = data?.pages.flatMap((page) => page.articles);
 
   return (
-    <div className='mt-6 space-x-4'>
-      {articles?.map((article) => (
-        <ArticleHorizontalCard
-          key={article.id}
-          imageUrl={article.cover_image}
-          category={article.category}
-          title={article.title_en}
-          href='/'
-        />
-      ))}
-    </div>
+    <>
+      <div className='mb-0 mt-6 space-x-4'>
+        {articles?.map((article) => (
+          <ArticleHorizontalCard
+            key={article.id}
+            imageUrl={article.cover_image}
+            category={article.category}
+            title={article.title_en}
+            href='/'
+          />
+        ))}
+        <div className='mt-8 text-center'>
+          <LinkButton
+            variant='penguin'
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            className={cn({ hidden: !hasNextPage })}
+          >
+            <RefreshCcw />
+            load more
+          </LinkButton>
+        </div>
+      </div>
+    </>
   );
 };

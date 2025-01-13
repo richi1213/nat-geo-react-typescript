@@ -7,7 +7,7 @@ export const fetchArticlesByCategory = async (
 ): Promise<{ articles: Article[]; hasNextPage: boolean }> => {
   try {
     const start = (page - 1) * pageSize;
-    const end = start + pageSize;
+    const end = start + pageSize - 1;
 
     const { data, error } = await supabase
       .from('articles')

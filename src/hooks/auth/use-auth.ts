@@ -6,11 +6,9 @@ export const useAuth = () => {
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
-    if (!session) {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session);
-      });
-    }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
 
     const {
       data: { subscription },
@@ -19,7 +17,7 @@ export const useAuth = () => {
     });
 
     return () => subscription.unsubscribe();
-  }, [session]);
+  }, []);
 
   return { session };
 };

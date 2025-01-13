@@ -19,7 +19,7 @@ const linkButtonVariants = cva(
         alternate:
           'bg-primary hover:bg-foreground hover:text-background bg-gradient-to-r from-foreground to-foreground text-primary-foreground',
         penguin:
-          'bg-foreground text-primary-foreground hover:text-foreground hover:bg-background bg-gradient-to-r from-background to-background',
+          'bg-foreground text-primary-foreground hover:text-foreground hover:bg-background bg-gradient-to-r from-background to-background border-2 border-background',
       },
     },
     defaultVariants: {
