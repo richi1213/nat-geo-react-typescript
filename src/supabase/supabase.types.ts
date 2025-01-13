@@ -9,6 +9,62 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      articles: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string
+          created_at: string | null
+          description_en: string
+          description_ka: string | null
+          id: string
+          images: Json | null
+          slug: string
+          title_en: string
+          title_ka: string | null
+          updated_at: string | null
+          video_url: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          category: string
+          content: string
+          created_at?: string | null
+          description_en: string
+          description_ka?: string | null
+          id?: string
+          images?: Json | null
+          slug: string
+          title_en: string
+          title_ka?: string | null
+          updated_at?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string
+          created_at?: string | null
+          description_en?: string
+          description_ka?: string | null
+          id?: string
+          images?: Json | null
+          slug?: string
+          title_en?: string
+          title_ka?: string | null
+          updated_at?: string | null
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           email: string | null
