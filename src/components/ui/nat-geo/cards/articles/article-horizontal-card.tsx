@@ -2,15 +2,23 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router';
 import type { ArticleHorizontalCardProps } from './types';
 import { ScanText } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
 
-export const ArticleHorizontalCard: React.FC<ArticleHorizontalCardProps> = ({
-  category,
-  title,
-  imageUrl,
-  href,
-}) => {
+export const ArticleHorizontalCard = forwardRef<
+  HTMLAnchorElement,
+  ArticleHorizontalCardProps & {
+    className?: string;
+    style?: React.CSSProperties;
+  }
+>(({ category, title, imageUrl, href, className, style }, ref) => {
   return (
-    <Link to={href}>
+    <Link
+      ref={ref}
+      to={href}
+      className={cn('group block', className)}
+      style={style}
+    >
       <Card className='group overflow-hidden rounded-none'>
         <CardContent className='bg-foreground p-0 text-primary-foreground'>
           <div className='flex'>
@@ -41,4 +49,4 @@ export const ArticleHorizontalCard: React.FC<ArticleHorizontalCardProps> = ({
       </Card>
     </Link>
   );
-};
+});
