@@ -12,5 +12,6 @@ export const useArticlesByCategory = (category: ArticleCategory) => {
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.hasNextPage ? allPages.length + 1 : undefined;
     },
+    staleTime: 10 * 60 * 1000,
   });
 };

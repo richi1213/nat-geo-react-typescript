@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { RefreshCcw } from 'lucide-react';
 
 export const ImpactArticlesRow: React.FC = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useArticlesByCategory('impact');
 
   console.log(data);
@@ -20,14 +20,14 @@ export const ImpactArticlesRow: React.FC = () => {
             imageUrl={article.cover_image}
             category={article.category}
             title={article.title_en}
-            href='/'
+            href='/impact'
           />
         ))}
         <div className='mt-8 text-center'>
           <LinkButton
             variant='penguin'
             onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
+            disabled={isFetching && !isFetchingNextPage}
             className={cn({ hidden: !hasNextPage })}
           >
             <RefreshCcw />

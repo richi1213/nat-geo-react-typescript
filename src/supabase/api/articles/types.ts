@@ -1,7 +1,5 @@
 import type { Tables } from '@/supabase';
 
-export type Article = Tables<'articles'>;
-
 export type ArticleCategory =
   | 'impact'
   | 'animals'
@@ -9,3 +7,10 @@ export type ArticleCategory =
   | 'history'
   | 'science'
   | 'travel';
+
+export type Article = Tables<'articles'>;
+
+export type ShowCardArticle = Pick<
+  Article,
+  'id' | 'cover_image' | 'category' | 'title_en' | 'title_ka'
+>;
