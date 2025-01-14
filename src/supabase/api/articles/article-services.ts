@@ -5,7 +5,7 @@ import {
 } from '@/supabase';
 
 export const fetchArticlesByCategory = async (
-  category: ArticleCategory,
+  categoryNameEn: ArticleCategory,
   page: number = 1,
   pageSize: number = 5,
 ): Promise<{ articles: ShowCardArticle[]; hasNextPage: boolean }> => {
@@ -13,10 +13,20 @@ export const fetchArticlesByCategory = async (
     const start = (page - 1) * pageSize;
     const end = start + pageSize - 1;
 
+    const categoryId = await getCategoryIdByName(categoryNameEn);
+
     const { data, error } = await supabase
       .from('articles')
-      .select('id, cover_image, category, title_en, title_ka')
-      .eq('category', category)
+      .select(
+        `
+          id, 
+          cover_image, 
+          title_en, 
+          title_ka, 
+          category:categories(name_en, name_ka, slug) 
+        `,
+      )
+      .eq('category_id', categoryId) // Use the dynamically fetched categoryId
       .order('created_at', { ascending: false })
       .range(start, end);
 
@@ -34,4 +44,18 @@ export const fetchArticlesByCategory = async (
     console.error(err);
     throw err;
   }
+};
+
+export const getCategoryIdByName = async (categoryNameEn: ArticleCategory) => {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('id')
+    .eq('name_en', categoryNameEn)
+    .single();
+
+  if (error) {
+    throw new Error(`Error fetching category: ${error.message}`);
+  }
+
+  return data?.id;
 };

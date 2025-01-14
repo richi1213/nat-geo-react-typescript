@@ -34,7 +34,7 @@ export const ArticleHorizontalCard = forwardRef<
 
             <div className='flex w-7/12 flex-col justify-around -space-y-5 pl-5'>
               <div className='hidden text-sm font-semibold uppercase tracking-[0.18rem] text-gray-600 md:block'>
-                {category}
+                {category.name_en}
               </div>
               <h3 className='text-lg font-bold md:text-2xl'>{title_en}</h3>{' '}
               <div className='hidden items-center gap-1 p-0 sm:flex'>

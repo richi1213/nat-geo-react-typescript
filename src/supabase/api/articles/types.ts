@@ -12,5 +12,11 @@ export type Article = Tables<'articles'>;
 
 export type ShowCardArticle = Pick<
   Article,
-  'id' | 'cover_image' | 'category' | 'title_en' | 'title_ka'
->;
+  'id' | 'cover_image' | 'title_en' | 'title_ka'
+> & {
+  category: {
+    name_en: string;
+    name_ka: string;
+    slug: string;
+  };
+};
