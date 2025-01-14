@@ -19,7 +19,7 @@ export const fetchArticlesByCategory = async (
       throw new Error(`Error fetching articles: ${error.message}`);
     }
 
-    const hasNextPage = data.length > pageSize;
+    const hasNextPage = data.length === pageSize;
 
     return {
       articles: data.slice(0, pageSize),
