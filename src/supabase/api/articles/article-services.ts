@@ -24,7 +24,7 @@ export const fetchRecentArticlesByCategory = async (
       )
       .eq('category_id', categoryId)
       .order('created_at', { ascending: false })
-      .limit(6);
+      .limit(5);
     if (error) {
       throw new Error(`Error fetching articles: ${error.message}`);
     }
@@ -41,10 +41,10 @@ export const fetchRecentArticlesByCategory = async (
 export const fetchArticlesByCategory = async (
   categoryNameEn: ArticleCategory,
   page: number = 1,
-  pageSize: number = 6,
+  pageSize: number = 5,
 ): Promise<{ articles: ShowCardArticle[]; hasNextPage: boolean }> => {
   try {
-    const start = (page - 1) * pageSize + 6; // Skip the first 6 items for subsequent pages
+    const start = (page - 1) * pageSize + 5; // Skip the first 6 items for subsequent pages
     const end = start + pageSize - 1;
 
     const categoryId = await getCategoryIdByName(categoryNameEn);

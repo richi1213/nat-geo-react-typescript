@@ -1,4 +1,5 @@
 export * from './supabase-client';
+
 export type {
   Json,
   Database,

@@ -29,14 +29,14 @@ const issues = [
 export const IssueGrid: React.FC = () => {
   return (
     <div className='mt-6 lg:col-span-8'>
-      <div className='space-y-6'>
+      {/* <div className='space-y-6'>
         <ArticleCard {...issues[0]} />
         <div className='grid gap-4 sm:grid-cols-2'>
           {issues.slice(1).map((issue, index) => (
             <ArticleCard key={index} {...issue} />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

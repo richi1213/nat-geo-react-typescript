@@ -29,14 +29,14 @@ const articles = [
 export const ArticlesGrid: React.FC = () => {
   return (
     <div className='order-1 lg:order-2 lg:col-span-8'>
-      <div className='space-y-6'>
+      {/* <div className='space-y-6'>
         <ArticleCard {...articles[0]} />
         <div className='grid gap-4 sm:grid-cols-2'>
           {articles.slice(1).map((article, index) => (
             <ArticleCard key={index} {...article} />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

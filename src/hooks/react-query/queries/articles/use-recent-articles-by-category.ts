@@ -9,5 +9,6 @@ export const useRecentArticlesByCategory = (category: ArticleCategory) => {
   return useQuery({
     queryKey: [QUERY_KEYS.RECENT_ARTICLES, category],
     queryFn: () => fetchRecentArticlesByCategory(category),
+    staleTime: 10 * 60 * 1000,
   });
 };

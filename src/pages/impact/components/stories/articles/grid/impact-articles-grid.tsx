@@ -43,9 +43,9 @@ const staticArticles = [
 export const ImpactArticlesGrid: React.FC = () => {
   return (
     <ArticlesGridLayout>
-      {staticArticles.map((article, index) => (
+      {/* {staticArticles.map((article, index) => (
         <ArticleCard key={index} {...article} />
-      ))}
+      ))} */}
     </ArticlesGridLayout>
   );
 };

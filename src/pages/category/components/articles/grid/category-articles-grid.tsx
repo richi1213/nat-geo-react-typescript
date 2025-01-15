@@ -1,18 +1,26 @@
-import { ArticleCard, ArticlesGridLayout } from '@/components';
+import { ArticleCard, ArticlesGridLayout, Loading } from '@/components';
 import { useRecentArticlesByCategory } from '@/hooks';
 import { ArticleCategory } from '@/supabase';
 import { useParams } from 'react-router';
 
 export const CategoryArticlesGrid: React.FC = () => {
   const { category } = useParams<{ category: ArticleCategory }>();
-  const { data } = useRecentArticlesByCategory(category!);
+  const { data, isLoading } = useRecentArticlesByCategory(category!);
 
-  const recentArticles = data?.articles;
+  if (isLoading) return <Loading />;
+
+  const recentArticles = data?.articles || [];
+
+  console.log(data?.articles);
 
   return (
     <ArticlesGridLayout>
       {recentArticles?.map((article, index) => (
-        <ArticleCard key={index} {...article} />
+        <ArticleCard
+          key={index}
+          article={article}
+          variant={index === 0 ? 'hero' : 'standard'}
+        />
       ))}
     </ArticlesGridLayout>
   );

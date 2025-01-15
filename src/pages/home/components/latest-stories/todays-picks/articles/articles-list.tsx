@@ -48,11 +48,11 @@ const articles = [
 export const ArticlesList: React.FC = () => {
   return (
     <div className='space-y-4'>
-      <div className='grid sm:grid-cols-2 lg:grid-cols-1'>
+      {/* <div className='grid sm:grid-cols-2 lg:grid-cols-1'>
         {articles.map((article, index) => (
           <MiniArticleCard key={index} {...article} />
         ))}
-      </div>
+      </div> */}
       <div className='text-center lg:text-left xl:text-left'>
         <UnderlinedButton
           size='sm'

@@ -29,14 +29,14 @@ const expeditions = [
 export const ExpeditionGrid: React.FC = () => {
   return (
     <div className='mt-6 lg:col-span-8'>
-      <div className='space-y-6'>
+      {/* <div className='space-y-6'>
         <ArticleCard {...expeditions[0]} />
         <div className='grid gap-4 sm:grid-cols-2'>
           {expeditions.slice(1).map((expedition, index) => (
             <ArticleCard key={index} {...expedition} />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
