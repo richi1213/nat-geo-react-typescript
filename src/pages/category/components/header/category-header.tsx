@@ -1,5 +1,6 @@
-import { CategoryVideo } from '@/pages';
+import { CategoryVideo, CategoryCover } from '@/pages';
 import type { CategoryHeaderProps } from './types';
+import { HeadingLine } from '@/components';
 
 export const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
   return (
@@ -7,20 +8,15 @@ export const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
       {category.has_video ? (
         <CategoryVideo videoUrl={category.media_url as string} />
       ) : (
-        <div
-          className='absolute inset-0 h-full w-full bg-cover bg-center transition-opacity duration-500'
-          style={{ backgroundImage: `url(${category.media_url})` }}
-        />
+        <CategoryCover imageUrl={category.media_url as string} />
       )}
-      {/* Dark overlay */}
-      <div className='absolute inset-0 bg-black/60' />
 
-      {/* Content */}
-      <div className='relative flex h-full items-center px-8 md:px-12'>
-        <h2 className='text-4xl font-bold uppercase tracking-wider text-foreground md:text-5xl lg:text-6xl'>
-          <span className='border-l-4 border-primary pl-4'>
-            {category.name_en}
-          </span>
+      <div className='absolute inset-0 z-10 bg-black/60' />
+
+      <div className='relative z-40 flex h-full items-center px-8 pt-28 md:px-12'>
+        <h2 className='flex items-center gap-5 text-4xl font-bold uppercase tracking-wider text-foreground md:text-5xl lg:text-6xl'>
+          <HeadingLine orientation='vertical' className='w-1.5' />
+          {category.name_en}
         </h2>
       </div>
     </div>

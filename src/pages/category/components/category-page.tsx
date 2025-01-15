@@ -1,5 +1,5 @@
 import { useCategoryByName } from '@/hooks';
-import { CategoryHeader } from '.';
+import { CategoryHeader, CategoryArticles } from '.';
 import { useParams } from 'react-router';
 import { ArticleCategory } from '@/supabase';
 import { Loading } from '@/components';
@@ -15,6 +15,7 @@ const CategoryPage: React.FC = () => {
   return (
     <div>
       <CategoryHeader category={data} />
+      <CategoryArticles />
     </div>
   );
 };

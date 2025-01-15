@@ -1,2 +1,2 @@
 export * from './article-services';
-export type { Article, ArticleCategory, ShowCardArticle } from './types';
+export type { Article, ShowCardArticle } from './types';
