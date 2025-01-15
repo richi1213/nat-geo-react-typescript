@@ -1,26 +1,14 @@
-import { useState, useRef } from 'react';
 import { Play, Pause } from 'lucide-react';
 import { Button, UnderlinedButton } from '@/components';
 import type { VideoPromoProps } from './types';
+import { useVideoPlayer } from '@/hooks';
 
 export const VideoPromo: React.FC<VideoPromoProps> = ({
   title,
   description,
   videoUrl,
 }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+  const { isPlaying, videoRef, togglePlay } = useVideoPlayer();
 
   return (
     <div className='relative h-[948px] w-full'>

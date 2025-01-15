@@ -9,8 +9,6 @@ const LazyCategoryPage = lazy(() => import('../components'));
 export const CategoryView: React.FC = () => {
   const { category } = useParams<{ category?: ArticleCategory }>();
 
-  console.log(category);
-
   if (
     !category ||
     !Object.keys(ArticleCategories).includes(category.toUpperCase())

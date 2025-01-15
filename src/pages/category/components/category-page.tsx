@@ -12,8 +12,6 @@ const CategoryPage: React.FC = () => {
     return <Loading />;
   }
 
-  console.log(data);
-
   return (
     <div>
       <CategoryHeader category={data} />
