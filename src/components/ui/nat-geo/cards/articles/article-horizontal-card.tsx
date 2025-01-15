@@ -4,6 +4,8 @@ import { ScanText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
 import type { ShowCardArticle } from '@/supabase';
+import { useTranslation } from 'react-i18next';
+import { getLocalizedString } from '@/utils';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
@@ -11,7 +13,17 @@ export const ArticleHorizontalCard = forwardRef<
     className?: string;
     style?: React.CSSProperties;
   }
->(({ category, title_en, cover_image, className, style }, ref) => {
+>(({ category, title_en, title_ka, cover_image, className, style }, ref) => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const title = getLocalizedString(
+    { title_en, title_ka },
+    'title',
+    currentLanguage,
+  );
+  const categoryName = getLocalizedString(category, 'name', currentLanguage);
+
   return (
     <Link
       ref={ref}
@@ -26,7 +38,7 @@ export const ArticleHorizontalCard = forwardRef<
               <div className='relative aspect-[27/20]'>
                 <img
                   src={cover_image}
-                  alt={title_en}
+                  alt={title || title_en}
                   className='absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
                 />
               </div>
@@ -34,9 +46,9 @@ export const ArticleHorizontalCard = forwardRef<
 
             <div className='flex w-7/12 flex-col justify-around -space-y-5 pl-5'>
               <div className='hidden text-sm font-semibold uppercase tracking-[0.18rem] text-gray-600 md:block'>
-                {category.name_en}
+                {categoryName}
               </div>
-              <h3 className='text-lg font-bold md:text-2xl'>{title_en}</h3>{' '}
+              <h3 className='text-lg font-bold md:text-2xl'>{title}</h3>{' '}
               <div className='hidden items-center gap-1 p-0 sm:flex'>
                 <ScanText className='text-primary-foreground' />
                 <span className='text-sm font-semibold uppercase tracking-[0.16rem]'>
