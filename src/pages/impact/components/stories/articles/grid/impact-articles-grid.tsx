@@ -1,51 +1,23 @@
-import { ArticlesGridLayout, ArticleCard } from '@/components';
-
-const staticArticles = [
-  {
-    variant: 'hero' as const,
-    category: 'Science',
-    subcategory: 'Mind, Body, Wonder',
-    title: "8 strategies to make your New Year's resolutions stick",
-    imageUrl: '/images/placeholder.svg',
-    href: '/impact',
-    isPremium: true,
-  },
-  {
-    category: 'Science',
-    title: 'The key to fitness? Strengthening your joints and tendons',
-    imageUrl: '/images/placeholder.svg',
-    href: '/impact',
-    isPremium: false,
-  },
-  {
-    category: 'Science',
-    title: 'How going sober for even a month can improve your health',
-    imageUrl: '/images/placeholder.svg',
-    href: '/impact',
-    isPremium: true,
-  },
-  {
-    category: 'Science',
-    title: 'The key to fitness? Strengthening your joints and tendons',
-    imageUrl: '/images/placeholder.svg',
-    href: '/impact',
-    isPremium: false,
-  },
-  {
-    category: 'Science',
-    title: 'How going sober for even a month can improve your health',
-    imageUrl: '/images/placeholder.svg',
-    href: '/impact',
-    isPremium: true,
-  },
-];
+import { ArticlesGridLayout, ArticleCard, Loading } from '@/components';
+import { useRecentArticlesByCategory } from '@/hooks';
 
 export const ImpactArticlesGrid: React.FC = () => {
+  const { data, isLoading } = useRecentArticlesByCategory('impact');
+
+  if (isLoading) return <Loading />;
+
+  const recentArticles = data?.articles || [];
+
+  console.log(data?.articles);
   return (
     <ArticlesGridLayout>
-      {/* {staticArticles.map((article, index) => (
-        <ArticleCard key={index} {...article} />
-      ))} */}
+      {recentArticles?.map((article, index) => (
+        <ArticleCard
+          key={index}
+          article={article}
+          variant={index === 0 ? 'hero' : 'standard'}
+        />
+      ))}
     </ArticlesGridLayout>
   );
 };

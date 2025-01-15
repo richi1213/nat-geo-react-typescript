@@ -7,8 +7,10 @@ import { useArticlesByCategory } from '@/hooks';
 import { estimateRowHeight } from '@/utils';
 import { cn } from '@/lib/utils';
 import { RefreshCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const ImpactArticlesRow: React.FC = () => {
+  const { t } = useTranslation('common');
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useArticlesByCategory('impact');
 
@@ -32,7 +34,7 @@ export const ImpactArticlesRow: React.FC = () => {
           className={cn({ hidden: !hasNextPage })}
         >
           <RefreshCcw />
-          load more
+          {t('load_more')}
         </LinkButton>
       </div>
     </div>

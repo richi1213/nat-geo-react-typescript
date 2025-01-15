@@ -8,9 +8,11 @@ import { cn } from '@/lib/utils';
 import { ArticleCategory } from '@/supabase';
 import { estimateRowHeight } from '@/utils';
 import { RefreshCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 
 export const CategoryArticlesRow: React.FC = () => {
+  const { t } = useTranslation('common');
   const { category } = useParams<{ category: ArticleCategory }>();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
@@ -42,7 +44,7 @@ export const CategoryArticlesRow: React.FC = () => {
           className={cn({ hidden: !hasNextPage })}
         >
           <RefreshCcw />
-          load more
+          {t('load more')}
         </LinkButton>
       </div>
     </div>
