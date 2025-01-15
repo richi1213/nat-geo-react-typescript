@@ -77,25 +77,28 @@ export type Database = {
       }
       categories: {
         Row: {
+          has_video: boolean | null
           id: string
+          media_url: string | null
           name_en: string
           name_ka: string
           slug: string
-          video_url: string | null
         }
         Insert: {
+          has_video?: boolean | null
           id?: string
+          media_url?: string | null
           name_en: string
           name_ka: string
           slug: string
-          video_url?: string | null
         }
         Update: {
+          has_video?: boolean | null
           id?: string
+          media_url?: string | null
           name_en?: string
           name_ka?: string
           slug?: string
-          video_url?: string | null
         }
         Relationships: []
       }
