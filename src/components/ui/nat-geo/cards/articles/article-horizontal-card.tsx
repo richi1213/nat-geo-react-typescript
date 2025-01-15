@@ -14,7 +14,7 @@ export const ArticleHorizontalCard = forwardRef<
     style?: React.CSSProperties;
   }
 >(({ category, title_en, title_ka, cover_image, className, style }, ref) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation('common');
   const currentLanguage = i18n.language;
 
   const title = getLocalizedString(
@@ -52,7 +52,7 @@ export const ArticleHorizontalCard = forwardRef<
               <div className='hidden items-center gap-1 p-0 sm:flex'>
                 <ScanText className='text-primary-foreground' />
                 <span className='text-sm font-semibold uppercase tracking-[0.16rem]'>
-                  read
+                  {t('read')}
                 </span>
               </div>
             </div>
