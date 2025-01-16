@@ -1,15 +1,7 @@
-export const formatArticleDate = (date: string): string => {
-  const parsedDate = new Date(date);
+import dayjs from 'dayjs';
 
-  if (isNaN(parsedDate.getTime())) {
-    throw new Error('Invalid date string');
-  }
+export const formatArticleDate = (createdAt: string) => {
+  const date = dayjs(createdAt);
 
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-
-  return parsedDate.toLocaleDateString('en-US', options);
+  return date.format('MMMM D, YYYY');
 };
