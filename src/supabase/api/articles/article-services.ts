@@ -19,7 +19,8 @@ export const fetchRecentArticlesByCategory = async (
           id, 
           cover_image, 
           title_en, 
-          title_ka, 
+          title_ka,
+          slug, 
           category:categories(name_en, name_ka, slug)
         `,
       )
@@ -58,6 +59,7 @@ export const fetchArticlesByCategory = async (
           cover_image, 
           title_en, 
           title_ka, 
+          slug,
           category:categories(name_en, name_ka, slug) 
         `,
       )
@@ -81,14 +83,10 @@ export const fetchArticlesByCategory = async (
   }
 };
 
-export const getArticleByIdAndSlug = async (
-  id: string,
-  slug: string,
-): Promise<Article> => {
+export const getArticleBySlug = async (slug: string): Promise<Article> => {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .eq('id', id)
     .eq('slug', slug)
     .single();
 

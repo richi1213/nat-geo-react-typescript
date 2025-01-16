@@ -1,1 +1,2 @@
-export * from './profiles';
+export * from './profile-services';
+export * from './types';

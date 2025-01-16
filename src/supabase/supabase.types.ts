@@ -11,11 +11,11 @@ export type Database = {
     Tables: {
       articles: {
         Row: {
-          author_id: string | null
+          author_id: string
           category_id: string
           content: string
           cover_image: string
-          created_at: string | null
+          created_at: string
           description_en: string
           description_ka: string | null
           id: string
@@ -27,11 +27,11 @@ export type Database = {
           video_url: string | null
         }
         Insert: {
-          author_id?: string | null
+          author_id: string
           category_id: string
           content: string
           cover_image: string
-          created_at?: string | null
+          created_at?: string
           description_en: string
           description_ka?: string | null
           id?: string
@@ -43,11 +43,11 @@ export type Database = {
           video_url?: string | null
         }
         Update: {
-          author_id?: string | null
+          author_id?: string
           category_id?: string
           content?: string
           cover_image?: string
-          created_at?: string | null
+          created_at?: string
           description_en?: string
           description_ka?: string | null
           id?: string
@@ -104,31 +104,31 @@ export type Database = {
       }
       profiles: {
         Row: {
-          email: string | null
+          email: string
           fb_link: string | null
-          first_name: string | null
+          first_name: string
           id: string
-          last_name: string | null
+          last_name: string
           updated_at: string | null
-          username: string | null
+          username: string
         }
         Insert: {
-          email?: string | null
+          email: string
           fb_link?: string | null
-          first_name?: string | null
+          first_name: string
           id: string
-          last_name?: string | null
+          last_name: string
           updated_at?: string | null
-          username?: string | null
+          username: string
         }
         Update: {
-          email?: string | null
+          email?: string
           fb_link?: string | null
-          first_name?: string | null
+          first_name?: string
           id?: string
-          last_name?: string | null
+          last_name?: string
           updated_at?: string | null
-          username?: string | null
+          username?: string
         }
         Relationships: []
       }

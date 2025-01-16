@@ -1,5 +1,11 @@
+import { SingleArticleHeading } from '.';
+
 const SingleArticlePage: React.FC = () => {
-  return <article>SingleArticlePage</article>;
+  return (
+    <article>
+      <SingleArticleHeading />
+    </article>
+  );
 };
 
 export default SingleArticlePage;

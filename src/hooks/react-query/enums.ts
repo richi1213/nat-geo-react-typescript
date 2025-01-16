@@ -3,4 +3,5 @@ export enum QUERY_KEYS {
   RECENT_ARTICLES = 'recentArticles',
   SINGLE_ARTICLE = 'singleArticle',
   CATEGORY = 'category',
+  AUTHOR = 'author',
 }
