@@ -49,7 +49,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
               <div className='flex items-center gap-2'>
                 <ScanText />
                 <span className='text-sm uppercase tracking-wider text-foreground'>
-                  Read
+                  {t('read')}
                 </span>
               </div>
             </div>

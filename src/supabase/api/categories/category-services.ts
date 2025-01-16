@@ -1,7 +1,9 @@
-import { ArticleCategory } from '@/supabase';
+import { ArticleCategory, Category } from '@/supabase';
 import { supabase } from '@/supabase/supabase-client';
 
-export const getCategoryIdByName = async (categoryNameEn: ArticleCategory) => {
+export const getCategoryIdByName = async (
+  categoryNameEn: ArticleCategory,
+): Promise<string> => {
   const { data, error } = await supabase
     .from('categories')
     .select('id')
@@ -15,7 +17,9 @@ export const getCategoryIdByName = async (categoryNameEn: ArticleCategory) => {
   return data?.id;
 };
 
-export const getCategoryByName = async (categoryNameEn: ArticleCategory) => {
+export const getCategoryByName = async (
+  categoryNameEn: ArticleCategory,
+): Promise<Category> => {
   const { data, error } = await supabase
     .from('categories')
     .select('*')

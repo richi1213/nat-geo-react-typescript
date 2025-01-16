@@ -3,6 +3,7 @@ import {
   getCategoryIdByName,
   type ArticleCategory,
   type ShowCardArticle,
+  type Article,
 } from '@/supabase';
 
 export const fetchRecentArticlesByCategory = async (
@@ -78,4 +79,22 @@ export const fetchArticlesByCategory = async (
     console.error(err);
     throw err;
   }
+};
+
+export const getArticleByIdAndSlug = async (
+  id: string,
+  slug: string,
+): Promise<Article> => {
+  const { data, error } = await supabase
+    .from('articles')
+    .select('*')
+    .eq('id', id)
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 };

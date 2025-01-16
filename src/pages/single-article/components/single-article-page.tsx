@@ -1,5 +1,5 @@
 const SingleArticlePage: React.FC = () => {
-  return <div>SingleArticlePage</div>;
+  return <article>SingleArticlePage</article>;
 };
 
 export default SingleArticlePage;

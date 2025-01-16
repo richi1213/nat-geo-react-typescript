@@ -1,8 +1,20 @@
 import { QUERY_KEYS } from '@/hooks/react-query/enums';
-import { fetchArticlesByCategory, type ArticleCategory } from '@/supabase';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+  fetchArticlesByCategory,
+  type ShowCardArticle,
+  type ArticleCategory,
+} from '@/supabase';
+import {
+  useInfiniteQuery,
+  type UseInfiniteQueryResult,
+} from '@tanstack/react-query';
 
-export const useArticlesByCategory = (category: ArticleCategory) => {
+export const useArticlesByCategory = (
+  category: ArticleCategory,
+): UseInfiniteQueryResult<
+  { articles: ShowCardArticle[]; hasNextPage: boolean },
+  Error
+> => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.ARTICLES, category],
 
