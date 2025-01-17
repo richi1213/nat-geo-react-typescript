@@ -1,5 +1,4 @@
 import {
-  type EmailSchema,
   Input,
   Form,
   FormControl,
@@ -11,6 +10,7 @@ import {
   LoginForm,
   RegisterForm,
   useTranslatedSchemas,
+  type EmailSchema,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

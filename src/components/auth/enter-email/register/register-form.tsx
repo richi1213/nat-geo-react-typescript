@@ -1,5 +1,4 @@
 import {
-  type RegistrationSchema,
   FormField,
   FormItem,
   FormControl,
@@ -8,6 +7,7 @@ import {
   Button,
   Form,
   type RegisterFormProps,
+  type RegistrationSchema,
   useTranslatedSchemas,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
