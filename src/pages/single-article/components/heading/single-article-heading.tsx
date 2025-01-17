@@ -1,4 +1,4 @@
-import { Button } from '@/components';
+import { Button, Separator } from '@/components';
 import { useAuthorById, useSingleArticle } from '@/hooks';
 import { AuthorInfo } from '.';
 import { useParams } from 'react-router';
@@ -16,9 +16,9 @@ export const SingleArticleHeading: React.FC = () => {
     useAuthorById(author_id as string)?.data || {};
 
   return (
-    <div className='lg:grid lg:grid-cols-2 lg:grid-rows-4'>
-      <div className='mx-auto w-full max-w-lg px-1 lg:col-start-2 lg:row-span-1 lg:row-start-2'>
-        <Button className='h-6 w-28 rounded-none border-2 border-background bg-foreground text-xs font-bold uppercase tracking-widest text-primary-foreground hover:bg-background hover:text-foreground'>
+    <div className='space-y-6 pb-8 pt-8 lg:grid lg:grid-cols-2 lg:grid-rows-4'>
+      <div className='mx-auto w-full max-w-lg space-y-4 px-5 lg:col-start-2 lg:row-span-1 lg:row-start-2'>
+        <Button className='h-6 rounded-none border-2 border-background bg-foreground px-2 text-xs font-bold uppercase tracking-widest text-primary-foreground hover:bg-background hover:text-foreground'>
           {category}
         </Button>
         <h1 className='text-3xl font-bold md:text-4xl'>{title_en}</h1>
@@ -27,12 +27,12 @@ export const SingleArticleHeading: React.FC = () => {
       <img
         src={cover_image}
         alt={title_en}
-        className='w-full lg:row-span-full'
+        className='h-full w-full object-cover lg:row-span-full'
       />
 
       <AuthorInfo>
-        <div className='mx-auto flex w-full max-w-lg flex-col items-center justify-between px-10 md:flex-row lg:flex-col lg:items-start'>
-          <div>
+        <div className='mx-auto flex w-full max-w-lg flex-col justify-between space-y-3 px-6 md:flex-row lg:flex-col lg:items-start'>
+          <div className='space-y-1'>
             <div className='text-slate-900'>
               By {`${first_name} ${last_name}`}
             </div>
@@ -40,22 +40,29 @@ export const SingleArticleHeading: React.FC = () => {
               {formatArticleDate(formatArticleDate(created_at!))}
             </div>
           </div>
-          <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-5'>
             <Button
               variant='ghost'
-              className='size-10 rounded-full hover:bg-gray-100'
+              className='size-7 rounded-full hover:bg-gray-100'
             >
               <FaFacebook style={{ width: 20, height: 20 }} />
             </Button>
-            <Button variant='ghost' className='rounded-full hover:bg-gray-100'>
+            <Button
+              variant='ghost'
+              className='size-7 rounded-full hover:bg-gray-100'
+            >
               <Mail style={{ width: 20, height: 20 }} />
             </Button>
-            <Button variant='ghost' className='rounded-full hover:bg-gray-100'>
+            <Button
+              variant='ghost'
+              className='size-7 rounded-full hover:bg-gray-100'
+            >
               <Link style={{ width: 20, height: 20 }} />
             </Button>
           </div>
         </div>
       </AuthorInfo>
+      <Separator className='mx-auto max-w-xl bg-chart-2 lg:hidden' />
     </div>
   );
 };
