@@ -96,3 +96,44 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
 
   return data;
 };
+
+export const fetchMayLikeArticles = async ({
+  currentArticleId,
+  currentCategoryId,
+  currentAuthorId,
+}: {
+  currentArticleId: string;
+  currentCategoryId: string;
+  currentAuthorId: string;
+}): Promise<{ articles: ShowCardArticle[] }> => {
+  try {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(
+        `
+          id,
+          cover_image,
+          title_en,
+          title_ka,
+          slug,
+          category:categories(name_en, name_ka, slug)
+        `,
+      )
+      .or(
+        `category_id.eq.${currentCategoryId},author_id.eq.${currentAuthorId},category_id.eq.${currentCategoryId},id.neq.${currentArticleId}`,
+      )
+      .order('created_at', { ascending: false })
+      .limit(5);
+
+    if (error) {
+      throw new Error(`Error fetching "may like" articles: ${error.message}`);
+    }
+
+    return {
+      articles: data as ShowCardArticle[],
+    };
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};

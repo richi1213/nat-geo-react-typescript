@@ -2,6 +2,7 @@ import { Button, Separator } from '@/components';
 import { formatArticleDate } from '@/utils';
 import {
   AuthorInfo,
+  MayLikeArticles,
   SingleArticleContent,
   SingleArticleHeader,
   SingleArticleHeading,
@@ -12,8 +13,15 @@ import { useParams } from 'react-router';
 const SingleArticlePage: React.FC = () => {
   const { category, articleSlug } = useParams();
 
-  const { title_en, cover_image, author_id, created_at, content } =
-    useSingleArticle(articleSlug!)?.data || {};
+  const {
+    id,
+    title_en,
+    cover_image,
+    author_id,
+    created_at,
+    content,
+    category_id,
+  } = useSingleArticle(articleSlug!)?.data || {};
 
   const { first_name, last_name } =
     useAuthorById(author_id as string)?.data || {};
@@ -48,6 +56,11 @@ const SingleArticlePage: React.FC = () => {
       </SingleArticleHeader>
 
       <SingleArticleContent content={content || ''} />
+      <MayLikeArticles
+        currentArticleId={id!}
+        currentCategoryId={category_id!}
+        currentAuthorId={author_id!}
+      />
     </article>
   );
 };

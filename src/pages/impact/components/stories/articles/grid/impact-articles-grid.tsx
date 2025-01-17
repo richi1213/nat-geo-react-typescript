@@ -1,4 +1,4 @@
-import { ArticlesGridLayout, ArticleCard, Loading } from '@/components';
+import { ArticlesGridLayout, Loading, MayLikeCard } from '@/components';
 import { useRecentArticlesByCategory } from '@/hooks';
 
 export const ImpactArticlesGrid: React.FC = () => {
@@ -8,12 +8,11 @@ export const ImpactArticlesGrid: React.FC = () => {
 
   const recentArticles = data?.articles || [];
 
-  console.log(data?.articles);
   return (
     <ArticlesGridLayout>
       {recentArticles?.map((article, index) => (
-        <ArticleCard
-          key={index}
+        <MayLikeCard
+          key={article.id}
           article={article}
           variant={index === 0 ? 'hero' : 'standard'}
         />

@@ -1,15 +1,14 @@
-import { ScanText } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Card, CardContent, CardFooter } from '@/components';
 import { forwardRef } from 'react';
+import { cn } from '@/lib/utils';
+import { Card, CardContent } from '@/components';
 import { Link } from 'react-router';
 import type { ArticleCardProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
 
-export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
+export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
   ({ variant = 'standard', article, className, ...props }, ref) => {
-    const { i18n, t } = useTranslation('common');
+    const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
 
     const { id, title_en, title_ka, cover_image, category } = article;
@@ -23,9 +22,9 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
 
     if (variant === 'hero') {
       return (
-        <Card className='group relative h-[450px] w-full overflow-hidden rounded-none border-none md:col-span-2'>
+        <Card className='relative h-full w-full overflow-hidden rounded-none border-none md:col-span-2'>
           <div
-            className='absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105'
+            className='absolute inset-0 bg-cover bg-center transition-transform duration-300'
             style={{ backgroundImage: `url(${cover_image})` }}
           >
             <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-black/40' />
@@ -45,13 +44,6 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
               <h3 className='max-w-xl text-2xl font-bold text-foreground sm:text-3xl md:text-4xl'>
                 {title}
               </h3>
-
-              <div className='flex items-center gap-2'>
-                <ScanText />
-                <span className='text-sm uppercase tracking-wider text-foreground'>
-                  {t('read')}
-                </span>
-              </div>
             </div>
           </Link>
         </Card>
@@ -62,7 +54,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
       <Card
         ref={ref}
         className={cn(
-          'group overflow-hidden rounded-none border bg-foreground transition-colors',
+          'overflow-hidden rounded-none border border-none bg-transparent shadow-none transition-colors',
           className,
         )}
         {...props}
@@ -72,26 +64,20 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
             <img
               src={cover_image}
               alt={title || title_en}
-              className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
+              className='h-full w-full object-cover'
             />
           </div>
-          <CardContent className='flex flex-col justify-between px-6 pt-9'>
+          <CardContent className='flex flex-col justify-between px-6 pt-4'>
             <div>
               <div className='mb-3 flex items-center gap-2'>
-                <span className='text-sm font-bold uppercase tracking-wider text-primary-foreground'>
+                <span className='text-xs font-semibold uppercase tracking-wider text-gray-500'>
                   {categoryName}
                 </span>
               </div>
-              <h3 className='mb-4 text-xl font-bold text-primary-foreground'>
+              <h3 className='text-xl font-bold text-primary-foreground'>
                 {title}
               </h3>
             </div>
-            <CardFooter className='mt-auto flex items-center gap-1 bg-foreground p-0 text-primary-foreground'>
-              <ScanText className='text-primary-foreground' />
-              <span className='text-xs font-bold uppercase tracking-[0.16rem] text-primary-foreground'>
-                {t('read')}
-              </span>
-            </CardFooter>
           </CardContent>
         </Link>
       </Card>
