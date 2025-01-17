@@ -6,6 +6,7 @@ export const useAuthorById = (id: string): UseQueryResult<Profile, Error> => {
   return useQuery<Profile, Error>({
     queryKey: [QUERY_KEYS.AUTHOR, id],
     queryFn: () => fetchAuthorById(id),
+    enabled: !!id,
     staleTime: 2 * 60 * 1000,
   });
 };
