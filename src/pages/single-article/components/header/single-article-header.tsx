@@ -14,7 +14,7 @@ export const SingleArticleHeader: React.FC = () => {
     useAuthorById(author_id as string)?.data || {};
 
   return (
-    <div className='space-y-6 pb-8 pt-8 lg:grid lg:grid-cols-2 lg:grid-rows-4'>
+    <div className='space-y-6 pb-8 pt-8 lg:grid lg:grid-cols-2 lg:grid-rows-4 lg:space-y-0 lg:pb-0 lg:pt-0'>
       <SingleArticleHeading>
         <Button className='h-6 rounded-none border-2 border-background bg-foreground px-2 text-xs font-bold uppercase tracking-widest text-primary-foreground hover:bg-background hover:text-foreground'>
           {category}
@@ -25,7 +25,7 @@ export const SingleArticleHeader: React.FC = () => {
       <img
         src={cover_image}
         alt={title_en}
-        className='h-full w-full object-cover lg:row-span-full'
+        className='m-0 h-full w-full object-cover p-0 lg:row-span-full'
       />
 
       <AuthorInfo>
