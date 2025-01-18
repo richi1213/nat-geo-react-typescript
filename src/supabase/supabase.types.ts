@@ -16,8 +16,6 @@ export type Database = {
           content: string
           cover_image: string
           created_at: string
-          description_en: string
-          description_ka: string | null
           id: string
           images: Json | null
           slug: string
@@ -32,8 +30,6 @@ export type Database = {
           content: string
           cover_image: string
           created_at?: string
-          description_en: string
-          description_ka?: string | null
           id?: string
           images?: Json | null
           slug: string
@@ -48,8 +44,6 @@ export type Database = {
           content?: string
           cover_image?: string
           created_at?: string
-          description_en?: string
-          description_ka?: string | null
           id?: string
           images?: Json | null
           slug?: string

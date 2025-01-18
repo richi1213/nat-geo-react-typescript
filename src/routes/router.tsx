@@ -1,16 +1,22 @@
-import { DefaultLayout } from '@/components';
-import { HomeView, CategoryView, NotFound, SingleArticleView } from '@/pages';
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from 'react-router';
+import { DefaultLayout } from '@/components';
+import {
+  HomeView,
+  CategoryView,
+  NotFound,
+  SingleArticleView,
+  WriteArticleView,
+} from '@/pages';
 
 export const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<DefaultLayout />}>
       <Route index element={<HomeView />} />
+      <Route path='write-article' element={<WriteArticleView />} />
       <Route path=':category'>
         <Route index element={<CategoryView />} />
         <Route path='article/:articleSlug' element={<SingleArticleView />} />
