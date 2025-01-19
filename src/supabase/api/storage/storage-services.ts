@@ -2,6 +2,7 @@ import { supabase } from '@/supabase/supabase-client';
 
 const articleBucketName = 'article-assets';
 const imageFolderName = 'images';
+const videoFolderName = 'videos';
 
 export const uploadImageToSupabase = async (file: File): Promise<string> => {
   const fileName = `${Date.now()}-${file.name}`;

@@ -1,8 +1,12 @@
 import { z } from 'zod';
 
 export const articleSchema = z.object({
-  titleEn: z.string().min(1, 'Title (English) is required'),
-  titleKa: z.string().min(1, 'Title (Georgian) is required'),
+  titleEn: z
+    .string()
+    .min(4, 'Title (English) must be at leas 4 characters long'),
+  titleKa: z
+    .string()
+    .min(4, 'Title (Georgian) must be at leas 4 characters long'),
   imageFile: z
     .custom<File>((value) => value instanceof File, {
       message: 'Please upload a valid image file.',
@@ -19,6 +23,10 @@ export const articleSchema = z.object({
         message: 'Only JPEG, PNG, WebP, or AVIF images are allowed.',
       },
     ),
+  content: z
+    .string()
+    .min(4, 'Content is required')
+    .max(2000, 'Content must not exceed 2000 characters'),
 });
 
 export type ArticleSchema = z.infer<typeof articleSchema>;

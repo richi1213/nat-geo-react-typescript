@@ -10,7 +10,8 @@ import {
 } from '@/components';
 import { articleSchema, TiptapEditor, type ArticleSchema } from '.';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import { getPublicUrlFromSupabase, uploadImageToSupabase } from '@/supabase';
 
 export const ArticleForm: React.FC = () => {
   const form = useForm<ArticleSchema>({
@@ -19,16 +20,48 @@ export const ArticleForm: React.FC = () => {
       titleEn: '',
       titleKa: '',
       imageFile: undefined,
+      content: '',
     },
   });
 
-  const onSubmit = (data: ArticleSchema) => {
-    console.log('Form Data:', data);
+  const onSubmit = async (data: ArticleSchema) => {
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.content, 'text/html');
+
+      // Find all <img> elements in the content
+      const images = Array.from(doc.querySelectorAll('img'));
+      const uploadPromises = images.map(async (img) => {
+        const src = img.getAttribute('src');
+        if (src?.startsWith('blob:')) {
+          // Get the File from the Tiptap editor upload handler (requires tracking)
+          const file = await fetch(src).then((r) => r.blob());
+          const filePath = await uploadImageToSupabase(
+            new File([file], 'uploaded_image', { type: file.type }),
+          );
+          const publicUrl = getPublicUrlFromSupabase(filePath);
+          img.setAttribute('src', publicUrl);
+        }
+      });
+
+      // Wait for all uploads to complete
+      await Promise.all(uploadPromises);
+
+      // Update the content with the new URLs
+      const updatedContent = doc.body.innerHTML;
+
+      // Prepare the final submission data
+      const finalData = { ...data, content: updatedContent };
+      console.log('Final Data:', finalData);
+
+      // Send the data to the server
+      // await submitToServer(finalData); // Replace with your submission logic
+    } catch (error) {
+      console.error('Error during submission:', error);
+    }
   };
 
-  const handleChange = (field: string, value: string | File) => {
-    console.log(`Field: ${field}, Value: ${value}`);
-  };
+  // const handleChange = (field: string, value: string | File) => {};
 
   return (
     <Form {...form}>
@@ -48,7 +81,7 @@ export const ArticleForm: React.FC = () => {
                   onBlur={() => form.trigger('titleEn')}
                   onChange={(e) => {
                     field.onChange(e);
-                    handleChange('titleEn', e.target.value);
+                    // handleChange('titleEn', e.target.value);
                   }}
                 />
               </FormControl>
@@ -69,7 +102,7 @@ export const ArticleForm: React.FC = () => {
                   onBlur={() => form.trigger('titleKa')}
                   onChange={(e) => {
                     field.onChange(e);
-                    handleChange('titleKa', e.target.value);
+                    // handleChange('titleKa', e.target.value);
                   }}
                 />
               </FormControl>
@@ -101,11 +134,24 @@ export const ArticleForm: React.FC = () => {
           )}
         />
 
+        <Controller
+          name='content'
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Content</FormLabel>
+              <FormControl>
+                <TiptapEditor value={field.value} onChange={field.onChange} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <LinkButton type='submit' className='rounded-md'>
           Create Blog
         </LinkButton>
       </form>
-      <TiptapEditor />
     </Form>
   );
 };

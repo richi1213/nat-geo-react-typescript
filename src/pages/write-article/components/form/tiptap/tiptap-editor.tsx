@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import RichTextEditor, {
   BaseKit,
   Blockquote,
@@ -20,20 +19,17 @@ import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
   BaseKit.configure({
-    // Show placeholder
     placeholder: {
       showOnlyCurrent: true,
     },
-
-    // Character count
     characterCount: {
       limit: 2000,
     },
   }),
-  Blockquote,
   Bold,
   Italic,
   Underline,
+  Blockquote,
   HorizontalRule,
   TextDirection,
   Heading.configure({ spacer: true }),
@@ -61,19 +57,17 @@ const extensions = [
   }),
 ];
 
-export const TiptapEditor: React.FC = () => {
-  const [content, setContent] = useState('');
-
-  const onChangeContent = (value: any) => {
-    setContent(value);
-  };
-
+export const TiptapEditor: React.FC<{
+  value: string;
+  onChange: (value: string) => void;
+}> = ({ value, onChange }) => {
   return (
     <RichTextEditor
       output='html'
-      content={content}
-      onChangeContent={onChangeContent}
+      content={value}
+      onChangeContent={onChange}
       extensions={extensions}
+      removeDefaultWrapper={true}
     />
   );
 };
