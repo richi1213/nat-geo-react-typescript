@@ -1,4 +1,5 @@
 import {
+  CategorySelector,
   Form,
   FormControl,
   FormField,
@@ -11,57 +12,46 @@ import {
 import { articleSchema, TiptapEditor, type ArticleSchema } from '.';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
-import { getPublicUrlFromSupabase, uploadImageToSupabase } from '@/supabase';
+import {
+  ArticleCategories,
+  getCategoryIdByName,
+  type ArticleCategory,
+} from '@/supabase';
+import { useState } from 'react';
+import { useUploadFile } from '@/hooks';
 
 export const ArticleForm: React.FC = () => {
   const form = useForm<ArticleSchema>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
-      titleEn: '',
-      titleKa: '',
-      imageFile: undefined,
+      title_en: '',
+      title_ka: '',
+      category_id: undefined,
+      cover_image: undefined,
       content: '',
     },
   });
 
-  const onSubmit = async (data: ArticleSchema) => {
+  const [categoryId, setCategoryId] = useState<string | undefined>(undefined);
+  const { mutate: uploadFile, isLoading: isUploading } = useUploadFile();
+
+  const handleCategorySelect = async (categoryName: ArticleCategory) => {
     try {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(data.content, 'text/html');
-
-      // Find all <img> elements in the content
-      const images = Array.from(doc.querySelectorAll('img'));
-      const uploadPromises = images.map(async (img) => {
-        const src = img.getAttribute('src');
-        if (src?.startsWith('blob:')) {
-          // Get the File from the Tiptap editor upload handler (requires tracking)
-          const file = await fetch(src).then((r) => r.blob());
-          const filePath = await uploadImageToSupabase(
-            new File([file], 'uploaded_image', { type: file.type }),
-          );
-          const publicUrl = getPublicUrlFromSupabase(filePath);
-          img.setAttribute('src', publicUrl);
-        }
-      });
-
-      // Wait for all uploads to complete
-      await Promise.all(uploadPromises);
-
-      // Update the content with the new URLs
-      const updatedContent = doc.body.innerHTML;
-
-      // Prepare the final submission data
-      const finalData = { ...data, content: updatedContent };
-      console.log('Final Data:', finalData);
-
-      // Send the data to the server
-      // await submitToServer(finalData); // Replace with your submission logic
+      const fetchedCategoryId = await getCategoryIdByName(categoryName);
+      setCategoryId(fetchedCategoryId);
+      form.setValue('category_id', categoryName as ArticleCategories);
     } catch (error) {
-      console.error('Error during submission:', error);
+      console.error('Error fetching category ID:', error);
     }
   };
 
-  // const handleChange = (field: string, value: string | File) => {};
+  const onSubmit = async (data: ArticleSchema) => {
+    if (data.cover_image) {
+    }
+
+    const formData = { ...data, category_id: categoryId };
+    console.log(formData);
+  };
 
   return (
     <Form {...form}>
@@ -71,17 +61,16 @@ export const ArticleForm: React.FC = () => {
       >
         <FormField
           control={form.control}
-          name='titleEn'
+          name='title_en'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title (English)</FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  onBlur={() => form.trigger('titleEn')}
+                  onBlur={() => form.trigger('title_en')}
                   onChange={(e) => {
                     field.onChange(e);
-                    // handleChange('titleEn', e.target.value);
                   }}
                 />
               </FormControl>
@@ -92,17 +81,16 @@ export const ArticleForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='titleKa'
+          name='title_ka'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title (Georgian)</FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  onBlur={() => form.trigger('titleKa')}
+                  onBlur={() => form.trigger('title_ka')}
                   onChange={(e) => {
                     field.onChange(e);
-                    // handleChange('titleKa', e.target.value);
                   }}
                 />
               </FormControl>
@@ -113,7 +101,26 @@ export const ArticleForm: React.FC = () => {
 
         <FormField
           control={form.control}
-          name='imageFile'
+          name='category_id'
+          render={() => (
+            <FormItem>
+              <FormLabel>Category</FormLabel>
+              <FormControl>
+                <CategorySelector
+                  onSelect={handleCategorySelect}
+                  placeholder='Select a category'
+                  label='Categories'
+                  className='w-[180px]'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='cover_image'
           render={({ field: { onChange, value, ...rest } }) => (
             <FormItem>
               <FormLabel>Image</FormLabel>
@@ -126,7 +133,7 @@ export const ArticleForm: React.FC = () => {
                     onChange(file);
                   }}
                   {...rest}
-                  onBlur={() => form.trigger('imageFile')}
+                  onBlur={() => form.trigger('cover_image')}
                 />
               </FormControl>
               <FormMessage />

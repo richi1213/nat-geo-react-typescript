@@ -5,3 +5,4 @@ export * from './cards';
 export * from './carousels';
 export * from './sheets';
 export * from './virtualized-wrappers';
+export * from './select';

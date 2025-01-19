@@ -1,13 +1,14 @@
+import { ArticleCategories } from '@/supabase';
 import { z } from 'zod';
 
 export const articleSchema = z.object({
-  titleEn: z
+  title_en: z
     .string()
-    .min(4, 'Title (English) must be at leas 4 characters long'),
-  titleKa: z
+    .min(4, 'Title (English) must be at least 4 characters long'),
+  title_ka: z
     .string()
-    .min(4, 'Title (Georgian) must be at leas 4 characters long'),
-  imageFile: z
+    .min(4, 'Title (Georgian) must be at least 4 characters long'),
+  cover_image: z
     .custom<File>((value) => value instanceof File, {
       message: 'Please upload a valid image file.',
     })
@@ -27,6 +28,9 @@ export const articleSchema = z.object({
     .string()
     .min(4, 'Content is required')
     .max(2000, 'Content must not exceed 2000 characters'),
+  category_id: z.nativeEnum(ArticleCategories, {
+    errorMap: () => ({ message: 'Category is required' }),
+  }),
 });
 
 export type ArticleSchema = z.infer<typeof articleSchema>;

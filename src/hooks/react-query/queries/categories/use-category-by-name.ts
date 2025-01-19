@@ -12,5 +12,6 @@ export const useCategoryByName = (
   return useQuery<Category, Error>({
     queryKey: [QUERY_KEYS.CATEGORY, category],
     queryFn: () => getCategoryByName(category),
+    enabled: !!category,
   });
 };

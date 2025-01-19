@@ -4,6 +4,7 @@ import {
   type ArticleCategory,
   type ShowCardArticle,
   type Article,
+  type InsertArticle,
 } from '@/supabase';
 
 export const fetchRecentArticlesByCategory = async (
@@ -134,6 +135,31 @@ export const fetchMayLikeArticles = async ({
     };
   } catch (err) {
     console.error(err);
+    throw err;
+  }
+};
+
+export const postArticle = async (
+  articleData: InsertArticle,
+): Promise<void> => {
+  try {
+    const { error } = await supabase.from('articles').insert([
+      {
+        title_en: articleData.title_en,
+        title_ka: articleData.title_ka,
+        content: articleData.content,
+        cover_image: articleData.cover_image,
+        category_id: articleData.category_id,
+        author_id: articleData.author_id,
+        slug: articleData.slug,
+      },
+    ]);
+
+    if (error) {
+      throw new Error(`Error inserting article: ${error.message}`);
+    }
+  } catch (err) {
+    console.error('Error during article insertion:', err);
     throw err;
   }
 };
