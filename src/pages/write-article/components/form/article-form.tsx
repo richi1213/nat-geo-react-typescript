@@ -18,22 +18,28 @@ import {
   type ArticleCategory,
 } from '@/supabase';
 import { useState } from 'react';
-import { useUploadFile } from '@/hooks';
+import { QUERY_KEYS, useCategorySlug, useSubmitArticle } from '@/hooks';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 export const ArticleForm: React.FC = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   const form = useForm<ArticleSchema>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
       title_en: '',
       title_ka: '',
-      category_id: undefined,
+      category_id: '',
       cover_image: undefined,
       content: '',
     },
   });
 
-  const [categoryId, setCategoryId] = useState<string | undefined>(undefined);
-  const { mutate: uploadFile, isLoading: isUploading } = useUploadFile();
+  const [categoryId, setCategoryId] = useState<string>('');
+
+  const { data: categorySlug } = useCategorySlug(categoryId);
 
   const handleCategorySelect = async (categoryName: ArticleCategory) => {
     try {
@@ -45,12 +51,19 @@ export const ArticleForm: React.FC = () => {
     }
   };
 
-  const onSubmit = async (data: ArticleSchema) => {
-    if (data.cover_image) {
-    }
+  const { mutateAsync: submitArticle, isPending } = useSubmitArticle();
 
-    const formData = { ...data, category_id: categoryId };
-    console.log(formData);
+  const onSubmit = async (data: ArticleSchema) => {
+    try {
+      const formData = { ...data, category_id: categoryId };
+      await submitArticle(formData);
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.ARTICLES, categorySlug],
+      });
+      navigate(`/${categorySlug}`);
+    } catch (error) {
+      console.error('Error submitting article:', error);
+    }
   };
 
   return (
@@ -155,7 +168,7 @@ export const ArticleForm: React.FC = () => {
           )}
         />
 
-        <LinkButton type='submit' className='rounded-md'>
+        <LinkButton type='submit' className='rounded-md' disabled={isPending}>
           Create Blog
         </LinkButton>
       </form>

@@ -8,9 +8,9 @@ import {
 import { useMutation } from '@tanstack/react-query';
 
 export const useSubmitArticle = () => {
+  const { id } = useGetMe();
   const { mutateAsync: uploadFile } = useUploadFile();
   const { mutate: postArticle } = usePostArticle();
-  const { id } = useGetMe();
 
   return useMutation({
     mutationFn: async (data: ArticleSchema) => {
@@ -64,6 +64,16 @@ export const useSubmitArticle = () => {
           }
         });
 
+        let coverImageUrl: string | undefined;
+        if (data.cover_image) {
+          const file = data.cover_image;
+          const filePath = await uploadFile({
+            file,
+            folder: IMAGES_FOLDER_NAME,
+          });
+          coverImageUrl = getPublicUrlFromSupabase(filePath);
+        }
+
         // Wait for all uploads to complete
         await Promise.all([...imageUploadPromises, ...videoUploadPromises]);
 
@@ -73,8 +83,9 @@ export const useSubmitArticle = () => {
         const finalData = {
           ...data,
           content: updatedContent,
-          author_id: id,
-          category_id: '36cbfd8f-c487-49f2-b7d8-055ae1fa7fa2',
+          cover_image: coverImageUrl || '',
+          author_id: id || '',
+          category_id: data.category_id,
         };
 
         await postArticle(finalData);

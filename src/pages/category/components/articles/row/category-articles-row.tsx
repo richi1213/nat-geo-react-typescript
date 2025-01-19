@@ -18,8 +18,6 @@ export const CategoryArticlesRow: React.FC = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useArticlesByCategory(category!);
 
-  console.log(data);
-
   const articles = data ? data.pages.flatMap((page) => page.articles) : [];
 
   if (articles.length === 0) {

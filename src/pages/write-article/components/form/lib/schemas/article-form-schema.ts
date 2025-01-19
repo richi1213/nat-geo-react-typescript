@@ -1,4 +1,3 @@
-import { ArticleCategories } from '@/supabase';
 import { z } from 'zod';
 
 export const articleSchema = z.object({
@@ -28,7 +27,7 @@ export const articleSchema = z.object({
     .string()
     .min(4, 'Content is required')
     .max(2000, 'Content must not exceed 2000 characters'),
-  category_id: z.nativeEnum(ArticleCategories, {
+  category_id: z.string({
     errorMap: () => ({ message: 'Category is required' }),
   }),
 });
