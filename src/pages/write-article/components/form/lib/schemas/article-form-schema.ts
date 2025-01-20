@@ -8,19 +8,19 @@ export const articleSchema = z.object({
     .string()
     .min(4, 'Title (Georgian) must be at least 4 characters long'),
   cover_image: z
-    .custom<File>((value) => value instanceof File, {
+    .custom<File | null>((value) => value instanceof File || value === null, {
       message: 'Please upload a valid image file.',
-    })
-    .refine((file) => file.size <= 4 * 1024 * 1024, {
-      message: 'Image file size must not exceed 4MB.',
     })
     .refine(
       (file) =>
-        ['image/jpeg', 'image/png', 'image/webp', 'image/avif'].includes(
-          file.type,
-        ),
+        file === null ||
+        (file.size <= 4 * 1024 * 1024 &&
+          ['image/jpeg', 'image/png', 'image/webp', 'image/avif'].includes(
+            file.type,
+          )),
       {
-        message: 'Only JPEG, PNG, WebP, or AVIF images are allowed.',
+        message:
+          'Only JPEG, PNG, WebP, or AVIF images are allowed and size must not exceed 4MB.',
       },
     ),
   content: z

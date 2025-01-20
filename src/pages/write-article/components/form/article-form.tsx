@@ -27,7 +27,7 @@ export const ArticleForm: React.FC = () => {
       title_en: '',
       title_ka: '',
       category_id: '',
-      cover_image: undefined,
+      cover_image: null,
       content: '',
     },
   });
