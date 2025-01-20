@@ -10,28 +10,27 @@ import {
   NotFound,
   SingleArticleView,
   WriteArticleView,
+  SearchView,
 } from '@/pages';
 import { IsUnauthorizedGuard } from '@/routes/guards';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes/enums';
 
+const { HOME, WRITE_ARTICLE, SEARCH, CATEGORY, SINGLE_ARTICLE, NOT_FOUND } =
+  DEFAULT_LAYOUT_PATHS;
+
 export const appRouter = createBrowserRouter(
   createRoutesFromElements(
-    <Route path={DEFAULT_LAYOUT_PATHS.HOME} element={<DefaultLayout />}>
+    <Route path={HOME} element={<DefaultLayout />}>
       <Route index element={<HomeView />} />
       <Route element={<IsUnauthorizedGuard />}>
-        <Route
-          path={DEFAULT_LAYOUT_PATHS.WRITE_ARTICLE}
-          element={<WriteArticleView />}
-        />
+        <Route path={WRITE_ARTICLE} element={<WriteArticleView />} />
       </Route>
-      <Route path={DEFAULT_LAYOUT_PATHS.CATEGORY}>
+      <Route path={SEARCH} element={<SearchView />} />
+      <Route path={CATEGORY}>
         <Route index element={<CategoryView />} />
-        <Route
-          path={DEFAULT_LAYOUT_PATHS.SINGLE_ARTICLE}
-          element={<SingleArticleView />}
-        />
+        <Route path={SINGLE_ARTICLE} element={<SingleArticleView />} />
       </Route>
-      <Route path={DEFAULT_LAYOUT_PATHS.NOT_FOUND} element={<NotFound />} />
+      <Route path={NOT_FOUND} element={<NotFound />} />
     </Route>,
   ),
 );
