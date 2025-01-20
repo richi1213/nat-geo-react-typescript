@@ -1,4 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
 import {
   QUERY_KEYS,
   useCategorySlug,
@@ -6,7 +5,7 @@ import {
   usePostArticle,
   useUploadFile,
 } from '@/hooks';
-import { type ArticleSchema } from '@/pages';
+import { type ArticleSchema, sanitazeHtmlContent } from '@/pages';
 import {
   getPublicUrlFromSupabase,
   IMAGES_FOLDER_NAME,
@@ -17,7 +16,6 @@ import { useNavigate } from 'react-router';
 
 export const useSubmitArticle = (categoryId: string) => {
   const queryClient = useQueryClient();
-
   const { id } = useGetMe();
   const { mutateAsync: uploadFile } = useUploadFile();
   const { mutate: postArticle } = usePostArticle();
@@ -30,24 +28,14 @@ export const useSubmitArticle = (categoryId: string) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data.content, 'text/html');
 
-        // Sanitize HTML content
-        const sanitizeOptions = {
-          allowedTags: sanitizeHtml.defaults.allowedTags.filter(
-            (tag) => tag !== 'script',
-          ),
-          allowedAttributes: {
-            ...sanitizeHtml.defaults.allowedAttributes,
-            '*': ['style', 'class'],
-          },
-        };
-
-        const sanitizedContent = sanitizeHtml(
-          doc.body.innerHTML,
-          sanitizeOptions,
+        const sanitizedContent = sanitazeHtmlContent(doc.body.innerHTML);
+        const sanitizedDoc = parser.parseFromString(
+          sanitizedContent,
+          'text/html',
         );
 
         // Handle <img> uploads
-        const images = Array.from(doc.querySelectorAll('img'));
+        const images = Array.from(sanitizedDoc.querySelectorAll('img'));
         const imageUploadPromises = images.map(async (img) => {
           const src = img.getAttribute('src');
           if (src?.startsWith('blob:')) {
@@ -64,29 +52,34 @@ export const useSubmitArticle = (categoryId: string) => {
               folder: IMAGES_FOLDER_NAME,
             });
             const publicUrl = getPublicUrlFromSupabase(filePath);
-            img.setAttribute('src', publicUrl);
+            img.setAttribute('src', publicUrl); // Update img src
           }
         });
 
         // Handle <iframe> uploads
-        const iframes = Array.from(doc.querySelectorAll('iframe'));
+        const iframes = Array.from(sanitizedDoc.querySelectorAll('iframe'));
         const videoUploadPromises = iframes.map(async (iframe) => {
           const src = iframe.getAttribute('src');
           if (src?.startsWith('blob:')) {
-            const file = await fetch(src).then((r) => r.blob());
+            try {
+              const file = await fetch(src).then((r) => r.blob());
 
-            if (file.size > 10 * 1024 * 1024) {
-              throw new Error(
-                `Video size exceeds the 10MB limit. Please upload a smaller video.`,
-              );
+              if (file.size > 10 * 1024 * 1024) {
+                throw new Error(
+                  `Video size exceeds the 10MB limit. Please upload a smaller video.`,
+                );
+              }
+
+              const filePath = await uploadFile({
+                file: new File([file], 'uploaded_video', { type: file.type }),
+                folder: VIDEOS_FOLDER_NAME,
+              });
+
+              const publicUrl = getPublicUrlFromSupabase(filePath);
+              iframe.setAttribute('src', publicUrl); // Update iframe src
+            } catch (error) {
+              console.error('Error uploading video:', error);
             }
-
-            const filePath = await uploadFile({
-              file: new File([file], 'uploaded_video', { type: file.type }),
-              folder: VIDEOS_FOLDER_NAME,
-            });
-            const publicUrl = getPublicUrlFromSupabase(filePath);
-            iframe.setAttribute('src', publicUrl);
           }
         });
 
@@ -100,13 +93,15 @@ export const useSubmitArticle = (categoryId: string) => {
           coverImageUrl = getPublicUrlFromSupabase(filePath);
         }
 
-        // Wait for all uploads to complete
         await Promise.all([...imageUploadPromises, ...videoUploadPromises]);
 
-        // Prepare final sanitized content
+        const finalSanitizedContent = sanitazeHtmlContent(
+          sanitizedDoc.body.innerHTML,
+        );
+
         const finalData = {
           ...data,
-          content: sanitizedContent,
+          content: finalSanitizedContent,
           cover_image: coverImageUrl || '',
           author_id: id || '',
           category_id: data.category_id,
