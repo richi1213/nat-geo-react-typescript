@@ -1,16 +1,27 @@
-import { useGetMe, usePostArticle, useUploadFile } from '@/hooks';
+import {
+  QUERY_KEYS,
+  useCategorySlug,
+  useGetMe,
+  usePostArticle,
+  useUploadFile,
+} from '@/hooks';
 import { type ArticleSchema } from '@/pages';
 import {
   getPublicUrlFromSupabase,
   IMAGES_FOLDER_NAME,
   VIDEOS_FOLDER_NAME,
 } from '@/supabase';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
-export const useSubmitArticle = () => {
+export const useSubmitArticle = (categoryId: string) => {
+  const queryClient = useQueryClient();
+
   const { id } = useGetMe();
   const { mutateAsync: uploadFile } = useUploadFile();
   const { mutate: postArticle } = usePostArticle();
+  const { data: categorySlug } = useCategorySlug(categoryId);
+  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: async (data: ArticleSchema) => {
@@ -99,6 +110,12 @@ export const useSubmitArticle = () => {
         }
         throw error;
       }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.ARTICLES, categorySlug],
+      });
+      navigate(`/${categorySlug}`);
     },
   });
 };

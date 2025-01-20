@@ -18,14 +18,9 @@ import {
   type ArticleCategory,
 } from '@/supabase';
 import { useState } from 'react';
-import { QUERY_KEYS, useCategorySlug, useSubmitArticle } from '@/hooks';
-import { useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router';
+import { useSubmitArticle } from '@/hooks';
 
 export const ArticleForm: React.FC = () => {
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
-
   const form = useForm<ArticleSchema>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
@@ -39,8 +34,6 @@ export const ArticleForm: React.FC = () => {
 
   const [categoryId, setCategoryId] = useState<string>('');
 
-  const { data: categorySlug } = useCategorySlug(categoryId);
-
   const handleCategorySelect = async (categoryName: ArticleCategory) => {
     try {
       const fetchedCategoryId = await getCategoryIdByName(categoryName);
@@ -51,16 +44,13 @@ export const ArticleForm: React.FC = () => {
     }
   };
 
-  const { mutateAsync: submitArticle, isPending } = useSubmitArticle();
+  const { mutateAsync: submitArticle, isPending } =
+    useSubmitArticle(categoryId);
 
   const onSubmit = async (data: ArticleSchema) => {
     try {
       const formData = { ...data, category_id: categoryId };
       await submitArticle(formData);
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ARTICLES, categorySlug],
-      });
-      navigate(`/${categorySlug}`);
     } catch (error) {
       console.error('Error submitting article:', error);
     }
