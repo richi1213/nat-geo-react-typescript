@@ -60,7 +60,7 @@ export const ArticleForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='mb-20 w-full space-y-4 sm:w-4/5'
+        className='mb-20 w-full space-y-6 px-4'
       >
         <FormField
           control={form.control}
@@ -113,7 +113,7 @@ export const ArticleForm: React.FC = () => {
                   onSelect={handleCategorySelect}
                   placeholder='Select a category'
                   label='Categories'
-                  className='w-[180px]'
+                  className='w-72 font-bold uppercase tracking-widest'
                 />
               </FormControl>
               <FormMessage />
@@ -126,9 +126,10 @@ export const ArticleForm: React.FC = () => {
           name='cover_image'
           render={({ field: { onChange, value, ...rest } }) => (
             <FormItem>
-              <FormLabel>Image</FormLabel>
+              <FormLabel>Cover Image</FormLabel>
               <FormControl>
                 <Input
+                  className='w-72 px-0 tracking-widest'
                   type='file'
                   accept='image/*'
                   onChange={(e) => {
@@ -158,7 +159,11 @@ export const ArticleForm: React.FC = () => {
           )}
         />
 
-        <LinkButton type='submit' className='rounded-md' disabled={isPending}>
+        <LinkButton
+          type='submit'
+          className='mt-32 rounded-md'
+          disabled={isPending}
+        >
           Create Blog
         </LinkButton>
       </form>
