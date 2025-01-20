@@ -1,3 +1,4 @@
+import sanitizeHtml from 'sanitize-html';
 import {
   QUERY_KEYS,
   useCategorySlug,
@@ -29,6 +30,22 @@ export const useSubmitArticle = (categoryId: string) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data.content, 'text/html');
 
+        // Sanitize HTML content
+        const sanitizeOptions = {
+          allowedTags: sanitizeHtml.defaults.allowedTags.filter(
+            (tag) => tag !== 'script',
+          ),
+          allowedAttributes: {
+            ...sanitizeHtml.defaults.allowedAttributes,
+            '*': ['style', 'class'],
+          },
+        };
+
+        const sanitizedContent = sanitizeHtml(
+          doc.body.innerHTML,
+          sanitizeOptions,
+        );
+
         // Handle <img> uploads
         const images = Array.from(doc.querySelectorAll('img'));
         const imageUploadPromises = images.map(async (img) => {
@@ -36,7 +53,6 @@ export const useSubmitArticle = (categoryId: string) => {
           if (src?.startsWith('blob:')) {
             const file = await fetch(src).then((r) => r.blob());
 
-            // Validate the image file size
             if (file.size > 4 * 1024 * 1024) {
               throw new Error(
                 `Image size exceeds the 4MB limit. Please upload a smaller image.`,
@@ -59,7 +75,6 @@ export const useSubmitArticle = (categoryId: string) => {
           if (src?.startsWith('blob:')) {
             const file = await fetch(src).then((r) => r.blob());
 
-            // Validate the video file size
             if (file.size > 10 * 1024 * 1024) {
               throw new Error(
                 `Video size exceeds the 10MB limit. Please upload a smaller video.`,
@@ -88,12 +103,10 @@ export const useSubmitArticle = (categoryId: string) => {
         // Wait for all uploads to complete
         await Promise.all([...imageUploadPromises, ...videoUploadPromises]);
 
-        // Update the content with new URLs
-        const updatedContent = doc.body.innerHTML;
-
+        // Prepare final sanitized content
         const finalData = {
           ...data,
-          content: updatedContent,
+          content: sanitizedContent,
           cover_image: coverImageUrl || '',
           author_id: id || '',
           category_id: data.category_id,
