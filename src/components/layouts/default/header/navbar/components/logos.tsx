@@ -1,8 +1,9 @@
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 import { Link } from 'react-router';
 
 export const Logos: React.FC = () => {
   return (
-    <Link to='/'>
+    <Link to={DEFAULT_LAYOUT_PATHS.HOME}>
       <picture className='hidden cursor-pointer md:block'>
         <source srcSet='/images/natgeo-logo.svg' type='image/svg+xml' />
         <img

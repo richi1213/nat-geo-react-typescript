@@ -1,5 +1,6 @@
 import { LinkButton } from '@/components';
 import { ImpactIntroGeneralHeading, ImpactPromo } from '.';
+import { ArticleCategories } from '@/supabase';
 
 export const ImpactIntro: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ export const ImpactIntro: React.FC = () => {
         <ImpactPromo />
         {/* <ImpactCarousel /> */}
         <div className='mt-16 text-center'>
-          <LinkButton variant='alternate' to='impact'>
+          <LinkButton variant='alternate' to={ArticleCategories.IMPACT}>
             discover more
           </LinkButton>
         </div>

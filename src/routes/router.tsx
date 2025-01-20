@@ -12,19 +12,26 @@ import {
   WriteArticleView,
 } from '@/pages';
 import { IsUnauthorizedGuard } from '@/routes/guards';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes/enums';
 
 export const appRouter = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<DefaultLayout />}>
+    <Route path={DEFAULT_LAYOUT_PATHS.HOME} element={<DefaultLayout />}>
       <Route index element={<HomeView />} />
       <Route element={<IsUnauthorizedGuard />}>
-        <Route path='write-article' element={<WriteArticleView />} />
+        <Route
+          path={DEFAULT_LAYOUT_PATHS.WRITE_ARTICLE}
+          element={<WriteArticleView />}
+        />
       </Route>
-      <Route path=':category'>
+      <Route path={DEFAULT_LAYOUT_PATHS.CATEGORY}>
         <Route index element={<CategoryView />} />
-        <Route path='article/:articleSlug' element={<SingleArticleView />} />
+        <Route
+          path={DEFAULT_LAYOUT_PATHS.SINGLE_ARTICLE}
+          element={<SingleArticleView />}
+        />
       </Route>
-      <Route path='*' element={<NotFound />} />
+      <Route path={DEFAULT_LAYOUT_PATHS.NOT_FOUND} element={<NotFound />} />
     </Route>,
   ),
 );

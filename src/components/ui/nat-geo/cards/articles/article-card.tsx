@@ -6,13 +6,14 @@ import { Link } from 'react-router';
 import type { ArticleCardProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
   ({ variant = 'standard', article, className, ...props }, ref) => {
     const { i18n, t } = useTranslation('common');
     const currentLanguage = i18n.language;
 
-    const { id, title_en, title_ka, cover_image, category, slug } = article;
+    const { title_en, title_ka, cover_image, category, slug } = article;
 
     const title = getLocalizedString(
       { title_en, title_ka },
@@ -32,7 +33,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
 
           <Link
-            to={`article/${slug}`}
+            to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
             className='relative flex h-full flex-col justify-end p-6'
           >
             <div className='space-y-4'>
@@ -67,7 +68,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
         )}
         {...props}
       >
-        <Link to={`/article/${id}`}>
+        <Link to={`/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}>
           <div className='relative aspect-[3/2] overflow-hidden'>
             <img
               src={cover_image}

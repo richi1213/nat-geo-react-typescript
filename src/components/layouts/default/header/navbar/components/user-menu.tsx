@@ -6,6 +6,7 @@ import {
   NavigationMenuContent,
 } from '@/components';
 import { useLogoutUser } from '@/hooks';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 import { type PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -29,7 +30,7 @@ export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
             <div className='w-48 p-2'>
               <nav className='flex flex-col space-y-2 capitalize'>
                 <Link
-                  to='/'
+                  to={DEFAULT_LAYOUT_PATHS.HOME}
                   className='cursor-pointer px-2 py-1.5 hover:text-primary'
                 >
                   {t('acc_settings')}

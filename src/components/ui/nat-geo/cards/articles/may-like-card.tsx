@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import type { ArticleCardProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
   ({ variant = 'standard', article, className, ...props }, ref) => {
@@ -31,7 +32,7 @@ export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
 
           <Link
-            to={`/${category.slug}/article/${slug}`}
+            to={`/${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
             className='relative flex h-full flex-col justify-end p-6'
           >
             <div className='space-y-4'>
@@ -59,7 +60,7 @@ export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
         )}
         {...props}
       >
-        <Link to={`/${category.slug}/article/${slug}`}>
+        <Link to={`/${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}>
           <div className='relative aspect-[3/2] overflow-hidden'>
             <img
               src={cover_image}

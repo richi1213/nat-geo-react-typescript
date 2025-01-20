@@ -10,6 +10,7 @@ import {
   UserMenu,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const NavbarList: React.FC = () => {
   const { firstName } = useGetMe();
@@ -35,12 +36,12 @@ export const NavbarList: React.FC = () => {
         </MenuButton>
       </li>
       <li className='hidden md:block'>
-        <UnderlinedButton to='/' size='sm'>
+        <UnderlinedButton to={DEFAULT_LAYOUT_PATHS.HOME} size='sm'>
           {t('newsletters')}
         </UnderlinedButton>
       </li>
       <li>
-        <LinkButton to='/'>{t('subscribe')}</LinkButton>
+        <LinkButton to={DEFAULT_LAYOUT_PATHS.HOME}>{t('subscribe')}</LinkButton>
       </li>
       <li>
         <LanguagePicker />

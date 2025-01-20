@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { ChevronsUp } from 'lucide-react';
+import { ArticleCategories } from '@/supabase';
 
 export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation('header');
@@ -35,19 +36,23 @@ export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
             </h2>
             <ul className='space-y-16 text-5xl'>
               <li>
-                <Link to='/animals'>{t('animals')}</Link>
+                <Link to={ArticleCategories.ANIMALS}>{t('animals')}</Link>
               </li>
               <li>
-                <Link to='/environment'>{t('environment')}</Link>
+                <Link to={ArticleCategories.ENVIRONMENT}>
+                  {t('environment')}
+                </Link>
               </li>
               <li>
-                <Link to='/history'>{t('history_and_culture')}</Link>
+                <Link to={ArticleCategories.HISTORY}>
+                  {t('history_and_culture')}
+                </Link>
               </li>
               <li>
-                <Link to='/science'>{t('science')}</Link>
+                <Link to={ArticleCategories.SCIENCE}>{t('science')}</Link>
               </li>
               <li>
-                <Link to='/travel'>{t('travel')}</Link>
+                <Link to={ArticleCategories.TRAVEL}>{t('travel')}</Link>
               </li>
             </ul>
           </div>

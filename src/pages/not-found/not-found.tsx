@@ -1,4 +1,5 @@
 import { UnderlinedButton } from '@/components';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const NotFound: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ export const NotFound: React.FC = () => {
       </h2>
       <p className='text-lg'>
         Please try again or{' '}
-        <UnderlinedButton size='sm' to='/'>
+        <UnderlinedButton size='sm' to={DEFAULT_LAYOUT_PATHS.HOME}>
           return home
         </UnderlinedButton>
         .

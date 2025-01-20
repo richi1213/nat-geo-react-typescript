@@ -1,3 +1,4 @@
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 import { logout } from '@/supabase';
 import { AuthApiError } from '@supabase/supabase-js';
 import { useMutation, type UseMutationResult } from '@tanstack/react-query';
@@ -15,7 +16,7 @@ export const useLogoutUser = (): UseMutationResult<
     mutationFn: logout,
     onSuccess: () => {
       if (location.pathname === '/write-article') {
-        navigate('/');
+        navigate(DEFAULT_LAYOUT_PATHS.HOME);
       }
     },
     onError: (err) => {

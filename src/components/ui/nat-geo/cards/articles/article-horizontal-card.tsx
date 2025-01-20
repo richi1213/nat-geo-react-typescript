@@ -6,6 +6,7 @@ import { forwardRef } from 'react';
 import type { ShowCardArticle } from '@/supabase';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
@@ -31,7 +32,7 @@ export const ArticleHorizontalCard = forwardRef<
     return (
       <Link
         ref={ref}
-        to={`article/${slug}`}
+        to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
         className={cn('group block', className)}
         style={style}
       >
