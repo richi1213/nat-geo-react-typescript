@@ -89,13 +89,18 @@ export const getArticleBySlug = async (slug: string): Promise<Article> => {
     .from('articles')
     .select('*')
     .eq('slug', slug)
+    .limit(1)
     .single();
 
   if (error) {
     throw new Error(error.message);
   }
 
-  return data;
+  if (!data) {
+    throw new Error('Article not found');
+  }
+
+  return data as Article;
 };
 
 export const fetchMayLikeArticles = async ({

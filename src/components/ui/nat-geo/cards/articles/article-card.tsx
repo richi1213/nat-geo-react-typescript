@@ -12,7 +12,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
     const { i18n, t } = useTranslation('common');
     const currentLanguage = i18n.language;
 
-    const { id, title_en, title_ka, cover_image, category } = article;
+    const { id, title_en, title_ka, cover_image, category, slug } = article;
 
     const title = getLocalizedString(
       { title_en, title_ka },
@@ -32,7 +32,7 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
 
           <Link
-            to={`/article/${id}`}
+            to={`article/${slug}`}
             className='relative flex h-full flex-col justify-end p-6'
           >
             <div className='space-y-4'>

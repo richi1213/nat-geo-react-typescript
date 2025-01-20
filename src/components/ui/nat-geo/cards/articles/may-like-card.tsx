@@ -11,7 +11,7 @@ export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
 
-    const { id, title_en, title_ka, cover_image, category } = article;
+    const { title_en, title_ka, cover_image, category, slug } = article;
 
     const title = getLocalizedString(
       { title_en, title_ka },
@@ -31,7 +31,7 @@ export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
 
           <Link
-            to={`/article/${id}`}
+            to={`/${category.slug}/article/${slug}`}
             className='relative flex h-full flex-col justify-end p-6'
           >
             <div className='space-y-4'>
@@ -59,7 +59,7 @@ export const MayLikeCard = forwardRef<HTMLDivElement, ArticleCardProps>(
         )}
         {...props}
       >
-        <Link to={`/article/${id}`}>
+        <Link to={`/${category.slug}/article/${slug}`}>
           <div className='relative aspect-[3/2] overflow-hidden'>
             <img
               src={cover_image}
