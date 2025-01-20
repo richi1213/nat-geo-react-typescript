@@ -3,8 +3,8 @@ import { MayLikeArticleProps } from './types';
 import { useMayLikeArticles } from '@/hooks';
 
 export const MayLikeArticles: React.FC<MayLikeArticleProps> = ({
-  currentCategoryId,
   currentArticleId,
+  currentCategoryId,
   currentAuthorId,
 }) => {
   const { data } = useMayLikeArticles({
@@ -12,6 +12,10 @@ export const MayLikeArticles: React.FC<MayLikeArticleProps> = ({
     currentCategoryId,
     currentAuthorId,
   });
+
+  console.log('curren article id', currentArticleId);
+
+  console.log('maylikearticles', data);
 
   const mayLikeArticles = data || [];
 

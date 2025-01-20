@@ -125,9 +125,8 @@ export const fetchMayLikeArticles = async ({
           category:categories(name_en, name_ka, slug)
         `,
       )
-      .or(
-        `category_id.eq.${currentCategoryId},author_id.eq.${currentAuthorId},category_id.eq.${currentCategoryId},id.neq.${currentArticleId}`,
-      )
+      .neq('id', currentArticleId)
+      .or(`category_id.eq.${currentCategoryId},author_id.eq.${currentAuthorId}`)
       .order('created_at', { ascending: false })
       .limit(5);
 
