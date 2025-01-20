@@ -16,7 +16,10 @@ export const MayLikeArticles: React.FC<MayLikeArticleProps> = ({
   const mayLikeArticles = data || [];
 
   return (
-    <div>
+    <div className='mx-auto mt-24 max-w-6xl px-4'>
+      <h2 className='text-2xl font-bold capitalize lg:text-3xl'>
+        you may also like
+      </h2>
       <ArticlesGridLayout>
         {mayLikeArticles?.map((article, index) => (
           <MayLikeCard
