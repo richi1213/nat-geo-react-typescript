@@ -36,23 +36,33 @@ export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
             </h2>
             <ul className='space-y-16 text-5xl'>
               <li>
-                <Link to={ArticleCategories.ANIMALS}>{t('animals')}</Link>
+                <SheetClose asChild>
+                  <Link to={ArticleCategories.ANIMALS}>{t('animals')}</Link>
+                </SheetClose>
               </li>
               <li>
-                <Link to={ArticleCategories.ENVIRONMENT}>
-                  {t('environment')}
-                </Link>
+                <SheetClose asChild>
+                  <Link to={ArticleCategories.ENVIRONMENT}>
+                    {t('environment')}
+                  </Link>
+                </SheetClose>
               </li>
               <li>
-                <Link to={ArticleCategories.HISTORY}>
-                  {t('history_and_culture')}
-                </Link>
+                <SheetClose asChild>
+                  <Link to={ArticleCategories.HISTORY}>
+                    {t('history_and_culture')}
+                  </Link>
+                </SheetClose>
               </li>
               <li>
-                <Link to={ArticleCategories.SCIENCE}>{t('science')}</Link>
+                <SheetClose asChild>
+                  <Link to={ArticleCategories.SCIENCE}>{t('science')}</Link>
+                </SheetClose>
               </li>
               <li>
-                <Link to={ArticleCategories.TRAVEL}>{t('travel')}</Link>
+                <SheetClose asChild>
+                  <Link to={ArticleCategories.TRAVEL}>{t('travel')}</Link>
+                </SheetClose>
               </li>
             </ul>
           </div>
