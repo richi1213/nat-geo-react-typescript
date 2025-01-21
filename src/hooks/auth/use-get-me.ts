@@ -9,7 +9,6 @@ export const useGetMe = () => {
 
   const {
     email,
-    fb_link: fbLink,
     first_name: firstName,
     last_name: lastName,
     username,
@@ -18,7 +17,6 @@ export const useGetMe = () => {
   return {
     id: user?.id,
     email,
-    fbLink,
     firstName,
     lastName,
     username,

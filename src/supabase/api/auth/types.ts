@@ -4,7 +4,6 @@ export type RegisterInput = {
   first_name: string;
   last_name: string;
   username: string;
-  fb_link: string;
 };
 
 export type LoginInput = {

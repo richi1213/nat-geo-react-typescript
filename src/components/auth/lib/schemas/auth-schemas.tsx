@@ -11,13 +11,6 @@ export const registrationSchema = z.object({
   email: z.string().email(),
   firstName: z.string().min(2, 'first_name_is_required'),
   lastName: z.string().min(2, 'last_name_is_required'),
-  fbLink: z
-    .string()
-    .url('must_be_a_valid_url')
-    .refine(
-      (url) => url.includes('facebook.com'),
-      'must_be_a_valid_facebook_profile_link',
-    ),
   username: z
     .string()
     .min(3, 'username_minimum_length')

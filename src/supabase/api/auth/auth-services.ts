@@ -15,7 +15,6 @@ export const register = async ({
   first_name,
   last_name,
   username,
-  fb_link,
 }: RegisterInput): Promise<AuthResponse> => {
   const { data, error } = await supabaseWithSchema.auth.signUp({
     email,
@@ -25,7 +24,6 @@ export const register = async ({
         first_name,
         last_name,
         username,
-        fb_link,
       },
     },
   });

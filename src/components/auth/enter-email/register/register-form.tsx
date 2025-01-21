@@ -33,7 +33,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       email,
       firstName: '',
       lastName: '',
-      fbLink: '',
       username: '',
       password: '',
     },
@@ -48,7 +47,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       email: values.email,
       first_name: values.firstName,
       last_name: values.lastName,
-      fb_link: values.fbLink,
       username: values.username,
       password: values.password,
     });
@@ -62,7 +60,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         </h2>
         <p>
           {t('create_account_description')} <br />
-          {t('create_account_using')}
+          {t('create_your_account_using')}{' '}
           <span className='font-semibold'>{email}</span>
           <button
             onClick={onEditEmail}
@@ -118,24 +116,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                   <Input
                     {...field}
                     placeholder={t('placeholder_username')}
-                    className='h-12 bg-gray-100'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name='fbLink'
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    {...field}
-                    type='url'
-                    placeholder={t('placeholder_facebook_profile')} //
                     className='h-12 bg-gray-100'
                   />
                 </FormControl>
