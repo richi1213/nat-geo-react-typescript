@@ -6,3 +6,4 @@ export * from './carousels';
 export * from './sheets';
 export * from './virtualized-wrappers';
 export * from './select';
+export * from './search';
