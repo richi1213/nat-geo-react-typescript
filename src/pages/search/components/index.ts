@@ -1,2 +1,3 @@
 export { default } from './search-page';
-export * from './menu';
+export * from './search-menu';
+export * from './searched-articles';

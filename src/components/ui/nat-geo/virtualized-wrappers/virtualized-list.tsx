@@ -19,10 +19,10 @@ export const VirtualizedList = <T,>({
   return (
     <div
       ref={parentRef}
-      className='h-[700px] w-full space-y-4 overflow-auto scrollbar-hide'
+      className='h-[80vh] w-full space-y-4 overflow-auto scrollbar-hide'
     >
       <div
-        className='relative w-full'
+        className='relative mb-0 w-full'
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
         }}

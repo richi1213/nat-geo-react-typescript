@@ -4,6 +4,7 @@ import {
   type ShowCardArticle,
   type ArticleCategory,
 } from '@/supabase';
+import type { SortDate } from '@/utils';
 import {
   useInfiniteQuery,
   type UseInfiniteQueryResult,
@@ -12,13 +13,13 @@ import {
 export const useSearchedArticles = (
   searchKeyword?: string,
   sortOptions?: { column: string; ascending: boolean },
-  dateFilter?: 'all-dates' | 'last-week' | 'last-month' | 'last-year',
-  category?: ArticleCategory,
+  dateFilter?: SortDate,
+  category?: ArticleCategory[],
   pageSize: number = 5,
 ): UseInfiniteQueryResult<
   {
-    articles: ShowCardArticle[];
-    hasNextPage: boolean;
+    pages: { articles: ShowCardArticle[]; hasNextPage: boolean }[];
+    pageParams: number[];
   },
   Error
 > => {
@@ -30,7 +31,6 @@ export const useSearchedArticles = (
       dateFilter,
       category,
     ],
-
     queryFn: async ({ pageParam = 1 }) =>
       searchArticles(
         searchKeyword,
@@ -40,12 +40,9 @@ export const useSearchedArticles = (
         pageParam,
         pageSize,
       ),
-
     initialPageParam: 1,
-
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
-
     enabled: !!category || !!searchKeyword,
   });
 };

@@ -35,11 +35,17 @@ export const handleCategoryChange = (
   location: Location,
   navigate: NavigateFunction,
 ) => {
-  if (typeof value === 'string') {
-    setSelectedCategories([value]);
-    updateUrl({ categories: value }, location, navigate);
-  } else {
-    setSelectedCategories(value);
-    updateUrl({ categories: value.join(',') }, location, navigate);
-  }
+  const selectedCategories =
+    typeof value === 'string'
+      ? [value]
+      : value.filter((category) => category.trim() !== '');
+
+  setSelectedCategories(selectedCategories);
+
+  const newParams =
+    selectedCategories.length > 0
+      ? { categories: selectedCategories.join(',') }
+      : { categories: undefined };
+
+  updateUrl(newParams, location, navigate);
 };
