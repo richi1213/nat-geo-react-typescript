@@ -31,7 +31,7 @@ export const NavbarList: React.FC = () => {
         )}
       </li>
       <li className='hidden md:block'>
-        <MenuButton className='font-thin'>
+        <MenuButton className='font-thin' to={DEFAULT_LAYOUT_PATHS.SEARCH}>
           <Search />
         </MenuButton>
       </li>

@@ -32,7 +32,7 @@ export const ArticleHorizontalCard = forwardRef<
     return (
       <Link
         ref={ref}
-        to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
+        to={`${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
         className={cn('group block', className)}
         style={style}
       >

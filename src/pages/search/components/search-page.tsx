@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router';
-import { useDebounce, useSearchState } from '@/hooks';
+import { useDebounce, useSearchState, useSearchedArticles } from '@/hooks';
 import {
   handleSearchChange,
   handleSortDateChange,
@@ -16,7 +16,6 @@ import {
   Loading,
 } from '@/components';
 import { sortDateOptions, categoryOptions, estimateRowHeight } from '@/utils';
-import { useSearchedArticles } from '@/hooks/react-query/queries/articles/use-searched-articles';
 import { ArticleCategory } from '@/supabase';
 import { RefreshCcw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
