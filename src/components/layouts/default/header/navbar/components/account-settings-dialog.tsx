@@ -62,7 +62,6 @@ export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
       last_name: data.lastName,
     };
 
-    console.log('Submitting data:', payload);
     updatePersonalInfo(payload);
     onClose();
   };

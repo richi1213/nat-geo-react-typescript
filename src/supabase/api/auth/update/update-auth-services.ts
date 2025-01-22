@@ -6,7 +6,7 @@ export const updateUserMetadata = async ({
   username,
 }: UpdateProfile): Promise<void> => {
   try {
-    const { data, error } = await supabase.auth.updateUser({
+    const { error } = await supabase.auth.updateUser({
       data: {
         first_name,
         last_name,
@@ -18,8 +18,6 @@ export const updateUserMetadata = async ({
       console.error('Error updating user metadata:', error.message);
       throw new Error('Failed to update user metadata.');
     }
-
-    console.log('User metadata updated successfully:', data);
   } catch (err) {
     console.error('Unexpected error while updating user metadata:', err);
     throw new Error('An error occurred while updating user metadata.');

@@ -1,6 +1,7 @@
 import { QUERY_KEYS } from '@/hooks/react-query/enums';
 import {
   searchArticles,
+  searchUserArticles,
   type ShowCardArticle,
   type ArticleCategory,
 } from '@/supabase';
@@ -16,6 +17,7 @@ export const useSearchedArticles = (
   dateFilter?: SortDate,
   category?: ArticleCategory[],
   pageSize: number = 5,
+  isUserArticles: boolean = false,
 ): UseInfiniteQueryResult<
   {
     pages: { articles: ShowCardArticle[]; hasNextPage: boolean }[];
@@ -30,16 +32,29 @@ export const useSearchedArticles = (
       sortOptions,
       dateFilter,
       category,
+      isUserArticles,
     ],
-    queryFn: async ({ pageParam = 1 }) =>
-      searchArticles(
-        searchKeyword,
-        sortOptions,
-        dateFilter,
-        category,
-        pageParam,
-        pageSize,
-      ),
+    queryFn: async ({ pageParam = 1 }) => {
+      if (isUserArticles) {
+        return searchUserArticles(
+          searchKeyword,
+          sortOptions,
+          dateFilter,
+          category,
+          pageParam,
+          pageSize,
+        );
+      } else {
+        return searchArticles(
+          searchKeyword,
+          sortOptions,
+          dateFilter,
+          category,
+          pageParam,
+          pageSize,
+        );
+      }
+    },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,

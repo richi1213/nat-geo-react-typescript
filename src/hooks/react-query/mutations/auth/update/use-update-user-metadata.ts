@@ -1,5 +1,6 @@
 import { type UpdateProfile, updateUserMetadata } from '@/supabase';
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 export const useUpdateUserMetadata = (): UseMutationResult<
   void,
@@ -9,7 +10,8 @@ export const useUpdateUserMetadata = (): UseMutationResult<
   useMutation({
     mutationFn: (metadata: UpdateProfile) => updateUserMetadata(metadata),
     onError: (err) => {
+      toast.error('Failed to update personal information');
       console.error('Update user metadata error:', err);
     },
-    onSuccess: () => console.log('succes'),
+    onSuccess: () => toast.success('Personal information updated'),
   });

@@ -4,6 +4,7 @@ import {
   handleSearchChange,
   handleSortDateChange,
   handleCategoryChange,
+  MyArticlesHeading,
 } from '@/pages';
 import {
   ArticleHorizontalCard,
@@ -21,7 +22,7 @@ import { RefreshCcw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 
-const SearchPage: React.FC = () => {
+const MyArticlesPage: React.FC = () => {
   const { t } = useTranslation('common');
 
   const location = useLocation();
@@ -55,6 +56,7 @@ const SearchPage: React.FC = () => {
     selectedSortDate,
     selectedCategories as ArticleCategory[],
     5,
+    true,
   );
 
   const articles = data ? data.pages.flatMap((page) => page.articles) : [];
@@ -97,6 +99,8 @@ const SearchPage: React.FC = () => {
 
   return (
     <section className='mx-auto mt-6 max-w-6xl space-y-6 px-6'>
+      <MyArticlesHeading />
+
       <SearchMenu>
         <Searchbar
           keyword={searchKeyword}
@@ -144,4 +148,4 @@ const SearchPage: React.FC = () => {
   );
 };
 
-export default SearchPage;
+export default MyArticlesPage;
