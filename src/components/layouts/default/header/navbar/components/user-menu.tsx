@@ -10,6 +10,8 @@ import {
 import { useLogoutUser } from '@/hooks';
 import { type PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
+import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 
 export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
   const { mutate: logout } = useLogoutUser();
@@ -39,6 +41,12 @@ export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
                     className='cursor-pointer px-2 py-1.5 hover:text-primary'
                   >
                     {t('acc_settings')}
+                  </div>
+
+                  <div className='cursor-pointer px-2 py-1.5 hover:text-primary'>
+                    <Link to={`/${DEFAULT_LAYOUT_PATHS.MY_ARTICLES}`}>
+                      {t('my_articles')}
+                    </Link>
                   </div>
 
                   <div
