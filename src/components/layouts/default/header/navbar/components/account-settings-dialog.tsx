@@ -27,7 +27,7 @@ export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { firstName, lastName, username } = useGetMe();
+  const { id, firstName, lastName, username } = useGetMe();
   const { mutate: updatePersonalInfo } = useUpdateUserMetadata();
 
   const form = useForm<PersonalInfoSchema>({
@@ -50,8 +50,20 @@ export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
   }, [firstName, lastName, username, form]);
 
   const onSubmit = (data: PersonalInfoSchema) => {
-    console.log('Submitting data:', data);
-    updatePersonalInfo(data);
+    if (!id) {
+      console.error('User ID is undefined.');
+      return;
+    }
+
+    const payload = {
+      id,
+      username: data.username,
+      first_name: data.firstName,
+      last_name: data.lastName,
+    };
+
+    console.log('Submitting data:', payload);
+    updatePersonalInfo(payload);
     onClose();
   };
 

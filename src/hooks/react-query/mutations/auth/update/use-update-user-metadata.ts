@@ -1,13 +1,13 @@
-import { updateUserMetadata, type UserMetadata } from '@/supabase';
+import { type UpdateProfile, updateUserMetadata } from '@/supabase';
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 
 export const useUpdateUserMetadata = (): UseMutationResult<
   void,
   unknown,
-  UserMetadata
+  UpdateProfile
 > =>
   useMutation({
-    mutationFn: (metadata: UserMetadata) => updateUserMetadata(metadata),
+    mutationFn: (metadata: UpdateProfile) => updateUserMetadata(metadata),
     onError: (err) => {
       console.error('Update user metadata error:', err);
     },
