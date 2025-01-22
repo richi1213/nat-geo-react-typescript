@@ -3,5 +3,5 @@ export * from './menu-sheet';
 export * from './logos';
 export * from './navbar-list';
 export * from './user-menu';
-
-export type { Language } from './types';
+export * from './account-settings-dialog';
+export type { Language, AccountSettingsDialogProps } from './types';

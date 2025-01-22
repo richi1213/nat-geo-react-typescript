@@ -13,3 +13,4 @@ export * from './select';
 export * from './sonner';
 export * from './radio-group';
 export * from './checkbox';
+export * from './dialog';

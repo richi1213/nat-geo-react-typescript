@@ -1,2 +1,3 @@
 export * from './auth-services';
-export type { RegisterInput, LoginInput } from './types';
+export * from './update';
+export type { RegisterInput, LoginInput, UserMetadata } from './types';

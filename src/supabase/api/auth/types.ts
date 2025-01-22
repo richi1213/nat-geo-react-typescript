@@ -10,3 +10,9 @@ export type LoginInput = {
   email: string;
   password: string;
 };
+
+export type UserMetadata = {
+  first_name?: string;
+  last_name?: string;
+  username?: string;
+};
