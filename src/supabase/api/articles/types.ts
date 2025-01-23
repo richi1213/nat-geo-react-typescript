@@ -1,6 +1,9 @@
-import type { Category, Tables, TablesInsert } from '@/supabase';
+import type { Category, Tables, TablesInsert, TablesUpdate } from '@/supabase';
 
 export type Article = Tables<'articles'>;
+
+export type UpdateArticle = TablesUpdate<'articles'>;
+
 export type InsertArticle = TablesInsert<'articles'>;
 
 export type ShowCardArticle = Pick<

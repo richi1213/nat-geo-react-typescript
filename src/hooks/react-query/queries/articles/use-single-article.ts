@@ -9,5 +9,6 @@ export const useSingleArticle = (
     queryKey: [QUERY_KEYS.SINGLE_ARTICLE, slug],
     queryFn: () => getArticleBySlug(slug),
     staleTime: 2 * 60 * 1000,
+    enabled: !!slug,
   });
 };

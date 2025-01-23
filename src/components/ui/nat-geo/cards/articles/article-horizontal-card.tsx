@@ -17,7 +17,7 @@ import { getLocalizedString } from '@/utils';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 import { EditArticleSheet } from '@/pages';
 import { useSetAtom } from 'jotai';
-import { activeArticleIdAtom, isSheetOpenAtom } from '@/atoms';
+import { activeArticleSlugAtom, isSheetOpenAtom } from '@/atoms';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
@@ -25,7 +25,6 @@ export const ArticleHorizontalCard = forwardRef<
 >(
   (
     {
-      id,
       category,
       title_en,
       title_ka,
@@ -49,10 +48,10 @@ export const ArticleHorizontalCard = forwardRef<
     const categoryName = getLocalizedString(category, 'name', currentLanguage);
 
     const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
-    const setActiveArticleId = useSetAtom(activeArticleIdAtom);
+    const setActiveArticleSlug = useSetAtom(activeArticleSlugAtom);
 
     const handleOpenSheet = () => {
-      setActiveArticleId(id);
+      setActiveArticleSlug(slug);
       setIsSheetOpen(true);
     };
 
@@ -88,7 +87,14 @@ export const ArticleHorizontalCard = forwardRef<
         <div className={cn('group', className)} style={style}>
           <Card className='group overflow-hidden rounded-none'>
             <CardContent className='bg-foreground p-0 text-primary-foreground'>
-              {CustomCardContent}
+              <Link
+                ref={ref}
+                to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
+                className={cn('group block', className)}
+                style={style}
+              >
+                {CustomCardContent}
+              </Link>
               <div className='absolute right-2 top-2'>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>

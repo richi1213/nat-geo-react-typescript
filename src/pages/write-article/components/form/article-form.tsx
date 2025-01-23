@@ -164,7 +164,7 @@ export const ArticleForm: React.FC = () => {
           className='mt-32 rounded-md'
           disabled={isPending}
         >
-          Create Blog
+          Create an Article
         </LinkButton>
       </form>
     </Form>
