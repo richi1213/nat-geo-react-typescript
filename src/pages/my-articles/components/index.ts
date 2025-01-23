@@ -1,2 +1,3 @@
 export { default } from './my-articles-page';
-export * from './my-articles-heading';
+export * from './heading';
+export * from './edit-sheet';

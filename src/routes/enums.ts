@@ -6,6 +6,6 @@ export enum DEFAULT_LAYOUT_PATHS {
   ARTICLE = 'article',
   ARTICLE_SLUG = ':articleSlug',
   SEARCH = 'search',
-  SINGLE_ARTICLE = `${CATEGORY}/${ARTICLE}/${ARTICLE_SLUG}`,
+  SINGLE_ARTICLE = `${ARTICLE}/${ARTICLE_SLUG}`,
   NOT_FOUND = '*',
 }

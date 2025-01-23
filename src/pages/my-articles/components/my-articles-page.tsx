@@ -61,6 +61,10 @@ const MyArticlesPage: React.FC = () => {
 
   const articles = data ? data.pages.flatMap((page) => page.articles) : [];
 
+  const handleDelete = (id: string) => {
+    console.log(`Delete item with ID: ${id}`);
+  };
+
   const renderContent = () => {
     if (isLoading) return <Loading />;
 
@@ -74,7 +78,13 @@ const MyArticlesPage: React.FC = () => {
       <div>
         <VirtualizedList
           items={articles}
-          CardComponent={ArticleHorizontalCard}
+          CardComponent={(props) => (
+            <ArticleHorizontalCard
+              {...props}
+              variant='withActions'
+              onDelete={handleDelete}
+            />
+          )}
           itemCount={hasNextPage ? articles.length + 1 : articles.length}
           estimateSize={estimateRowHeight}
           overscan={5}

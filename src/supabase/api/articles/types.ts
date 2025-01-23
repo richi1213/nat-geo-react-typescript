@@ -8,4 +8,10 @@ export type ShowCardArticle = Pick<
   'id' | 'cover_image' | 'title_en' | 'title_ka' | 'slug'
 > & {
   category: Pick<Category, 'name_en' | 'name_ka' | 'slug'>;
+} & {
+  className?: string;
+  style?: React.CSSProperties;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
+  variant?: 'default' | 'withActions';
 };

@@ -1,22 +1,41 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Link } from 'react-router';
-import { ScanText } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
+import {
+  Button,
+  Card,
+  CardContent,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components';
+import { Link } from 'react-router';
+import { MoreHorizontal, ScanText } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import type { ShowCardArticle } from '@/supabase';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes';
+import { EditArticleSheet } from '@/pages';
+import { useSetAtom } from 'jotai';
+import { activeArticleIdAtom, isSheetOpenAtom } from '@/atoms';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
-  ShowCardArticle & {
-    className?: string;
-    style?: React.CSSProperties;
-  }
+  ShowCardArticle
 >(
   (
-    { category, title_en, title_ka, cover_image, className, style, slug },
+    {
+      id,
+      category,
+      title_en,
+      title_ka,
+      cover_image,
+      className,
+      style,
+      slug,
+      variant = 'default',
+      onDelete,
+    },
     ref,
   ) => {
     const { i18n, t } = useTranslation('common');
@@ -29,39 +48,89 @@ export const ArticleHorizontalCard = forwardRef<
     );
     const categoryName = getLocalizedString(category, 'name', currentLanguage);
 
+    const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
+    const setActiveArticleId = useSetAtom(activeArticleIdAtom);
+
+    const handleOpenSheet = () => {
+      setActiveArticleId(id);
+      setIsSheetOpen(true);
+    };
+
+    const CustomCardContent = (
+      <div className='flex'>
+        <div className='relative w-5/12 overflow-hidden'>
+          <div className='relative aspect-[27/20]'>
+            <img
+              src={cover_image}
+              alt={title || title_en}
+              className='absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
+            />
+          </div>
+        </div>
+
+        <div className='flex w-7/12 flex-col justify-around -space-y-5 pl-5'>
+          <div className='hidden text-sm font-semibold uppercase tracking-[0.18rem] text-gray-600 md:block'>
+            {categoryName}
+          </div>
+          <h3 className='text-lg font-bold md:text-2xl'>{title}</h3>{' '}
+          <div className='hidden items-center gap-1 p-0 sm:flex'>
+            <ScanText className='text-primary-foreground' />
+            <span className='text-sm font-semibold uppercase tracking-[0.16rem]'>
+              {t('read')}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+
+    if (variant === 'withActions') {
+      return (
+        <div className={cn('group', className)} style={style}>
+          <Card className='group overflow-hidden rounded-none'>
+            <CardContent className='bg-foreground p-0 text-primary-foreground'>
+              {CustomCardContent}
+              <div className='absolute right-2 top-2'>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      className='h-8 w-8 rounded-none p-0 hover:bg-gray-50'
+                    >
+                      <span className='sr-only'>Open menu</span>
+                      <MoreHorizontal className='h-4 w-4' />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align='end'>
+                    <DropdownMenuItem onClick={handleOpenSheet}>
+                      Edit
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem
+                      onClick={() => onDelete?.(slug as string)}
+                    >
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </CardContent>
+          </Card>
+
+          <EditArticleSheet />
+        </div>
+      );
+    }
+
     return (
       <Link
         ref={ref}
-        to={`${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
+        to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
         className={cn('group block', className)}
         style={style}
       >
         <Card className='group overflow-hidden rounded-none'>
           <CardContent className='bg-foreground p-0 text-primary-foreground'>
-            <div className='flex'>
-              <div className='relative w-5/12 overflow-hidden'>
-                <div className='relative aspect-[27/20]'>
-                  <img
-                    src={cover_image}
-                    alt={title || title_en}
-                    className='absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
-                  />
-                </div>
-              </div>
-
-              <div className='flex w-7/12 flex-col justify-around -space-y-5 pl-5'>
-                <div className='hidden text-sm font-semibold uppercase tracking-[0.18rem] text-gray-600 md:block'>
-                  {categoryName}
-                </div>
-                <h3 className='text-lg font-bold md:text-2xl'>{title}</h3>{' '}
-                <div className='hidden items-center gap-1 p-0 sm:flex'>
-                  <ScanText className='text-primary-foreground' />
-                  <span className='text-sm font-semibold uppercase tracking-[0.16rem]'>
-                    {t('read')}
-                  </span>
-                </div>
-              </div>
-            </div>
+            {CustomCardContent}
           </CardContent>
         </Card>
       </Link>
