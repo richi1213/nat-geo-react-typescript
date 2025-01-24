@@ -5,3 +5,4 @@ export * from './handle-copy-link';
 export * from './enums';
 export * from './search';
 export * from './search';
+export * from './tiptap-editor-extensions';

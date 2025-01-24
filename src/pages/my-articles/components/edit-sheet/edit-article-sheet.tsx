@@ -12,13 +12,10 @@ import {
   FormMessage,
   LinkButton,
   SheetTitle,
+  Loading,
 } from '@/components';
 import { useSingleArticle, useUpdateArticle } from '@/hooks';
-import {
-  TiptapEditor,
-  editArticleSchema,
-  type EditArticleSchema,
-} from '@/pages';
+import { editArticleSchema, type EditArticleSchema } from '@/pages';
 import { type Article } from '@/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -26,12 +23,14 @@ import { useAtom, useAtomValue } from 'jotai';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import RichTextEditor from 'reactjs-tiptap-editor';
+import { extensions } from '@/utils';
 
 export const EditArticleSheet: React.FC = () => {
   const [isSheetOpen, setIsSheetOpen] = useAtom(isSheetOpenAtom);
   const articleSlug = useAtomValue(activeArticleSlugAtom);
 
-  const { data } = useSingleArticle(articleSlug!);
+  const { data, isLoading } = useSingleArticle(articleSlug!);
   const { title_en, title_ka, content } = (data as Article) || {};
 
   const form = useForm<EditArticleSchema>({
@@ -47,14 +46,16 @@ export const EditArticleSheet: React.FC = () => {
   useEffect(() => {
     if (title_en && title_ka && content) {
       form.reset({
-        title_en: (title_en ?? '') as string,
-        title_ka: (title_ka ?? '') as string,
-        content: (content ?? '') as string,
+        title_en,
+        title_ka,
+        content,
       });
     }
   }, [title_en, title_ka, content, form]);
 
   const {} = useUpdateArticle(articleSlug!);
+
+  if (isLoading) return <Loading />;
 
   const onSubmit = () => {};
 
@@ -166,9 +167,12 @@ export const EditArticleSheet: React.FC = () => {
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                    <TiptapEditor
-                      value={field.value}
-                      onChange={field.onChange}
+                    <RichTextEditor
+                      output='html'
+                      content={field.value}
+                      onChangeContent={field.onChange}
+                      extensions={extensions}
+                      removeDefaultWrapper={true}
                     />
                   </FormControl>
                   <FormMessage />
@@ -181,7 +185,7 @@ export const EditArticleSheet: React.FC = () => {
               className='mt-32 rounded-md'
               // disabled={isPending}
             >
-              Create an Article
+              Edit an Article
             </LinkButton>
           </form>
         </Form>
