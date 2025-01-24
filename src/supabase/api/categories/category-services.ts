@@ -46,3 +46,17 @@ export const getCategorySlug = async (id: string): Promise<string> => {
 
   return data.slug;
 };
+
+export const getCategoryById = async (id: string): Promise<Category> => {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    throw new Error(`Error fetching category by ID: ${error.message}`);
+  }
+
+  return data;
+};

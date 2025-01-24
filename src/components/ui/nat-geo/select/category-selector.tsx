@@ -6,8 +6,8 @@ import {
   SelectGroup,
   SelectLabel,
   SelectItem,
-} from '@/components/ui';
-import { ArticleCategories } from '@/supabase';
+} from '@/components';
+import { ArticleCategories, type ArticleCategory } from '@/supabase';
 import type { CategorySelectorProps } from './types';
 
 export const CategorySelector: React.FC<CategorySelectorProps> = ({
@@ -17,7 +17,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
   className = 'w-[180px]',
 }) => {
   return (
-    <Select onValueChange={(value) => onSelect(value as ArticleCategories)}>
+    <Select onValueChange={(value) => onSelect(value as ArticleCategory)}>
       <SelectTrigger className={className}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

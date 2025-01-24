@@ -1,7 +1,7 @@
-import { ArticleCategories } from '@/supabase';
+import { type ArticleCategory } from '@/supabase';
 
 export type CategorySelectorProps = {
-  onSelect: (category: ArticleCategories) => void;
+  onSelect: (category: ArticleCategory) => void;
   placeholder?: string;
   label?: string;
   className?: string;

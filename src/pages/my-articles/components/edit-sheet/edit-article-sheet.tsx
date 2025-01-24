@@ -10,8 +10,8 @@ import {
   FormControl,
   Input,
   FormMessage,
-  CategorySelector,
   LinkButton,
+  SheetTitle,
 } from '@/components';
 import { useSingleArticle, useUpdateArticle } from '@/hooks';
 import {
@@ -19,18 +19,12 @@ import {
   editArticleSchema,
   type EditArticleSchema,
 } from '@/pages';
-import {
-  Article,
-  ArticleCategories,
-  getCategoryIdByName,
-  type ArticleCategory,
-} from '@/supabase';
+import { type Article } from '@/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DialogTitle } from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { useAtom, useAtomValue } from 'jotai';
 import { X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 export const EditArticleSheet: React.FC = () => {
@@ -38,46 +32,31 @@ export const EditArticleSheet: React.FC = () => {
   const articleSlug = useAtomValue(activeArticleSlugAtom);
 
   const { data } = useSingleArticle(articleSlug!);
-  const { title_en, title_ka, category_id, cover_image, content } =
-    (data as Article) || {};
+  const { title_en, title_ka, content } = (data as Article) || {};
 
   const form = useForm<EditArticleSchema>({
     resolver: zodResolver(editArticleSchema),
     defaultValues: {
       title_en: '',
       title_ka: '',
-      category_id: '',
       cover_image: null,
       content: '',
     },
   });
 
   useEffect(() => {
-    if (title_en && title_ka && category_id && content) {
+    if (title_en && title_ka && content) {
       form.reset({
         title_en: (title_en ?? '') as string,
         title_ka: (title_ka ?? '') as string,
-        category_id: (category_id ?? '') as string,
         content: (content ?? '') as string,
       });
     }
-  }, [title_en, title_ka, category_id, content, form]);
+  }, [title_en, title_ka, content, form]);
 
   const {} = useUpdateArticle(articleSlug!);
 
-  const [categoryId, setCategoryId] = useState<string>('');
-
-  const onSubmit = (data: EditArticleSchema) => {};
-
-  const handleCategorySelect = async (categoryName: ArticleCategory) => {
-    try {
-      const fetchedCategoryId = await getCategoryIdByName(categoryName);
-      setCategoryId(fetchedCategoryId);
-      form.setValue('category_id', categoryName as ArticleCategories);
-    } catch (error) {
-      console.error('Error fetching category ID:', error);
-    }
-  };
+  const onSubmit = () => {};
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={() => setIsSheetOpen(false)}>
@@ -85,11 +64,12 @@ export const EditArticleSheet: React.FC = () => {
         side='bottom'
         className='z-[500] h-screen w-full overflow-y-auto bg-foreground text-primary-foreground'
         showClose={false}
-        aria-hidden={isSheetOpen ? 'false' : 'true'}
       >
-        <DialogTitle>
-          <VisuallyHidden.Root>Edit Article Sheet</VisuallyHidden.Root>
-        </DialogTitle>
+        <SheetTitle>
+          <VisuallyHidden.Root aria-hidden={isSheetOpen ? 'false' : 'true'}>
+            Edit Article Sheet
+          </VisuallyHidden.Root>
+        </SheetTitle>
 
         <div>
           <h2 className='mb-10 flex items-center font-natGeo2 text-base text-chart-4'>
@@ -144,25 +124,6 @@ export const EditArticleSheet: React.FC = () => {
 
             <FormField
               control={form.control}
-              name='category_id'
-              render={() => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <FormControl>
-                    <CategorySelector
-                      onSelect={handleCategorySelect}
-                      placeholder='Select a category'
-                      label='Categories'
-                      className='w-72 font-bold uppercase tracking-widest'
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name='cover_image'
               render={({ field: { onChange, value, ...rest } }) => (
                 <FormItem>
@@ -197,30 +158,6 @@ export const EditArticleSheet: React.FC = () => {
                 </FormItem>
               )}
             />
-
-            {/* <FormField
-              control={form.control}
-              name='cover_image'
-              render={({ field: { onChange, value, ...rest } }) => (
-                <FormItem>
-                  <FormLabel>Cover Image</FormLabel>
-                  <FormControl>
-                    <Input
-                      className='w-72 px-0 tracking-widest'
-                      type='file'
-                      accept='image/*'
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        onChange(file);
-                      }}
-                      {...rest}
-                      onBlur={() => form.trigger('cover_image')}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
 
             <Controller
               name='content'

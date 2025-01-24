@@ -5,6 +5,7 @@ export enum QUERY_KEYS {
   SINGLE_ARTICLE = 'singleArticle',
   MAY_LIKE_ARTICLES = 'mayLikeArticles',
   CATEGORY = 'category',
+  CATEGORY_BY_ID = 'categoryById',
   CATEGORY_SLUG = 'categorySlug',
   AUTHOR = 'author',
 }
