@@ -1,0 +1,15 @@
+{
+  "successfully_signed_out": "წარმატებით გამოხვედით სისტემიდან",
+  "failed_to_sign_out": "ვერ მოხერხდა სისტემიდან გამოსვლა",
+  "article_successfully_updated": "სტატია წარმატებით განახლდა",
+  "update_user_metadata_error": "მომხმარებლის მონაცემების განახლების შეცდომა:",
+  "failed_to_update_article": "ვერ მოხერხდა სტატიის განახლება",
+  "personal_information_updated": "პირადი ინფორმაცია განახლდა",
+  "failed_to_update_personal_information": "ვერ მოხერხდა პირადი ინფორმაციის განახლება",
+  "failed_to_login": "ვერ მოხერხდა სისტემაში შესვლა",
+  "successfully_logged_in": "წარმატებით შეხვალთ სისტემაში",
+  "failed_to_sign_up": "ვერ მოხერხდა რეგისტრაცია",
+  "successfully_signed_up": "წარმატებით დარეგისტრირდით",
+  "article_successfully_created": "სტატია წარმატებით შეიქმნა",
+  "failed_to_create_article": "ვერ მოხერხდა სტატიის შექმნა"
+}

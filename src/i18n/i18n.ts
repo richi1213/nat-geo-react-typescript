@@ -7,6 +7,7 @@ import commonEn from './en/common.json';
 import impactEn from './en/pages/impact.json';
 import writeArticleEn from './en/pages/write-article.json';
 import editProfileFormEn from './en/layout/edit-profile-form.json';
+import NotificationsEn from './en/notifications.json';
 
 import headerKa from './ka/layout/header.json';
 import footerKa from './ka/layout/footer.json';
@@ -14,6 +15,7 @@ import commonKa from './ka/common.json';
 import impactKa from './ka/pages/impact.json';
 import writeArticleKa from './ka/pages/write-article.json';
 import editProfileFormKa from './ka/layout/edit-profile-form.json';
+import NotificationsKa from './ka/notifications.json';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -24,6 +26,7 @@ i18n.use(initReactI18next).init({
       impact: impactEn,
       writeArticle: writeArticleEn,
       editProfileForm: editProfileFormEn,
+      notifications: NotificationsEn,
     },
     ka: {
       header: headerKa,
@@ -32,6 +35,7 @@ i18n.use(initReactI18next).init({
       impact: impactKa,
       writeArticle: writeArticleKa,
       editProfileForm: editProfileFormKa,
+      notifications: NotificationsKa,
     },
   },
   lng: 'en',
@@ -44,6 +48,7 @@ i18n.use(initReactI18next).init({
     'impact',
     'writeArticle',
     'editProfileForm',
+    'notifications',
   ],
 });
 

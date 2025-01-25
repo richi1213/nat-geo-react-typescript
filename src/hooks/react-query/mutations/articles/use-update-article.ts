@@ -5,6 +5,7 @@ import {
   useQueryClient,
   type UseMutationResult,
 } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 export const useUpdateArticle = (
@@ -14,6 +15,7 @@ export const useUpdateArticle = (
   Error,
   { articleId: string; updatedData: UpdateArticle }
 > => {
+  const { t } = useTranslation('notifications');
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -25,14 +27,14 @@ export const useUpdateArticle = (
       updatedData: UpdateArticle;
     }) => updateArticle(articleId, updatedData),
     onError: (err) => {
-      toast.error('Failed to update article');
+      toast.error(t('failed_to_update_article'));
       console.error('Update user metadata error:', err);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.SINGLE_ARTICLE, articleSlug],
       });
-      toast.success('Article succesfully updated');
+      toast.success(t('article_successfully_updated'));
     },
   });
 };

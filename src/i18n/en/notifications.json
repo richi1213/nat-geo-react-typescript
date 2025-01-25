@@ -1,0 +1,15 @@
+{
+  "successfully_signed_out": "Successfully signed out",
+  "failed_to_sign_out": "Failed to sign out",
+  "article_successfully_updated": "Article successfully updated",
+  "update_user_metadata_error": "Update user metadata error:",
+  "failed_to_update_article": "Failed to update an article",
+  "personal_information_updated": "Personal information updated",
+  "failed_to_update_personal_information": "Failed to update personal information",
+  "failed_to_login": "Failed to login",
+  "successfully_logged_in": "Successfully logged in",
+  "failed_to_sign_up": "Failed to sign up",
+  "successfully_signed_up": "Successfully signed up",
+  "article_successfully_created": "Article successfully created",
+  "failed_to_create_article": "Failed to create an article"
+}

@@ -12,9 +12,13 @@ import {
   VIDEOS_FOLDER_NAME,
 } from '@/supabase';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 export const useSubmitArticle = (categoryId: string) => {
+  const { t } = useTranslation('notifications');
+
   const queryClient = useQueryClient();
   const { id } = useGetMe();
   const { mutateAsync: uploadFile } = useUploadFile();
@@ -124,6 +128,8 @@ export const useSubmitArticle = (categoryId: string) => {
         queryKey: [QUERY_KEYS.ARTICLES, categorySlug],
       });
       navigate(`/${categorySlug}`);
+      toast.success(t('article_successfully_created'));
     },
+    onError: () => toast.error(t('failed_to_create_article')),
   });
 };
