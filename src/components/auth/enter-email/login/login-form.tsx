@@ -8,7 +8,7 @@ import {
   Button,
   type LoginFormProps,
   type LoginSchema,
-  useTranslatedSchemas,
+  getLoginSchema,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
@@ -24,11 +24,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { loginSchema } = useTranslatedSchemas();
   const { t } = useTranslation('header');
 
   const form = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(getLoginSchema(t)),
     defaultValues: {
       email,
       password: '',

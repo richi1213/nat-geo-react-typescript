@@ -8,7 +8,7 @@ import {
   Form,
   type RegisterFormProps,
   type RegistrationSchema,
-  useTranslatedSchemas,
+  getRegistrationSchema,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeOffIcon, EyeIcon } from 'lucide-react';
@@ -25,10 +25,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation('header');
 
-  const { registrationSchema } = useTranslatedSchemas();
-
   const form = useForm<RegistrationSchema>({
-    resolver: zodResolver(registrationSchema),
+    resolver: zodResolver(getRegistrationSchema(t)),
     defaultValues: {
       email,
       firstName: '',

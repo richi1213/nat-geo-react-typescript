@@ -1,0 +1,18 @@
+{
+  "create_article": "Create an Article",
+  "title_english": "Title (English)",
+  "title_georgian": "Title (Georgian)",
+  "category": "Category",
+  "select_category": "Select a category",
+  "cover_image": "Cover Image",
+  "article_content": "Content",
+  "no_file_chosen": "No file chosen",
+
+  "title_english_minimum_length": "Title (English) must be at least 4 characters long",
+  "title_georgian_minimum_length": "Title (Georgian) must be at least 4 characters long",
+  "invalid_image_file": "Please upload a valid image file.",
+  "image_upload_error": "Only JPEG, PNG, WebP, or AVIF images are allowed and size must not exceed 4MB.",
+  "content_required": "Content is required",
+  "content_max_length": "Content must not exceed 2000 characters",
+  "category_required": "Category is required"
+}

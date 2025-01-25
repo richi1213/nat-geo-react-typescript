@@ -12,8 +12,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
+  getPersonalInfoSchema,
   Input,
-  personalInfoSchema,
   type AccountSettingsDialogProps,
   type PersonalInfoSchema,
 } from '@/components';
@@ -21,17 +21,20 @@ import { useGetMe, useUpdateUserMetadata } from '@/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
   children,
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation('editProfileForm');
+
   const { id, firstName, lastName, username } = useGetMe();
   const { mutate: updatePersonalInfo } = useUpdateUserMetadata();
 
   const form = useForm<PersonalInfoSchema>({
-    resolver: zodResolver(personalInfoSchema),
+    resolver: zodResolver(getPersonalInfoSchema(t)),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -74,10 +77,10 @@ export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
           <VisuallyHidden.Root>Account settings</VisuallyHidden.Root>
         </DialogTitle>
         <DialogHeader>
-          <DialogTitle className='text-foreground'>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here.
-          </DialogDescription>
+          <DialogTitle className='text-foreground'>
+            {t('edit_profile')}
+          </DialogTitle>
+          <DialogDescription>{t('edit_profile_description')}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -125,7 +128,7 @@ export const AccountSettingsDialog: React.FC<AccountSettingsDialogProps> = ({
               type='submit'
               className='h-12 w-full bg-primary text-primary-foreground hover:bg-primary'
             >
-              Done
+              {t('done')}
             </Button>
           </form>
         </Form>

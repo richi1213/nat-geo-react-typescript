@@ -9,7 +9,7 @@ import {
   Input,
   LinkButton,
 } from '@/components';
-import { articleSchema, TiptapEditor, type ArticleSchema } from '.';
+import { getArticleFormSchema, TiptapEditor, type ArticleSchema } from '.';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -19,10 +19,13 @@ import {
 } from '@/supabase';
 import { useState } from 'react';
 import { useSubmitArticle } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export const ArticleForm: React.FC = () => {
+  const { t } = useTranslation('writeArticle');
+
   const form = useForm<ArticleSchema>({
-    resolver: zodResolver(articleSchema),
+    resolver: zodResolver(getArticleFormSchema(t)),
     defaultValues: {
       title_en: '',
       title_ka: '',
@@ -67,7 +70,7 @@ export const ArticleForm: React.FC = () => {
           name='title_en'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title (English)</FormLabel>
+              <FormLabel>{t('title_english')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -87,7 +90,7 @@ export const ArticleForm: React.FC = () => {
           name='title_ka'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title (Georgian)</FormLabel>
+              <FormLabel>{t('title_georgian')}</FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -107,7 +110,7 @@ export const ArticleForm: React.FC = () => {
           name='category_id'
           render={() => (
             <FormItem>
-              <FormLabel>Category</FormLabel>
+              <FormLabel>{t('category')}</FormLabel>
               <FormControl>
                 <CategorySelector
                   onSelect={handleCategorySelect}
@@ -126,7 +129,7 @@ export const ArticleForm: React.FC = () => {
           name='cover_image'
           render={({ field: { onChange, value, ...rest } }) => (
             <FormItem>
-              <FormLabel>Cover Image</FormLabel>
+              <FormLabel>{t('cover_image')}</FormLabel>
               <FormControl>
                 <Input
                   className='w-72 px-0 tracking-widest'
@@ -150,7 +153,7 @@ export const ArticleForm: React.FC = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Content</FormLabel>
+              <FormLabel>{t('article_content')}</FormLabel>
               <FormControl>
                 <TiptapEditor value={field.value} onChange={field.onChange} />
               </FormControl>
@@ -164,7 +167,7 @@ export const ArticleForm: React.FC = () => {
           className='mt-32 rounded-md'
           disabled={isPending}
         >
-          Create an Article
+          {t('create_article')}
         </LinkButton>
       </form>
     </Form>

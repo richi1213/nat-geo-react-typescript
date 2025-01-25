@@ -9,8 +9,8 @@ import {
   FormState,
   LoginForm,
   RegisterForm,
-  useTranslatedSchemas,
   type EmailSchema,
+  getEmailSchema,
 } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -23,11 +23,10 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
   const [state, setState] = useState<FormState>(FormState.Idle);
   const [email, setEmail] = useState<string>('');
 
-  const { emailSchema } = useTranslatedSchemas();
   const { t } = useTranslation('header');
 
   const form = useForm<EmailSchema>({
-    resolver: zodResolver(emailSchema),
+    resolver: zodResolver(getEmailSchema(t)),
     defaultValues: {
       email: '',
     },

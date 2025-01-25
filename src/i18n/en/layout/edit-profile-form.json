@@ -1,0 +1,9 @@
+{
+  "edit_profile": "Edit profile",
+  "edit_profile_description": "Make changes to your profile here.",
+  "done": "Done",
+  "first_name_required": "First name is required",
+  "last_name_required": "Last name is required",
+  "username_min_length": "Username minimum symbols length should be 3",
+  "invalid_characters": "This characters aren't allowed"
+}

@@ -1,0 +1,18 @@
+{
+  "create_article": "შექმენი სტატია",
+  "title_english": "სათაური (ინგლისურად)",
+  "title_georgian": "სათაური (ქართულად)",
+  "category": "კატეგორია",
+  "select_category": "აირჩიეთ კატეგორია",
+  "cover_image": "სტატიის სურათი",
+  "article_content": "სტატია",
+  "no_file_chosen": "ფაილი არ არის არჩეული",
+
+  "title_english_minimum_length": "სათაური (ინგლისურად) უნდა იყოს მინიმუმ 4 სიმბოლო",
+  "title_georgian_minimum_length": "სათაური (ქართულად) უნდა იყოს მინიმუმ 4 სიმბოლო",
+  "invalid_image_file": "გთხოვთ ატვირთოთ ვალიდური სურათის ფაილი.",
+  "image_upload_error": "მხარდაჭერილია მხოლოდ JPEG, PNG, WebP ან AVIF ფორმატები და ფაილის ზომა არ უნდა აღემატებოდეს 4MB-ს.",
+  "content_required": "კონტენტი აუცილებელია",
+  "content_max_length": "სტატია არ უნდა აღემატებოდეს 2000 სიმბოლოს",
+  "category_required": "კატეგორია აუცილებელია"
+}
