@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import type { FooterMenuSectionProps } from './types';
 import { useTranslationWithNamespace } from '@/hooks';
 
@@ -14,9 +13,14 @@ export const FooterMenuSection: React.FC<FooterMenuSectionProps> = ({
       <ul className='flex flex-col capitalize'>
         {links.map((link, index) => (
           <li key={index}>
-            <Link to={link.href} className='text-xs hover:underline'>
+            <a
+              href={link.href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-xs hover:underline'
+            >
               {getTranslatedLabel(link.label)}
-            </Link>
+            </a>
           </li>
         ))}
       </ul>

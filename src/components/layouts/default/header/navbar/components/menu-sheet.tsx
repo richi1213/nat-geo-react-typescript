@@ -74,52 +74,88 @@ export const MenuSheet: React.FC<PropsWithChildren> = ({ children }) => {
             </h2>
             <ul className='space-y-10 text-xl text-primary'>
               <li>
-                <Link to='https://www.nationalgeographic.com/tv/'>
+                <a
+                  href='https://www.nationalgeographic.com/tv/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('watch_tv')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.com/magazine'>
+                <a
+                  href='https://www.nationalgeographic.com/magazine'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('read_the_magazine')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.com/family'>
+                <a
+                  href='https://www.nationalgeographic.com/family'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('visit_nat_geo_family')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.com/expeditions/'>
+                <a
+                  href='https://www.nationalgeographic.com/expeditions/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('book_a_trip')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://kids.nationalgeographic.com'>
+                <a
+                  href='https://kids.nationalgeographic.com'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('inspire_your_kids')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.com/podcasts/overheard'>
+                <a
+                  href='https://www.nationalgeographic.com/podcasts/overheard'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('listen_to_podcasts')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.shopdisney.com/franchises/national-geographic/'>
+                <a
+                  href='https://www.shopdisney.com/franchises/national-geographic/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('shop_nat_geo')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.com/events/'>
+                <a
+                  href='https://www.nationalgeographic.com/events/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('attend_a_live_event')}
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to='/impact/'>{t('learn_about_our_impact')}</Link>
+                <a href='/impact/'>{t('learn_about_our_impact')}</a>
               </li>
               <li>
-                <Link to='https://www.nationalgeographic.org/society/become-a-member/'>
+                <a
+                  href='https://www.nationalgeographic.org/society/become-a-member/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {t('support_our_mission')}
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

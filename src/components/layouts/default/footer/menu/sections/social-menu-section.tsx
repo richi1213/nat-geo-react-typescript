@@ -1,5 +1,4 @@
 import { Button } from '@/components';
-import { Link } from 'react-router';
 import { socialLinks } from '../utils';
 import { useTranslationWithNamespace } from '@/hooks';
 
@@ -18,9 +17,14 @@ export const SocialMenuSection: React.FC = () => {
             size='icon'
             className='hover:bg-transparent hover:text-primary'
           >
-            <Link to={link.href} aria-label={link.label}>
+            <a
+              href={link.href}
+              aria-label={link.label}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {link.icon}
-            </Link>
+            </a>
           </Button>
         ))}
       </div>
