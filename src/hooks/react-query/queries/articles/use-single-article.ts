@@ -4,11 +4,12 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 export const useSingleArticle = (
   slug: string,
+  isEditing: boolean = true,
 ): UseQueryResult<Article, Error> => {
   return useQuery<Article, Error>({
     queryKey: [QUERY_KEYS.SINGLE_ARTICLE, slug],
     queryFn: () => getArticleBySlug(slug),
     staleTime: 2 * 60 * 1000,
-    enabled: !!slug,
+    enabled: !!slug && isEditing,
   });
 };

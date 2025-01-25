@@ -44,12 +44,12 @@ const MyArticlesPage: React.FC = () => {
     : undefined;
 
   const {
-    data,
+    data: searchedArticles,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isFetching,
-    isLoading,
+    isLoading: isSearchedArticlesLoading,
   } = useSearchedArticles(
     debouncedSearchKeyword,
     sortOptions,
@@ -59,14 +59,16 @@ const MyArticlesPage: React.FC = () => {
     true,
   );
 
-  const articles = data ? data.pages.flatMap((page) => page.articles) : [];
+  const articles = searchedArticles
+    ? searchedArticles.pages.flatMap((page) => page.articles)
+    : [];
 
   const handleDelete = (id: string) => {
     console.log(`Delete item with ID: ${id}`);
   };
 
   const renderContent = () => {
-    if (isLoading) return <Loading />;
+    if (isSearchedArticlesLoading) return <Loading />;
 
     if (articles.length === 0) {
       return (

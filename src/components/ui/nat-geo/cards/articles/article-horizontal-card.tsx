@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import {
   Button,
   Card,
@@ -17,7 +17,8 @@ import { getLocalizedString } from '@/utils';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes';
 import { EditArticleSheet } from '@/pages';
 import { useSetAtom } from 'jotai';
-import { activeArticleSlugAtom, isSheetOpenAtom } from '@/atoms';
+import { activeArticleDataAtom, isSheetOpenAtom } from '@/atoms';
+import { useSingleArticle } from '@/hooks';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
@@ -45,14 +46,26 @@ export const ArticleHorizontalCard = forwardRef<
       'title',
       currentLanguage,
     );
+
     const categoryName = getLocalizedString(category, 'name', currentLanguage);
 
+    const [isEditing, setIsEditing] = useState(false);
     const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
-    const setActiveArticleSlug = useSetAtom(activeArticleSlugAtom);
+    const setActiveArticle = useSetAtom(activeArticleDataAtom);
+
+    const { data: singleArticleData } = useSingleArticle(slug!, isEditing);
+
+    useEffect(() => {
+      if (isEditing) {
+        if (singleArticleData) {
+          setActiveArticle(singleArticleData);
+          setIsSheetOpen(true);
+        }
+      }
+    }, [isEditing, singleArticleData, setActiveArticle, setIsSheetOpen]);
 
     const handleOpenSheet = () => {
-      setActiveArticleSlug(slug);
-      setIsSheetOpen(true);
+      setIsEditing(true);
     };
 
     const CustomCardContent = (

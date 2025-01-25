@@ -1,5 +1,6 @@
+import type { Article } from '@/supabase';
 import { atom } from 'jotai';
 
 export const isSheetOpenAtom = atom<boolean>(false);
 
-export const activeArticleSlugAtom = atom<string | null>(null);
+export const activeArticleDataAtom = atom<Article | null>(null);

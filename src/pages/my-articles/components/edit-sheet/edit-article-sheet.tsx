@@ -1,44 +1,39 @@
-import { activeArticleSlugAtom, isSheetOpenAtom } from '@/atoms';
+import { activeArticleDataAtom, isSheetOpenAtom } from '@/atoms';
 import {
   Sheet,
   SheetContent,
   SheetClose,
+  SheetTitle,
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  Input,
   FormMessage,
+  Input,
   LinkButton,
-  SheetTitle,
-  Loading,
 } from '@/components';
-import { useSingleArticle, useUpdateArticle } from '@/hooks';
-import { editArticleSchema, type EditArticleSchema } from '@/pages';
-import { type Article } from '@/supabase';
+import { EditTiptapEditor } from '@/pages/my-articles/components/edit-sheet/content';
+import { EditArticleSchema, editArticleSchema } from '@/pages/my-articles/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { useAtom, useAtomValue } from 'jotai';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import RichTextEditor from 'reactjs-tiptap-editor';
-import { extensions } from '@/utils';
+import { useForm, Controller } from 'react-hook-form';
 
 export const EditArticleSheet: React.FC = () => {
   const [isSheetOpen, setIsSheetOpen] = useAtom(isSheetOpenAtom);
-  const articleSlug = useAtomValue(activeArticleSlugAtom);
 
-  const { data, isLoading } = useSingleArticle(articleSlug!);
-  const { title_en, title_ka, content } = (data as Article) || {};
+  const singleArticle = useAtomValue(activeArticleDataAtom);
+
+  const { title_en, title_ka, content } = singleArticle || {};
 
   const form = useForm<EditArticleSchema>({
     resolver: zodResolver(editArticleSchema),
     defaultValues: {
       title_en: '',
       title_ka: '',
-      cover_image: null,
       content: '',
     },
   });
@@ -52,10 +47,6 @@ export const EditArticleSheet: React.FC = () => {
       });
     }
   }, [title_en, title_ka, content, form]);
-
-  const {} = useUpdateArticle(articleSlug!);
-
-  if (isLoading) return <Loading />;
 
   const onSubmit = () => {};
 
@@ -123,43 +114,6 @@ export const EditArticleSheet: React.FC = () => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name='cover_image'
-              render={({ field: { onChange, value, ...rest } }) => (
-                <FormItem>
-                  <FormLabel>Cover Image</FormLabel>
-                  <FormControl>
-                    <div className='space-y-2'>
-                      {/* Display current image preview if `value` is a URL */}
-                      {typeof value === 'string' &&
-                        value.startsWith('http') && (
-                          <img
-                            src={value}
-                            alt='Current Cover'
-                            className='h-32 w-32 rounded border object-cover'
-                          />
-                        )}
-
-                      {/* File input for uploading a new image */}
-                      <Input
-                        className='w-72 px-0 tracking-widest'
-                        type='file'
-                        accept='image/*'
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          onChange(file); // Update the form state with the new file
-                        }}
-                        {...rest}
-                        onBlur={() => form.trigger('cover_image')}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <Controller
               name='content'
               control={form.control}
@@ -167,12 +121,9 @@ export const EditArticleSheet: React.FC = () => {
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                    <RichTextEditor
-                      output='html'
-                      content={field.value}
-                      onChangeContent={field.onChange}
-                      extensions={extensions}
-                      removeDefaultWrapper={true}
+                    <EditTiptapEditor
+                      value={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />
