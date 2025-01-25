@@ -2,12 +2,15 @@ import { Play, Pause } from 'lucide-react';
 import { Button, UnderlinedButton } from '@/components';
 import type { VideoPromoProps } from './types';
 import { useVideoPlayer } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export const VideoPromo: React.FC<VideoPromoProps> = ({
   title,
   description,
   videoUrl,
 }) => {
+  const { t } = useTranslation('home');
+
   const { isPlaying, videoRef, togglePlay } = useVideoPlayer();
 
   return (
@@ -46,7 +49,14 @@ export const VideoPromo: React.FC<VideoPromoProps> = ({
           size='sm'
           className='mt-4 bg-transparent bg-[0_120%] font-semibold uppercase tracking-[0.2rem] text-foreground hover:text-primary-foreground'
         >
-          stream now
+          <a
+            href='https://www.disneyplus.com/welcome/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='no-underline'
+          >
+            {t('stream_now')}
+          </a>
         </UnderlinedButton>
       </div>
     </div>

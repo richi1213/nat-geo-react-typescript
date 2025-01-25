@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 export const TravelArticlesList: React.FC = () => {
   const { t } = useTranslation('common');
 
-  const { data, isLoading } = useRandomArticles('travel', 5);
+  const { data, isLoading } = useRandomArticles('travel', 6);
 
   if (isLoading) return <Loading />;
 

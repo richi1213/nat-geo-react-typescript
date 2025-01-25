@@ -3,6 +3,7 @@ import {
   TwoDimensionalCarousel,
   UnderlinedButton,
 } from '@/components';
+import { useTranslation } from 'react-i18next';
 
 export const movies = [
   {
@@ -50,14 +51,22 @@ export const movies = [
 ];
 
 export const DiscoverMore: React.FC = () => {
+  const { t } = useTranslation('home');
   return (
     <section className='mx-auto w-full max-w-5xl px-8'>
       <div className='mb-6 flex flex-col items-center justify-between gap-3 sm:mb-5 sm:flex-row'>
         <div className='font-bold uppercase tracking-[0.2rem]'>
-          discover more on disney+
+          {t('discover_more_disney')}
         </div>
         <UnderlinedButton className='h-5 bg-transparent text-xs font-bold uppercase tracking-widest text-foreground hover:text-primary-foreground sm:text-center'>
-          see shows
+          <a
+            href='https://www.disneyplus.com/welcome/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='no-underline'
+          >
+            {t('see_shows')}
+          </a>
         </UnderlinedButton>
       </div>
       <TwoDimensionalCarousel>
