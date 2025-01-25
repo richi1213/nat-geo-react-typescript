@@ -36,12 +36,29 @@ export const NavbarList: React.FC = () => {
         </MenuButton>
       </li>
       <li className='hidden md:block'>
-        <UnderlinedButton to={DEFAULT_LAYOUT_PATHS.HOME} size='sm'>
-          {t('newsletters')}
+        <UnderlinedButton size='sm'>
+          <a
+            href='https://www.nationalgeographic.com/newsletters/signup'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='no-underline'
+          >
+            {t('newsletters')}
+          </a>
         </UnderlinedButton>
       </li>
+
       <li>
-        <LinkButton to={DEFAULT_LAYOUT_PATHS.HOME}>{t('subscribe')}</LinkButton>
+        <LinkButton>
+          <a
+            href='https://www.nationalgeographic.com/subscribe'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='no-underline'
+          >
+            {t('subscribe')}
+          </a>
+        </LinkButton>
       </li>
       <li>
         <LanguagePicker />

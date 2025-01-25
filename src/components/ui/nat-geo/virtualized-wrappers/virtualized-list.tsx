@@ -19,7 +19,7 @@ export const VirtualizedList = <T,>({
   return (
     <div
       ref={parentRef}
-      className='h-[80vh] w-full space-y-4 overflow-auto scrollbar-hide'
+      className='h-[85vh] w-full space-y-4 overflow-auto scrollbar-hide'
     >
       <div
         className='relative mb-0 w-full'

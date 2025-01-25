@@ -36,17 +36,23 @@ export const UserMenu: React.FC<PropsWithChildren> = ({ children }) => {
             <NavigationMenuContent>
               <div className='w-48 p-2'>
                 <nav className='flex flex-col space-y-2 capitalize'>
+                  <div className='cursor-pointer px-2 py-1.5 hover:text-primary'>
+                    <Link to={`/${DEFAULT_LAYOUT_PATHS.MY_ARTICLES}`}>
+                      {t('my_articles')}
+                    </Link>
+                  </div>
+
+                  <div className='cursor-pointer px-2 py-1.5 hover:text-primary'>
+                    <Link to={`/${DEFAULT_LAYOUT_PATHS.WRITE_ARTICLE}`}>
+                      {t('write_article')}
+                    </Link>
+                  </div>
+
                   <div
                     onClick={openDialog}
                     className='cursor-pointer px-2 py-1.5 hover:text-primary'
                   >
                     {t('acc_settings')}
-                  </div>
-
-                  <div className='cursor-pointer px-2 py-1.5 hover:text-primary'>
-                    <Link to={`/${DEFAULT_LAYOUT_PATHS.MY_ARTICLES}`}>
-                      {t('my_articles')}
-                    </Link>
                   </div>
 
                   <div
