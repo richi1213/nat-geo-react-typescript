@@ -1,5 +1,6 @@
 export enum QUERY_KEYS {
   ARTICLES = 'articles',
+  RANDOM_ARTICLES = 'randomArticles',
   SEARCHED_ARTICLES = 'searchedArticles',
   RECENT_ARTICLES = 'recentArticles',
   SINGLE_ARTICLE = 'singleArticle',

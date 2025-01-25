@@ -33,14 +33,16 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
 
           <Link
-            to={`${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
+            to={`/${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}
             className='relative flex h-full flex-col justify-end p-6'
           >
             <div className='space-y-4'>
               <div className='flex items-center gap-2'>
-                <span className='text-sm font-medium uppercase tracking-wider hover:underline'>
-                  {categoryName}
-                </span>
+                <Link to={`/${category.slug}`}>
+                  <span className='text-sm font-medium uppercase tracking-wider hover:underline'>
+                    {categoryName}
+                  </span>
+                </Link>
               </div>
 
               <h3 className='max-w-xl text-2xl font-bold text-foreground sm:text-3xl md:text-4xl'>
@@ -63,12 +65,12 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
       <Card
         ref={ref}
         className={cn(
-          'group overflow-hidden rounded-none border bg-foreground transition-colors',
+          'group overflow-hidden rounded-none border-none bg-foreground transition-colors',
           className,
         )}
         {...props}
       >
-        <Link to={`/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}>
+        <Link to={`/${category.slug}/${DEFAULT_LAYOUT_PATHS.ARTICLE}/${slug}`}>
           <div className='relative aspect-[3/2] overflow-hidden'>
             <img
               src={cover_image}

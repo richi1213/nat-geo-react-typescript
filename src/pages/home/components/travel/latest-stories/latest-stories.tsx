@@ -1,11 +1,10 @@
-import { ArticlesList } from '@/pages/home/components/latest-stories/todays-picks/articles';
-import { StoryHeading } from './story-heading';
+import { TravelArticlesList, StoryHeading } from '.';
 
 export const LatestStories: React.FC = () => {
   return (
     <div className='lg:col-span-4'>
       <StoryHeading />
-      <ArticlesList />
+      <TravelArticlesList />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { Loading, MiniArticleCard, UnderlinedButton } from '@/components';
 import { useRandomArticles } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
-export const ArticlesList: React.FC = () => {
+export const IssueArticlesList: React.FC = () => {
   const { t } = useTranslation('common');
 
   const { data, isLoading } = useRandomArticles(undefined, 6);
@@ -24,12 +24,12 @@ export const ArticlesList: React.FC = () => {
           className='bg-inherit font-semibold uppercase tracking-widest text-foreground hover:text-background'
         >
           <a
-            href='https://www.nationalgeographic.com/pages/topic/latest-stories'
+            href='https://www.nationalgeographic.com/magazine/issue/february-2025'
             target='_blank'
             rel='noopener noreferrer'
             className='no-underline'
           >
-            {t('see_more')}
+            {t('see_all')}
           </a>
         </UnderlinedButton>
       </div>

@@ -143,6 +143,49 @@ export const fetchMayLikeArticles = async ({
   }
 };
 
+export const fetchRandomArticles = async (
+  categoryNameEn?: ArticleCategory,
+  limit: number = 9,
+): Promise<ShowCardArticle[]> => {
+  try {
+    let query = supabase
+      .from('articles')
+      .select(
+        `
+          id, 
+          cover_image, 
+          title_en, 
+          title_ka,
+          slug, 
+          category:categories(name_en, name_ka, slug)
+        `,
+      )
+      .order('created_at', { ascending: false });
+
+    if (categoryNameEn) {
+      const categoryId = await getCategoryIdByName(categoryNameEn);
+      query = query.eq('category_id', categoryId);
+    }
+
+    const { data, error } = await query.limit(limit);
+
+    if (error) {
+      throw new Error(`Error fetching random articles: ${error.message}`);
+    }
+
+    if (!data) {
+      throw new Error('No articles found');
+    }
+
+    const shuffledArticles = data.sort(() => Math.random() - 0.5);
+
+    return shuffledArticles as ShowCardArticle[];
+  } catch (err) {
+    console.error('Error during random articles fetching:', err);
+    throw err;
+  }
+};
+
 export const postArticle = async (
   articleData: InsertArticle,
 ): Promise<void> => {

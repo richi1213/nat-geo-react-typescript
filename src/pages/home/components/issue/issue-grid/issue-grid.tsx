@@ -1,42 +1,23 @@
-import { ArticleCard } from '@/components';
-
-const issues = [
-  {
-    variant: 'hero' as const,
-    category: 'Science',
-    subcategory: 'Mind, Body, Wonder',
-    title: "8 strategies to make your New Year's resolutions stick",
-    imageUrl: '/images/placeholder.svg',
-    href: '/articles/new-year-resolutions',
-    isPremium: true,
-  },
-  {
-    category: 'Science',
-    title: 'The key to fitness? Strengthening your joints and tendons',
-    imageUrl: '/images/placeholder.svg',
-    href: '/articles/fitness-joints',
-    isPremium: false,
-  },
-  {
-    category: 'Science',
-    title: 'How going sober for even a month can improve your health',
-    imageUrl: '/images/placeholder.svg',
-    href: '/articles/sober-health',
-    isPremium: true,
-  },
-];
+import { ArticleCard, Loading } from '@/components';
+import { useRandomArticles } from '@/hooks';
 
 export const IssueGrid: React.FC = () => {
+  const { data, isLoading } = useRandomArticles(undefined, 3);
+
+  if (isLoading) return <Loading />;
+
+  if (!data) return <div>No data</div>;
+
   return (
     <div className='mt-6 lg:col-span-8'>
-      {/* <div className='space-y-6'>
-        <ArticleCard {...issues[0]} />
+      <div className='space-y-6'>
+        <ArticleCard article={data[0]} variant='hero' />
         <div className='grid gap-4 sm:grid-cols-2'>
-          {issues.slice(1).map((issue, index) => (
-            <ArticleCard key={index} {...issue} />
+          {data.slice(1).map((article) => (
+            <ArticleCard key={article.id} article={article} />
           ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
