@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import {
   Button,
   Card,
@@ -16,10 +16,6 @@ import type { ShowCardArticle } from '@/supabase';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedString } from '@/utils';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes';
-import { EditArticleSheet } from '@/pages';
-import { useSetAtom } from 'jotai';
-import { activeArticleDataAtom, isSheetOpenAtom } from '@/atoms';
-import { useSingleArticle } from '@/hooks';
 
 export const ArticleHorizontalCard = forwardRef<
   HTMLAnchorElement,
@@ -50,26 +46,7 @@ export const ArticleHorizontalCard = forwardRef<
 
     const categoryName = getLocalizedString(category, 'name', currentLanguage);
 
-    const [isEditing, setIsEditing] = useState(false);
-    const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
-    const setActiveArticle = useSetAtom(activeArticleDataAtom);
-
     const [articleToDelete, setArticleToDelete] = useState<string | null>(null);
-
-    const { data: singleArticleData } = useSingleArticle(slug!, isEditing);
-
-    useEffect(() => {
-      if (isEditing) {
-        if (singleArticleData) {
-          setActiveArticle(singleArticleData);
-          setIsSheetOpen(true);
-        }
-      }
-    }, [isEditing, singleArticleData, setActiveArticle, setIsSheetOpen]);
-
-    const handleOpenSheet = () => {
-      setIsEditing(true);
-    };
 
     const handleDeleteButtonClick = (id: string) => {
       setArticleToDelete(id);
@@ -131,10 +108,6 @@ export const ArticleHorizontalCard = forwardRef<
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align='end'>
-                    <DropdownMenuItem onClick={handleOpenSheet}>
-                      {t('edit')}
-                    </DropdownMenuItem>
-
                     <DropdownMenuItem
                       onClick={() => handleDeleteButtonClick(id)}
                     >
@@ -145,8 +118,6 @@ export const ArticleHorizontalCard = forwardRef<
               </div>
             </CardContent>
           </Card>
-
-          <EditArticleSheet />
 
           {articleToDelete && (
             <DeleteArticleDialog
