@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "update-types": "npx supabase gen types --lang=typescript --project-id llygfgzmjrtnslczavce --schema public > src/supabase/supabase.types.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
