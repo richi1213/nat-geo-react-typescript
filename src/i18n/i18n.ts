@@ -9,6 +9,7 @@ import writeArticleEn from './en/pages/write-article.json';
 import editProfileFormEn from './en/layout/edit-profile-form.json';
 import NotificationsEn from './en/notifications.json';
 import homeEn from './en/pages/home.json';
+import notFoundEn from './en/pages/not-found.json';
 
 import headerKa from './ka/layout/header.json';
 import footerKa from './ka/layout/footer.json';
@@ -18,6 +19,7 @@ import writeArticleKa from './ka/pages/write-article.json';
 import editProfileFormKa from './ka/layout/edit-profile-form.json';
 import NotificationsKa from './ka/notifications.json';
 import homeKa from './ka/pages/home.json';
+import notFoundKa from './ka/pages/not-found.json';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -27,6 +29,7 @@ i18n.use(initReactI18next).init({
       common: commonEn,
       home: homeEn,
       impact: impactEn,
+      notFound: notFoundEn,
       writeArticle: writeArticleEn,
       editProfileForm: editProfileFormEn,
       notifications: NotificationsEn,
@@ -37,6 +40,7 @@ i18n.use(initReactI18next).init({
       common: commonKa,
       home: homeKa,
       impact: impactKa,
+      notFound: notFoundKa,
       writeArticle: writeArticleKa,
       editProfileForm: editProfileFormKa,
       notifications: NotificationsKa,
@@ -51,6 +55,7 @@ i18n.use(initReactI18next).init({
     'common',
     'home',
     'impact',
+    'notFound',
     'writeArticle',
     'editProfileForm',
     'notifications',
