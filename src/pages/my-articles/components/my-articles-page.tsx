@@ -102,7 +102,7 @@ const MyArticlesPage: React.FC = () => {
             })}
           >
             <RefreshCcw />
-            {t('load more')}
+            {t('load_more')}
           </LinkButton>
         </div>
       </div>

@@ -42,7 +42,7 @@ export const CategoryArticlesRow: React.FC = () => {
           className={cn({ hidden: !hasNextPage })}
         >
           <RefreshCcw />
-          {t('load more')}
+          {t('load_more')}
         </LinkButton>
       </div>
     </div>

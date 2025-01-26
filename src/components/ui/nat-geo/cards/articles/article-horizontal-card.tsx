@@ -121,13 +121,13 @@ export const ArticleHorizontalCard = forwardRef<
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align='end'>
                     <DropdownMenuItem onClick={handleOpenSheet}>
-                      Edit
+                      {t('edit')}
                     </DropdownMenuItem>
 
                     <DropdownMenuItem
                       onClick={() => onDelete?.(slug as string)}
                     >
-                      Delete
+                      {t('delete')}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

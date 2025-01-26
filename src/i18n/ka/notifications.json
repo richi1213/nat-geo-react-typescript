@@ -15,5 +15,7 @@
   "copySuccess": "ბმული დაკოპირდა!",
   "copySuccessDescription": "ახლა შეგიძლიათ გაზიაროთ ბმული.",
   "copyError": "ბმულის დაკოპირება ვერ მოხერხდა. სცადეთ კიდევ ერთხელ.",
-  "copyLinkButton": "ბმულის კოპირება"
+  "copyLinkButton": "ბმულის კოპირება",
+  "article_successfully_deleted": "არტიკლი წარმატებით წაიშალა.",
+  "failed_to_delete_article": "არტიკლის წაშლა ვერ მოხერხდა."
 }

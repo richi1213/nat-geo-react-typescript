@@ -6,5 +6,8 @@
   "may_like": "you may also like",
   "by": "By",
   "search": "Search",
-  "no_data_found": "No data found"
+  "no_data_found": "No data found",
+  "edit": "Edit",
+  "delete": "Delete",
+  "my_articles": "my articles"
 }

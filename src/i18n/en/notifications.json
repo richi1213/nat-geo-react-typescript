@@ -15,5 +15,7 @@
   "copySuccess": "Link copied to clipboard!",
   "copySuccessDescription": "You can now share the link.",
   "copyError": "Failed to copy the link. Please try again.",
-  "copyLinkButton": "Copy Link"
+  "copyLinkButton": "Copy Link",
+  "article_successfully_deleted": "Article successfully deleted.",
+  "failed_to_delete_article": "Failed to delete the article."
 }
