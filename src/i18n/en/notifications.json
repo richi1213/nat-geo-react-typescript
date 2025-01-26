@@ -17,5 +17,10 @@
   "copyError": "Failed to copy the link. Please try again.",
   "copyLinkButton": "Copy Link",
   "article_successfully_deleted": "Article successfully deleted.",
-  "failed_to_delete_article": "Failed to delete the article."
+  "failed_to_delete_article": "Failed to delete the article.",
+  "deleteConfirmation": "Are you sure you want to delete this article?",
+  "deleteWarning": "This action cannot be undone. Deleting this article will permanently remove it from the system and it cannot be recovered.",
+  "deleting": "Deleting...",
+  "delete": "Delete",
+  "cancel": "Cancel"
 }

@@ -1,5 +1,4 @@
 import {
-  Button,
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -8,47 +7,44 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components';
 import type { DeleteArticleDialogProps } from './types';
 import { useDeleteArticle } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({
-  open,
   articleId,
   onClose,
 }) => {
+  const { t } = useTranslation('notifications');
+
   const { mutate: deleteArticle, isPending } = useDeleteArticle();
 
   const handleDelete = () => {
     deleteArticle(articleId);
-    console.log('hi');
     onClose();
   };
 
-  console.log(articleId);
-
   return (
-    <AlertDialog open={open}>
-      <AlertDialogTrigger asChild>
-        <Button variant='outline' onClick={handleDelete}>
-          Delete Article
-        </Button>
-      </AlertDialogTrigger>
+    <AlertDialog
+      open={!!articleId}
+      onOpenChange={() => {
+        setTimeout(() => (document.body.style.pointerEvents = ''), 100);
+      }}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            Are you sure you want to delete this article?
+          <AlertDialogTitle className='text-foreground'>
+            {t('deleteConfirmation')}
           </AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. Deleting this article will permanently
-            remove it from the system and it cannot be recovered.
-          </AlertDialogDescription>
+          <AlertDialogDescription>{t('deleteWarning')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={onClose} className='text-foreground'>
+            {t('cancel')}
+          </AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete} disabled={isPending}>
-            {isPending ? 'Deleting...' : 'Delete'}
+            {isPending ? t('deleting') : t('delete')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

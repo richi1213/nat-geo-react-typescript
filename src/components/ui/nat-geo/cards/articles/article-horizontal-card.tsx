@@ -54,7 +54,6 @@ export const ArticleHorizontalCard = forwardRef<
     const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
     const setActiveArticle = useSetAtom(activeArticleDataAtom);
 
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [articleToDelete, setArticleToDelete] = useState<string | null>(null);
 
     const { data: singleArticleData } = useSingleArticle(slug!, isEditing);
@@ -74,11 +73,9 @@ export const ArticleHorizontalCard = forwardRef<
 
     const handleDeleteButtonClick = (id: string) => {
       setArticleToDelete(id);
-      setIsDialogOpen(true);
     };
 
     const handleCloseDialog = () => {
-      setIsDialogOpen(false);
       setArticleToDelete(null);
     };
 
@@ -151,10 +148,9 @@ export const ArticleHorizontalCard = forwardRef<
 
           <EditArticleSheet />
 
-          {isDialogOpen && (
+          {articleToDelete && (
             <DeleteArticleDialog
-              open={isDialogOpen}
-              articleId={articleToDelete!}
+              articleId={articleToDelete}
               onClose={handleCloseDialog}
             />
           )}
