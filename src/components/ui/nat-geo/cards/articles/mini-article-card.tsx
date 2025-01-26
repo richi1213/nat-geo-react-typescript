@@ -41,11 +41,7 @@ export const MiniArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
               />
             </div>
             <div className='flex flex-col gap-2'>
-              <Link to={`/${category.slug}`}>
-                <div className='uppercase tracking-widest hover:underline'>
-                  {categoryName}
-                </div>
-              </Link>
+              <div className='uppercase tracking-widest'>{categoryName}</div>
 
               <h3 className='text-sm font-bold text-foreground group-hover:underline'>
                 {title}

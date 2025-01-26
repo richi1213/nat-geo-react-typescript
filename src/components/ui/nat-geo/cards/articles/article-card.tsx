@@ -38,11 +38,9 @@ export const ArticleCard = forwardRef<HTMLDivElement, ArticleCardProps>(
           >
             <div className='space-y-4'>
               <div className='flex items-center gap-2'>
-                <Link to={`/${category.slug}`}>
-                  <span className='text-sm font-medium uppercase tracking-wider hover:underline'>
-                    {categoryName}
-                  </span>
-                </Link>
+                <span className='text-sm font-medium uppercase tracking-wider'>
+                  {categoryName}
+                </span>
               </div>
 
               <h3 className='max-w-xl text-2xl font-bold text-foreground sm:text-3xl md:text-4xl'>

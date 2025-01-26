@@ -121,7 +121,7 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
             <p className='mt-2'>{t('error_checking_email')}</p>
             <Button
               onClick={() => setState(FormState.Idle)}
-              className='mt-4 bg-red-600 text-white'
+              className='mt-4 bg-red-600 text-foreground'
             >
               {t('try_again')}
             </Button>

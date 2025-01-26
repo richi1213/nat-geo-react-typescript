@@ -8,6 +8,7 @@ import {
   MenuSheet,
   AuthSheet,
   UserMenu,
+  ThemeToggler,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 import { DEFAULT_LAYOUT_PATHS } from '@/routes';
@@ -62,6 +63,9 @@ export const NavbarList: React.FC = () => {
       </li>
       <li>
         <LanguagePicker />
+      </li>
+      <li className='hidden xl:block'>
+        <ThemeToggler />
       </li>
       <li>
         <MenuSheet>

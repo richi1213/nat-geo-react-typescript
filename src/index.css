@@ -70,4 +70,30 @@
     --chart-4: 0 0% 40%; /* Dark gray */
     --chart-5: 0 0% 20%; /* Darker gray */
   }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 0 0% 95%;
+    --card: 210 20% 15%;
+    --card-foreground: 0 0% 90%;
+    --popover: 210 20% 15%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 48 90% 55%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 220 10% 30%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 220 8% 25%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 220 85% 70%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 48 90% 55%;
+    --chart-1: 48 90% 55%;
+    --chart-2: 220 85% 70%;
+    --chart-3: 0 72% 45%;
+    --chart-4: 220 10% 30%;
+    --chart-5: 220 8% 25%;
+  }
 }
