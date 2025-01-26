@@ -35,3 +35,30 @@ export const getPublicUrlFromSupabase = (filePath: string): string => {
 
   return publicUrlData.publicUrl;
 };
+
+export const fetchFilesFromSupabase = async (
+  folder: string,
+): Promise<string[]> => {
+  const { data, error } = await supabase.storage
+    .from(ARTICLE_BUCKET_NAME)
+    .list(folder, { limit: 15 });
+
+  if (error) {
+    throw new Error(`Failed to fetch files from ${folder}: ${error.message}`);
+  }
+
+  if (!data) {
+    return [];
+  }
+
+  const publicUrls = data
+    .filter((file) => file.name.match(/\.(jpg|jpeg|png|webp|avif)$/))
+    .map((file) => {
+      const { data: publicUrlData } = supabase.storage
+        .from(ARTICLE_BUCKET_NAME)
+        .getPublicUrl(`${folder}/${file.name}`);
+      return publicUrlData?.publicUrl;
+    });
+
+  return publicUrls.filter(Boolean) as string[];
+};

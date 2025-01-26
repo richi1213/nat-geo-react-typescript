@@ -9,4 +9,5 @@ export enum QUERY_KEYS {
   CATEGORY_BY_ID = 'categoryById',
   CATEGORY_SLUG = 'categorySlug',
   AUTHOR = 'author',
+  SHOWS = 'shows',
 }

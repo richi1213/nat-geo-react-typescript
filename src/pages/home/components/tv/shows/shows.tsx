@@ -1,75 +1,16 @@
 import { ShowCard } from '@/components';
 import { StackedCarousel } from '@/components/ui/nat-geo/carousels/stacked-carousel';
-
-const placeholderShows = [
-  {
-    id: 1,
-    title: 'Shark show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 2,
-    title: 'Mountain show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 3,
-    title: 'Adventure show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 4,
-    title: 'Shark show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 5,
-    title: 'Mountain show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 6,
-    title: 'Adventure show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 7,
-    title: 'Shark show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 8,
-    title: 'Mountain show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-  {
-    id: 9,
-    title: 'Adventure show',
-    imageUrl: 'images/placeholder.svg',
-    href: '/',
-  },
-];
+import { useShowImageLinks } from '@/hooks/react-query/queries/storage/use-show-images-from-folder';
 
 export const Shows: React.FC = () => {
+  const { data } = useShowImageLinks('shows-2');
+
+  if (!data) <div>not data found</div>;
+
   return (
     <div>
       <StackedCarousel>
-        {placeholderShows.map((show) => (
-          <ShowCard
-            key={show.id}
-            href={show.href}
-            title={show.title}
-            imageUrl={show.imageUrl}
-          />
-        ))}
+        {data?.map((show) => <ShowCard key={show} imageUrl={show} />)}
       </StackedCarousel>
     </div>
   );

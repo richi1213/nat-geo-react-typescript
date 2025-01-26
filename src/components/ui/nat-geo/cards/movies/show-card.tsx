@@ -2,11 +2,7 @@ import { Card, CardContent, LinkButton } from '@/components';
 import type { ShowCardProps } from './types';
 import { useTranslation } from 'react-i18next';
 
-export const ShowCard: React.FC<ShowCardProps> = ({
-  href,
-  title,
-  imageUrl,
-}) => {
+export const ShowCard: React.FC<ShowCardProps> = ({ imageUrl }) => {
   const { t } = useTranslation('home');
   return (
     <Card className='rounded-none border-none'>
@@ -14,15 +10,13 @@ export const ShowCard: React.FC<ShowCardProps> = ({
         <div className='absolute inset-0'>
           <img
             src={imageUrl}
-            alt={title}
+            alt='show'
             className='h-full w-full object-cover'
           />
         </div>
         <div className='absolute inset-0 flex items-center justify-center'>
           <div className='translate-y-12 transform'>
-            <LinkButton variant='alternate' to={href}>
-              {t('watch_now')}
-            </LinkButton>
+            <LinkButton variant='alternate'>{t('watch_now')}</LinkButton>
           </div>
         </div>
       </CardContent>
