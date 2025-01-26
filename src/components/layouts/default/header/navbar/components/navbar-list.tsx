@@ -64,7 +64,7 @@ export const NavbarList: React.FC = () => {
       <li>
         <LanguagePicker />
       </li>
-      <li>
+      <li className='hidden xl:block'>
         <ThemeToggler />
       </li>
       <li>
