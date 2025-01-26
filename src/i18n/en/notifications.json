@@ -11,5 +11,9 @@
   "failed_to_sign_up": "Failed to sign up",
   "successfully_signed_up": "Successfully signed up",
   "article_successfully_created": "Article successfully created",
-  "failed_to_create_article": "Failed to create an article"
+  "failed_to_create_article": "Failed to create an article",
+  "copySuccess": "Link copied to clipboard!",
+  "copySuccessDescription": "You can now share the link.",
+  "copyError": "Failed to copy the link. Please try again.",
+  "copyLinkButton": "Copy Link"
 }

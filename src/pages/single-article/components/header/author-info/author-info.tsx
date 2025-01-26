@@ -1,9 +1,10 @@
 import { Button } from '@/components';
 import { Link, Mail } from 'lucide-react';
 import type { AuthorInfoProps } from './types';
-import { handleCopyLink } from '@/utils';
+import { useHandleCopyLink } from '@/hooks';
 
 export const AuthorInfo: React.FC<AuthorInfoProps> = ({ children, email }) => {
+  const handleCopyLink = useHandleCopyLink();
   return (
     <div className='flex flex-col md:flex-row lg:col-start-2 lg:row-span-1 lg:row-start-3'>
       <div className='mx-auto flex w-full max-w-lg flex-col justify-between space-y-3 px-6 md:flex-row lg:flex-col lg:items-start xl:px-0'>

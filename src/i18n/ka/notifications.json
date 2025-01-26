@@ -11,5 +11,9 @@
   "failed_to_sign_up": "ვერ მოხერხდა რეგისტრაცია",
   "successfully_signed_up": "წარმატებით დარეგისტრირდით",
   "article_successfully_created": "სტატია წარმატებით შეიქმნა",
-  "failed_to_create_article": "ვერ მოხერხდა სტატიის შექმნა"
+  "failed_to_create_article": "ვერ მოხერხდა სტატიის შექმნა",
+  "copySuccess": "ბმული დაკოპირდა!",
+  "copySuccessDescription": "ახლა შეგიძლიათ გაზიაროთ ბმული.",
+  "copyError": "ბმულის დაკოპირება ვერ მოხერხდა. სცადეთ კიდევ ერთხელ.",
+  "copyLinkButton": "ბმულის კოპირება"
 }

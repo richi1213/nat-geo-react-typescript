@@ -27,6 +27,7 @@ export const EditTiptapEditor: React.FC<{
   return (
     <>
       <RichTextEditor
+        dark={false}
         output='html'
         content={value}
         onChangeContent={onChange}

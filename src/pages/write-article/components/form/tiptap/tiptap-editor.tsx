@@ -9,6 +9,7 @@ export const TiptapEditor: React.FC<{
 }> = ({ value, onChange }) => {
   return (
     <RichTextEditor
+      dark={false}
       output='html'
       content={value}
       onChangeContent={onChange}
