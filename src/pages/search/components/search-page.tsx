@@ -64,7 +64,7 @@ const SearchPage: React.FC = () => {
 
     if (articles.length === 0) {
       return (
-        <div className='text-center text-gray-500'>{t('No data found')}</div>
+        <div className='text-center text-gray-500'>{t('no_data_found')}</div>
       );
     }
 
@@ -88,7 +88,7 @@ const SearchPage: React.FC = () => {
             })}
           >
             <RefreshCcw />
-            {t('load more')}
+            {t('load_more')}
           </LinkButton>
         </div>
       </div>
