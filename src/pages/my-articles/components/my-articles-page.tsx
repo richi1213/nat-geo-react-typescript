@@ -63,10 +63,6 @@ const MyArticlesPage: React.FC = () => {
     ? searchedArticles.pages.flatMap((page) => page.articles)
     : [];
 
-  const handleDelete = (id: string) => {
-    console.log(`Delete item with ID: ${id}`);
-  };
-
   const renderContent = () => {
     if (isSearchedArticlesLoading) return <Loading />;
 
@@ -81,11 +77,7 @@ const MyArticlesPage: React.FC = () => {
         <VirtualizedList
           items={articles}
           CardComponent={(props) => (
-            <ArticleHorizontalCard
-              {...props}
-              variant='withActions'
-              onDelete={handleDelete}
-            />
+            <ArticleHorizontalCard {...props} variant='withActions' />
           )}
           itemCount={hasNextPage ? articles.length + 1 : articles.length}
           estimateSize={estimateRowHeight}

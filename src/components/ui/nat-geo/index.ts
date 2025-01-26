@@ -7,3 +7,4 @@ export * from './sheets';
 export * from './virtualized-wrappers';
 export * from './select';
 export * from './search';
+export * from './dialogs';

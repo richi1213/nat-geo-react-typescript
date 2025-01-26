@@ -112,8 +112,6 @@ export const useSubmitArticle = (categoryId: string) => {
         };
 
         await postArticle(finalData);
-
-        console.log('Final Data:', finalData);
       } catch (error) {
         if (error instanceof Error) {
           console.error('Error during submission:', error.message);

@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  DeleteArticleDialog,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -26,6 +27,7 @@ export const ArticleHorizontalCard = forwardRef<
 >(
   (
     {
+      id,
       category,
       title_en,
       title_ka,
@@ -34,7 +36,6 @@ export const ArticleHorizontalCard = forwardRef<
       style,
       slug,
       variant = 'default',
-      onDelete,
     },
     ref,
   ) => {
@@ -53,6 +54,9 @@ export const ArticleHorizontalCard = forwardRef<
     const setIsSheetOpen = useSetAtom(isSheetOpenAtom);
     const setActiveArticle = useSetAtom(activeArticleDataAtom);
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [articleToDelete, setArticleToDelete] = useState<string | null>(null);
+
     const { data: singleArticleData } = useSingleArticle(slug!, isEditing);
 
     useEffect(() => {
@@ -66,6 +70,16 @@ export const ArticleHorizontalCard = forwardRef<
 
     const handleOpenSheet = () => {
       setIsEditing(true);
+    };
+
+    const handleDeleteButtonClick = (id: string) => {
+      setArticleToDelete(id);
+      setIsDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+      setIsDialogOpen(false);
+      setArticleToDelete(null);
     };
 
     const CustomCardContent = (
@@ -84,7 +98,7 @@ export const ArticleHorizontalCard = forwardRef<
           <div className='hidden text-sm font-semibold uppercase tracking-[0.18rem] text-gray-600 md:block'>
             {categoryName}
           </div>
-          <h3 className='text-lg font-bold md:text-2xl'>{title}</h3>{' '}
+          <h3 className='text-lg font-bold md:text-2xl'>{title}</h3>
           <div className='hidden items-center gap-1 p-0 sm:flex'>
             <ScanText className='text-primary-foreground' />
             <span className='text-sm font-semibold uppercase tracking-[0.16rem]'>
@@ -125,7 +139,7 @@ export const ArticleHorizontalCard = forwardRef<
                     </DropdownMenuItem>
 
                     <DropdownMenuItem
-                      onClick={() => onDelete?.(slug as string)}
+                      onClick={() => handleDeleteButtonClick(id)}
                     >
                       {t('delete')}
                     </DropdownMenuItem>
@@ -136,6 +150,14 @@ export const ArticleHorizontalCard = forwardRef<
           </Card>
 
           <EditArticleSheet />
+
+          {isDialogOpen && (
+            <DeleteArticleDialog
+              open={isDialogOpen}
+              articleId={articleToDelete!}
+              onClose={handleCloseDialog}
+            />
+          )}
         </div>
       );
     }
