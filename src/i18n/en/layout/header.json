@@ -1,5 +1,5 @@
 {
-  "login": "login",
+  "login": "Login",
   "newsletters": "newsletters",
   "subscribe": "subscribe",
   "menu": "menu",
@@ -37,6 +37,7 @@
   "log_in_with_my_disney": "Since you've already used your email to sign up for one or more services across The Walt Disney Family of Companies, you can now log in to National Geographic with MyDisney using:",
   "edit": "edit",
   "password": "Password",
+  "password_required": "Password is required",
   "with_my_disney_account": "With a MyDisney account, you can log in to National Geographic and other services across The Walt Disney Family of Companies.",
 
   "create_account_title": "Create an account to continue",

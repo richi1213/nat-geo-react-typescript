@@ -38,6 +38,7 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
       'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
     },
   },
 );

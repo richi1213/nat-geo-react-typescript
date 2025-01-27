@@ -37,6 +37,7 @@
   "log_in_with_my_disney": "იმის გამო, რომ უკვე გამოიყენეთ თქვენი ელფოსტა The Walt Disney Family of Companies-ის ერთ ან მეტ სერვისზე რეგისტრაციისთვის, ახლა შეგიძლიათ შედით National Geographic-ზე MyDisney-ის გამოყენებით:",
   "edit": "შეცვლა",
   "password": "პაროლი",
+  "password_required": "პაროლი აუცილებელია",
   "with_my_disney_account": "MyDisney ანგარიშით, შეგიძლიათ შედით National Geographic-ზე და სხვა სერვისებზე The Walt Disney Family of Companies-ის ფარგლებში.",
 
   "create_account_title": "შექმენით ანგარიში გასაგრძელებლად",

@@ -50,8 +50,10 @@ export const getLoginSchema = (t?: (key: string) => string) => {
         ? t('please_enter_a_valid_email_address')
         : 'Please enter a valid email address',
     }),
-    password: z.string().min(1, {
-      message: t ? t('password_required') : 'Password is required',
+    password: z.string().min(6, {
+      message: t
+        ? t('password_minimum_length')
+        : 'Password must be at least 6 characters',
     }),
   });
 };
