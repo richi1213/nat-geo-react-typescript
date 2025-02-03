@@ -6,16 +6,16 @@ export const ShowCard: React.FC<ShowCardProps> = ({ imageUrl }) => {
   const { t } = useTranslation('home');
   return (
     <Card className='rounded-none border-none'>
-      <CardContent className='relative aspect-[3/4] text-center'>
-        <div className='absolute inset-0'>
+      <CardContent className='relative text-center'>
+        <div className='h-[403px]'>
           <img
             src={imageUrl}
             alt='show'
             className='h-full w-full object-cover'
           />
         </div>
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='translate-y-12 transform'>
+        <div className='flex justify-center'>
+          <div className='absolute top-[16rem] translate-y-12 transform'>
             <LinkButton variant='alternate'>{t('watch_now')}</LinkButton>
           </div>
         </div>
