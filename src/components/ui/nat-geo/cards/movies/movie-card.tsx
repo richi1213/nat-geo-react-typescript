@@ -3,9 +3,9 @@ import type { ShowCardProps } from './types';
 
 export const MovieCard: React.FC<ShowCardProps> = ({ imageUrl }) => {
   return (
-    <Card className='overflow-hidden border-none'>
-      <CardContent>
-        <div className='relative overflow-hidden'>
+    <Card className='h-full overflow-hidden border-none'>
+      <CardContent className='h-full'>
+        <div className='relative'>
           <a
             href='https://www.natgeotv.com/'
             target='_blank'
@@ -14,7 +14,7 @@ export const MovieCard: React.FC<ShowCardProps> = ({ imageUrl }) => {
             <img
               src={imageUrl}
               alt='show'
-              className='object-cover transition-transform duration-300 hover:scale-105'
+              className='h-full w-full object-cover transition-transform duration-300 hover:scale-105'
             />
           </a>
         </div>
