@@ -35,7 +35,7 @@ export default tseslint.config(
         'warn',
         { argsIgnorePattern: '^_' },
       ],
-      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
