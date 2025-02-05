@@ -127,7 +127,7 @@ export const ArticleForm: React.FC = () => {
         <FormField
           control={form.control}
           name='cover_image'
-          render={({ field: { onChange, value, ...rest } }) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>{t('cover_image')}</FormLabel>
               <FormControl>
@@ -137,9 +137,8 @@ export const ArticleForm: React.FC = () => {
                   accept='image/*'
                   onChange={(e) => {
                     const file = e.target.files?.[0];
-                    onChange(file);
+                    field.onChange(file);
                   }}
-                  {...rest}
                   onBlur={() => form.trigger('cover_image')}
                 />
               </FormControl>

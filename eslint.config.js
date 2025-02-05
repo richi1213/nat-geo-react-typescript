@@ -28,7 +28,7 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
-        'warn',
+        'off',
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-unused-vars': [
@@ -39,6 +39,7 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+      'react/display-name': 'off',
     },
   },
 );
