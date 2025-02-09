@@ -12,6 +12,7 @@ export default defineConfig({
       manifest: {
         name: 'National Geographic',
         short_name: 'Nat Geo',
+        theme_color: '#ffffff',
         icons: [
           {
             src: 'pwa-64x64.png',
