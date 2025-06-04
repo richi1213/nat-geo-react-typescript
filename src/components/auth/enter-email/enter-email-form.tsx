@@ -60,7 +60,7 @@ export const EnterEmailForm: React.FC<EnterEmailFormProps> = ({ sheetRef }) => {
             <h2 className='mb-2 text-3xl font-semibold'>
               {t('enter_your_email_to_continue')}
             </h2>
-            <p className=''>{t('log_in_to_national_geographic')}</p>
+            <p>{t('log_in_to_national_geographic')}</p>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
